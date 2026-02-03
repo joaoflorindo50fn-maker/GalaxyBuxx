@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suporte - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/suporte.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="particles"></canvas>
+<canvas id="galaxy-particles"></canvas>
+
+<main class="support-main">
+    <section class="support-header reveal reveal-active">
+      <h1>Central de Suporte</h1>
+      <p>Gerencie seus chamados e tire suas dúvidas com nosso time.</p>
+    </section>
+
+    <div class="support-layout reveal">
+      <aside class="support-sidebar">
+        <h3 class="sidebar-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l-5.5 9h11z"/><circle cx="6" cy="18" r="3"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+          </svg>
+          Menu
+        </h3>
+        <div class="support-nav-item active" data-view="create">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+          Abrir Ticket
+        </div>
+        <div class="support-nav-item" data-view="list">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          Meus Tickets
+        </div>
+      </aside>
+
+      <div class="support-content">
+        <!-- Create Ticket View -->
+        <div id="createTicketView" class="support-view active">
+          <div class="ticket-card">
+            <div class="ticket-header">
+              <div class="ticket-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 9V5.2a2 2 0 0 1 2-2h15.3a2 2 0 0 1 2 2V9"></path>
+                  <path d="M22 15V18.8a2 2 0 0 1-2 2H4.7a2 2 0 0 1-2-2V15"></path>
+                </svg>
+              </div>
+              <div class="ticket-title">
+                <h2>Abrir Novo Chamado</h2>
+                <p>Preencha os detalhes abaixo para iniciar seu atendimento.</p>
+              </div>
+            </div>
+
+            <form class="support-form" id="mainSupportForm">
+              <div class="form-group">
+                <label>Nome Completo</label>
+                <input type="text" name="name" placeholder="Ex: João Silva" required>
+              </div>
+              <div class="form-group">
+                <label>Email de Contato</label>
+                <input type="email" name="email" placeholder="seu@email.com" required>
+              </div>
+              <div class="form-group full">
+                <label>Assunto do Ticket</label>
+                <select name="subject" required>
+                  <option value="" disabled selected>Escolha o motivo do contato</option>
+                  <option>Coleta de Ativos (Resgate)</option>
+                  <option>Rastreamento de Pedido</option>
+                  <option>Informações de Vendas</option>
+                  <option>Pagamentos e Reembolsos</option>
+                  <option>Suporte de Plataforma</option>
+                  <option>Parcerias e Negócios</option>
+                  <option>Outras Demandas</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label>Relate seu Caso</label>
+                <textarea name="message" placeholder="Como podemos ajudar você hoje? Detalhe sua solicitação aqui..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit-ticket">ENVIAR TICKET</button>
+            </form>
+            <div class="discord-support">
+              <div class="separator"></div>
+              <p>Não te ajudou ou deu algum problema? <a href="https://discord.gg/PDWUgu8bvY" target="_blank">Entre no discord que nós resolvemos!</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- My Tickets View -->
+        <div id="listTicketView" class="support-view">
+          <div id="ticketsListCard" class="ticket-card" style="display: none;">
+            <div class="ticket-header">
+              <div class="ticket-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+              <div class="ticket-title">
+                <h2>Meus Chamados</h2>
+                <p>Acompanhe o status e as respostas dos seus atendimentos.</p>
+              </div>
+            </div>
+            <div id="ticketsContainer">
+              <!-- Tickets will be rendered here via JS -->
+            </div>
+          </div>
+          
+          <div id="emptyTickets" class="empty-state-card">
+            <div class="empty-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <h3>Nenhum ticket encontrado</h3>
+            <p>Você ainda não abriu nenhuma solicitação de suporte.</p>
+            <a href="#" class="btn-open-first" id="openTicketNow">Abrir um ticket agora</a>
+          </div>
+        </div>
+
+        <!-- Chat View -->
+        <div id="chatTicketView" class="support-view">
+          <div class="chat-container">
+            <div class="chat-header">
+              <button class="btn-back-to-list" id="backToList">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="19" y1="12" x2="5" y2="12"></line>
+                  <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+              </button>
+              <div class="chat-info">
+                <h3 id="chatTicketSubject">Assunto do Ticket</h3>
+                <span id="chatTicketId">#ID-TICKET</span>
+              </div>
+              <div class="chat-status-badge" id="chatTicketStatus">Pendente</div>
+              <button class="btn-close-ticket" id="closeTicketBtn">
+                <i class="fa-solid fa-circle-xmark"></i> Fechar Ticket
+              </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+              <!-- Messages will be rendered here -->
+            </div>
+            
+            <div class="chat-input-area">
+              <form id="chatForm">
+                <div class="chat-input-wrapper">
+                  <label for="fileAttachment" class="btn-attach">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+                    </svg>
+                  </label>
+                  <input type="file" id="fileAttachment" style="display: none;">
+                  <input type="text" id="chatInput" placeholder="Digite sua mensagem..." autocomplete="off">
+                  <button type="submit" class="btn-send-message">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="22" y1="2" x2="11" y2="13"></line>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                  </button>
+                </div>
+                <div id="attachmentPreview" class="attachment-preview" style="display: none;">
+                  <span id="fileName">arquivo.png</span>
+                  <button type="button" id="removeAttachment">&times;</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Balancing column for centering -->
+      <div class="support-balance-column" style="width: 280px;"></div>
+    </div>
+  </main>
+
+  <div id="confirmOverlay" class="modal">
+    <div class="modal-content">
+      <div class="reset-password-card">
+        <h2>Fechar Ticket</h2>
+        <p>Tem certeza que quer fechar esse ticket?</p>
+        <div class="form-actions" style="justify-content: center; gap: 20px; display: flex;">
+          <button class="btn-confirm-yes" id="confirmYes">Sim, fechar</button>
+          <button class="btn-confirm-no" id="confirmNo">Não, manter aberto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+<script src="js/suporte.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const msg = params.get('msg');
+  if (msg) {
+    const textarea = document.querySelector('textarea[name="message"]');
+    if (textarea) {
+      textarea.value = decodeURIComponent(msg);
+    }
+  }
+});
+</script>
+</body>
+</html>
+

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GalaxyBuxx</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="header-left">
+                <a href="/index.html" class="logo-wrapper">
+                    <div class="logo-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">Galaxy<span class="text-accent">Buxx</span></span>
+                </a>
+            </div>
+
+            <nav class="header-nav">
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/robux-details.html">Robux</a></li>
+                    <li><a href="/catalogo.html#gamepasses">Produtos</a></li>
+                    <li><a href="/tutoriais.html">Tutoriais</a></li>
+                    <li><a href="/suporte.html">Suporte</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <a href="/login.html" class="header-auth-btn">Fazer Login</a>
+            </div>
+        </div>
+    </header>
+
+    <canvas id="galaxy-particles"></canvas>
+
+    <main class="main-content">
+        <div class="login-container" id="auth-form-container">
+            <div id="form-content">
+                <h2>Bem-vindo(a)</h2>
+                <p class="subtitle">Entre para gerenciar seus Robux e pedidos.</p>
+                <form id="login-form" novalidate>
+                    <div class="input-group">
+                        <label for="email">EMAIL</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" placeholder="seu@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="input-group username-group hidden">
+                        <label for="username">NOME DE USUÁRIO</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="username" placeholder="Usuário">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">SENHA</label>
+                        <a href="#" class="forgot-password">ESQUECEU?</a>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="password" placeholder="********" required autocomplete="current-password">
+                        </div>
+                    </div>
+                    <div class="input-group confirm-password-group hidden">
+                        <label for="confirm-password">CONFIRMAR SENHA</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirm-password" placeholder="********">
+                        </div>
+                    </div>
+                    <button type="submit" class="main-btn">Entrar na conta</button>
+                </form>
+                <div class="divider">OU CONTINUE COM</div>
+                <div class="oauth-buttons">
+                    <button class="oauth-btn google-btn" onclick="signInWithGoogle()"><i class="fab fa-google"></i></button>
+                    <button class="oauth-btn discord-btn" onclick="signInWithDiscord()"><i class="fab fa-discord"></i></button>
+                </div>
+                <div class="register-link">Não tem uma conta? <span onclick="toggleRegister()">REGISTRE-SE</span></div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-column">
+            <h4>SOBRE</h4>
+            <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+        </div>
+        <div class="footer-column">
+            <h4>ACESSO RÁPIDO</h4>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="suporte.html">Suporte</a></li>
+                <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>LEGAL</h4>
+            <ul>
+                <li><a href="privacidade.html">Privacidade</a></li>
+                <li><a href="termos.html">Termos</a></li>
+            </ul>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+            <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/login.js"></script>
+    <script src="js/core.js" defer></script>
+    <script src="js/particles.js" defer></script>
+</body>
+</html>

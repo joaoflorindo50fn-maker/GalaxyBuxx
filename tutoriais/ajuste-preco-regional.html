@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajuste de Preço Regional - GalaxyBuxx</title>
+  <link rel="stylesheet" href="../css/index.css" />
+  <link rel="stylesheet" href="../css/tutoriais.css" />
+  <link rel="stylesheet" href="../css/particles.css">
+  <link rel="stylesheet" href="../css/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/core.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    :root { --glass: rgba(255,255,255,0.03); --glass-border: rgba(255,255,255,0.08); --accent: #fff; }
+    .tutorial-detail-header { padding: 80px 0 60px; text-align: center; }
+    .back-link { display:inline-flex; align-items:center; gap:10px; color:#666; text-decoration:none; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:40px; transition:color .3s; }
+    .back-link:hover { color:#fff; }
+    .tutorial-title-section h1 { font-size:clamp(32px,6vw,64px); font-family:'Space Grotesk',sans-serif; font-weight:900; line-height:1.1; margin-bottom:20px; text-transform:uppercase; }
+    .tutorial-meta { display:flex; justify-content:center; gap:20px; margin-bottom:30px; }
+    .meta-tag { background:var(--glass); border:1px solid var(--glass-border); padding:6px 15px; border-radius:4px; font-size:10px; font-weight:700; letter-spacing:1px; }
+    .lead-text { font-size:1.2rem; color:#888; max-width:700px; margin:0 auto 80px; line-height:1.6; }
+    .tutorial-steps { display:flex; flex-direction:column; gap:100px; max-width:900px; margin:0 auto 150px; }
+    .step-card { position:relative; }
+    .step-header { display:flex; align-items:flex-end; gap:30px; margin-bottom:40px; border-bottom:1px solid var(--glass-border); padding-bottom:20px; }
+    .step-number { font-size:100px; font-family:'Space Grotesk',sans-serif; font-weight:900; line-height:.8; color:transparent; -webkit-text-stroke:1px #222; }
+    .step-header h2 { font-size:1.8rem; text-transform:uppercase; font-family:'Space Grotesk',sans-serif; }
+    .step-content p { font-size:1.1rem; color:#aaa; line-height:1.8; margin-bottom:40px; }
+    .step-media { background:linear-gradient(145deg,#0a0a0a,#050505); border:1px solid var(--glass-border); border-radius:20px; padding:20px; box-shadow:0 30px 60px rgba(0,0,0,.5); position:relative; overflow:hidden; }
+    .step-media img { width:100%; border-radius:10px; filter:grayscale(.5); transition:filter .5s ease; }
+    .step-card:hover .step-media img { filter:grayscale(0); }
+    .step-media::after { content:''; position:absolute; inset:0; background:linear-gradient(transparent,rgba(0,0,0,.2)); pointer-events:none; }
+    @media (max-width:768px){ .step-header{flex-direction:column; align-items:flex-start; gap:10px;} .step-number{font-size:60px;} }
+  </style>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header></header>
+
+<main class="tutorials-main">
+    <div class="tutorial-detail-header reveal reveal-active">
+      <a href="../tutoriais.html" class="back-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        VOLTAR / TUTORIAIS
+      </a>
+      <div class="tutorial-title-section">
+        <h1>Ajuste de Preço Regional</h1>
+      </div>
+      <p class="lead-text">Como configurar preços para evitar variações automáticas e manter consistência.</p>
+    </div>
+
+    <div class="tutorial-steps">
+      <div class="step-card reveal">
+        <div class="step-header">
+          <span class="step-number">01</span>
+          <h2>Localizar Configurações</h2>
+        </div>
+        <div class="step-content">
+          <p>Acesse as definições da experiência e procure pela seção de preços regionais.</p>
+          <div class="step-media">
+            <img src="../passimg/noFilter.jpg" alt="Passo 1">
+          </div>
+        </div>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-header">
+          <span class="step-number">02</span>
+          <h2>Aplicar Valores</h2>
+        </div>
+        <div class="step-content">
+          <p>Defina valores estáveis por região e salve as alterações para replicar o padrão.</p>
+          <div class="step-media">
+            <img src="../passimg/noFilter.jpg" alt="Passo 2">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="../index.html">Início</a></li>
+        <li><a href="../suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="../privacidade.html">Privacidade</a></li>
+        <li><a href="../termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+
+<script src="../js/nav-direction.js"></script>
+<script src="../js/particles.js" type="module" defer></script>
+</body>
+</html>

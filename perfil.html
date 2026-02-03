@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil - GalaxyBuxx</title>
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/core.js" defer></script>
+</head>
+<body>
+    <header></header>
+    <canvas id="particles"></canvas>
+    <canvas id="galaxy-particles"></canvas>
+
+    <main class="profile-main">
+        <div class="profile-layout reveal">
+            <!-- Sidebar -->
+            <aside class="profile-sidebar">
+                <div class="sidebar-user">
+                    <img src="https://ui-avatars.com/api/?name=User&background=222&color=fff&size=128" alt="Avatar" class="user-avatar-img">
+                    <div class="sidebar-user-info">
+                        <h3 class="user-name-text">Carregando...</h3>
+                        <span>MEMBRO</span>
+                    </div>
+                </div>
+                
+                <nav class="profile-nav">
+                    <div class="profile-nav-item active" data-tab="historico">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Histórico</span>
+                    </div>
+                    <div class="profile-nav-item" data-tab="perfil">
+                        <i class="fa-solid fa-user"></i>
+                        <span>Perfil</span>
+                    </div>
+                    <div class="profile-nav-item hidden" id="adminNavItem" data-tab="admin">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <span>Admin</span>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="logout-btn-sidebar logout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Sair da Conta</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="profile-content">
+                <!-- Tab: Histórico (Orders) -->
+                <div id="historicoView" class="profile-view active">
+                    <!-- User Header Card -->
+                    <div class="user-header-card">
+                        <div class="header-avatar-wrapper">
+                            <img src="https://ui-avatars.com/api/?name=User&background=222&color=fff&size=128" alt="Avatar" class="user-avatar-img">
+                        </div>
+                        <div class="header-user-details">
+                            <h2 class="user-name-text">Carregando...</h2>
+                            <div class="verified-badge">
+                                <i class="fa-solid fa-circle-check"></i>
+                                <span>CONTA VERIFICADA</span>
+                            </div>
+                        </div>
+                        <div class="header-security-badge">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                    </div>
+
+                    <!-- Statistics Grid -->
+                    <div class="stats-grid">
+                        <div class="stats-card">
+                            <div class="stats-info">
+                                <span>TOTAL GASTO</span>
+                                <h3>R$ 0,00</h3>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                        <div class="stats-card">
+                            <div class="stats-info">
+                                <span>ROBUX COMPRADO</span>
+                                <h3>0 R$</h3>
+                            </div>
+                            <div class="stats-icon">
+                                <i class="fa-solid fa-money-bill-1-wave"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Orders Table -->
+                    <div class="orders-section">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <h3>Histórico de Pedidos</h3>
+                                <p>Acompanhe o status das suas compras recentes.</p>
+                            </div>
+                            <div class="orders-filter-tabs">
+                                <button class="filter-btn active" data-filter="ativos">Ativos</button>
+                                <button class="filter-btn" data-filter="concluidos">Concluídos</button>
+                                <button class="filter-btn" data-filter="cancelados">Cancelados</button>
+                            </div>
+                            <div class="search-box">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <input type="text" placeholder="Buscar ID...">
+                            </div>
+                        </div>
+
+                        <div class="orders-table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID PEDIDO</th>
+                                        <th>DATA</th>
+                                        <th>PACOTE</th>
+                                        <th>VALOR</th>
+                                        <th>STATUS</th>
+                                        <th>AÇÃO</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody">
+                                    <tr>
+                                        <td colspan="6" class="empty-table">
+                                            Nenhum pedido encontrado.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="table-footer">
+                            <span id="orderCount">0 PEDIDO(S) ENCONTRADO(S)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Perfil (Settings) -->
+                <div id="perfilView" class="profile-view">
+                    <div class="profile-settings-header">
+                        <div class="section-title">
+                            <h3>Perfil & Segurança</h3>
+                            <p>Gerencie suas informações pessoais e segurança da conta.</p>
+                        </div>
+                        <div class="header-icon-wrapper">
+                            <i class="fa-solid fa-user-shield"></i>
+                        </div>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-id-card"></i>
+                            <h4>Informações Pessoais</h4>
+                        </div>
+                        <form id="profileForm" class="settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>NOME DE EXIBIÇÃO</label>
+                                    <input type="text" id="displayName" placeholder="Seu nome">
+                                </div>
+                                <div class="form-group">
+                                    <label>EMAIL</label>
+                                    <input type="email" id="displayEmail" disabled class="disabled-input">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn-save-changes">Salvar alterações</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <div class="card-header">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <h4>Segurança</h4>
+                        </div>
+                        <div class="security-list">
+                            <div class="security-item">
+                                <div class="security-info">
+                                    <h5>Senha</h5>
+                                    <p>Para sua segurança, não mostramos sua senha.</p>
+                                </div>
+                                <button class="btn-security-action" id="btnResetPassword">Alterar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Admin (Panel) -->
+                <div id="adminView" class="profile-view">
+                    <div class="admin-panel-header">
+                        <div class="section-title">
+                            <h3>Painel Administrativo</h3>
+                            <p>Gerencie pedidos, em andamento e configurações do sistema.</p>
+                        </div>
+                        <div class="admin-badge">
+                            <i class="fa-solid fa-crown"></i>
+                            <span>ADMINISTRADOR</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-tabs-nav">
+                        <div class="admin-tab-btn active" data-admin-tab="admin-pedidos">Pedidos <span class="nav-badge hidden" id="badge-pedidos">0</span></div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-stats">Estatísticas</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-entregas">Em Andamento</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-comprovantes">Concluídos</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-cancelados">Cancelados</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-tickets">Tickets <span class="nav-badge hidden" id="badge-tickets">0</span></div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-usuarios">Usuários</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-config">Configurações</div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-stats">
+                        <div class="admin-stats-grid">
+                            <div class="stats-mini-card">
+                                <div class="mini-card-info">
+                                    <span>Vendas Hoje</span>
+                                    <h4 id="statsToday">R$ 0,00</h4>
+                                    <small id="compareYesterday">vs Ontem: R$ 0,00</small>
+                                </div>
+                                <div class="mini-card-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                            </div>
+                            <div class="stats-mini-card">
+                                <div class="mini-card-info">
+                                    <span>Vendas este Mês</span>
+                                    <h4 id="statsMonth">R$ 0,00</h4>
+                                    <small id="compareLastMonth">vs Mês Ant: R$ 0,00</small>
+                                </div>
+                                <div class="mini-card-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                            </div>
+                            <div class="stats-mini-card">
+                                <div class="mini-card-info">
+                                    <span>Total Pedidos</span>
+                                    <h4 id="statsTotalOrders">0</h4>
+                                    <small id="activeOrders">0 Ativos agora</small>
+                                </div>
+                                <div class="mini-card-icon"><i class="fa-solid fa-cart-flatbed"></i></div>
+                            </div>
+                        </div>
+
+                        <div class="admin-card chart-card">
+                            <div class="card-header-admin">
+                                <h4>Desempenho de Vendas (Últimos 30 dias)</h4>
+                                <div class="chart-filters">
+                                    <button class="btn-chart-filter active" onclick="updateDashboardChart(7)">7D</button>
+                                    <button class="btn-chart-filter" onclick="updateDashboardChart(30)">30D</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="adminSalesChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content active" id="admin-pedidos">
+                        <div class="admin-card">
+                            <div class="card-header-admin">
+                                <h4>Gerenciar Pedidos</h4>
+                                <div class="table-actions">
+                                    <button class="btn-refresh"><i class="fa-solid fa-rotate"></i></button>
+                                </div>
+                            </div>
+                            <div class="admin-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>CLIENTE</th>
+                                            <th>PRODUTO</th>
+                                            <th>VALOR</th>
+                                            <th>STATUS</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminOrdersTable">
+                                        <tr>
+                                            <td colspan="6" class="empty-table">Carregando pedidos...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-entregas">
+                        <div class="admin-card">
+                            <div class="card-header-admin">
+                                <h4>Fila de Em Andamento</h4>
+                            </div>
+                            <div class="admin-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>ID PEDIDO</th>
+                                            <th>CLIENTE</th>
+                                            <th>PRODUTO</th>
+                                            <th>ROBUX</th>
+                                            <th>STATUS</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminDeliveriesTable">
+                                        <tr>
+                                            <td colspan="6" class="empty-table">Nenhum pedido em andamento.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-comprovantes">
+                        <div class="admin-card">
+                            <div class="card-header-admin">
+                                <h4>Pedidos Concluídos</h4>
+                            </div>
+                            <div class="admin-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>DATA</th>
+                                            <th>CLIENTE</th>
+                                            <th>PEDIDO</th>
+                                            <th>TIPO</th>
+                                            <th>STATUS</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminProofsTable">
+                                        <tr>
+                                            <td colspan="6" class="empty-table">Nenhum pedido concluído encontrado.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-cancelados">
+                        <div class="admin-card">
+                            <div class="card-header-admin">
+                                <h4>Pedidos Cancelados</h4>
+                            </div>
+                            <div class="admin-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>DATA</th>
+                                            <th>CLIENTE</th>
+                                            <th>PRODUTO</th>
+                                            <th>VALOR</th>
+                                            <th>STATUS</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminCancelledTable">
+                                        <tr>
+                                            <td colspan="6" class="empty-table">Nenhum pedido cancelado.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-tickets">
+                        <div class="admin-tickets-layout">
+                            <div class="admin-card tickets-list-card">
+                                <div class="card-header-admin">
+                                    <h4>Tickets de Suporte</h4>
+                                </div>
+                                <div class="tickets-list" id="adminTicketsList">
+                                    <div class="empty-table">Carregando tickets...</div>
+                                </div>
+                            </div>
+                            
+                            <div class="admin-card ticket-chat-card hidden" id="adminTicketChat">
+                                <div class="ticket-chat-header">
+                                    <div class="ticket-chat-info">
+                                        <div class="ticket-chat-title-wrapper">
+                                            <h4 id="chatTicketSubject">Assunto do Ticket</h4>
+                                            <span id="chatTicketStatusBadge" class="status-badge pending">Pendente</span>
+                                        </div>
+                                        <p id="chatTicketCustomer">Cliente: email@exemplo.com</p>
+                                    </div>
+                                    <div class="ticket-chat-actions">
+                                        <button class="btn-close-ticket-admin" onclick="handleAdminTicketStatusChange('resolved')">
+                                            <i class="fa-solid fa-check-double"></i> Concluir Ticket
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="chat-messages" id="adminChatMessages">
+                                    <!-- Mensagens aqui -->
+                                </div>
+                                <form class="chat-input-area" id="adminChatForm">
+                                    <input type="text" placeholder="Digite sua resposta..." id="adminChatMessageInput">
+                                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                                </form>
+                            </div>
+
+                            <div class="admin-card no-ticket-selected" id="noTicketSelected">
+                                <i class="fa-solid fa-comments"></i>
+                                <p>Selecione um ticket para visualizar a conversa.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-usuarios">
+                        <div class="admin-card">
+                            <div class="card-header-admin">
+                                <h4>Gerenciar Usuários</h4>
+                            </div>
+                            <div class="admin-table-wrapper">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>NOME</th>
+                                            <th>EMAIL</th>
+                                            <th>CARGO</th>
+                                            <th>TOTAL GASTO</th>
+                                            <th>STATUS</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminUsersTable">
+                                        <tr>
+                                            <td colspan="6" class="empty-table">Carregando usuários...</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-config">
+                        <div class="admin-grid-config">
+                            <div class="admin-card">
+                                <h4>Configurações Gerais</h4>
+                                <div class="config-item">
+                                    <span>Manutenção</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="config-item">
+                                    <span>Vendas Ativas</span>
+                                    <label class="switch">
+                                        <input type="checkbox" checked>
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="config-item">
+                                    <span>Loja Aberta</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="storeOpenToggle">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Balancing column -->
+            <div class="profile-balance-column"></div>
+        </div>
+    </main>
+
+    <!-- Password Reset Modal (Optional but nice) -->
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="reset-password-card">
+                <h2>Recuperar Senha</h2>
+                <p>Confirme seu email para receber um link de redefinição.</p>
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="email" id="resetEmail" readonly>
+                    </div>
+                </div>
+                <button class="btn-send-link" id="btnSendResetLink">Enviar link</button>
+                <button class="btn-close-modal" onclick="closeResetModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="confirmOverlay" class="modal">
+        <div class="modal-content">
+            <div class="reset-password-card">
+                <h2>Fechar Ticket</h2>
+                <p>Tem certeza que quer fechar esse ticket?</p>
+                <div class="form-actions" style="justify-content: center; gap: 20px;">
+                    <button class="btn-confirm-yes" id="confirmYes">Sim, fechar</button>
+                    <button class="btn-confirm-no" id="confirmNo">Não, manter aberto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminStatsModal" class="modal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="admin-stats-detail-card">
+                <div class="modal-header-admin">
+                    <h2 id="modalAdminName">Estatísticas do Admin</h2>
+                    <button class="btn-close-modal" onclick="closeAdminStatsModal()"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="admin-stats-summary">
+                    <div class="summary-item">
+                        <span class="label">CARGO</span>
+                        <h4 id="modalAdminRole">Administrador</h4>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">VENDAS HOJE</span>
+                        <h4 id="modalAdminSalesToday">R$ 0,00</h4>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">ÚLTIMOS 7 DIAS</span>
+                        <h4 id="modalAdminSales7D">R$ 0,00</h4>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">TOTAL MÊS</span>
+                        <h4 id="modalAdminSalesMonth">R$ 0,00</h4>
+                    </div>
+                </div>
+                <div class="admin-stats-summary" style="margin-top: 20px; border-top: 1px solid var(--card-border); padding-top: 20px;">
+                    <div class="summary-item">
+                        <span class="label">TOTAL VENDIDO</span>
+                        <h4 id="modalAdminTotalSold">R$ 0,00</h4>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">ATENDIMENTOS</span>
+                        <h4 id="modalAdminAttended">0</h4>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 300px; margin-top: 30px;">
+                    <canvas id="adminDetailChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-column">
+            <h4>SOBRE</h4>
+            <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+        </div>
+        <div class="footer-column">
+            <h4>ACESSO RÁPIDO</h4>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="suporte.html">Suporte</a></li>
+                <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+            </ul>
+        </div>
+        <div class="footer-column">
+            <h4>LEGAL</h4>
+            <ul>
+                <li><a href="privacidade.html">Privacidade</a></li>
+                <li><a href="termos.html">Termos</a></li>
+            </ul>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+            <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+        </div>
+    </footer>
+
+    <!-- Delivery Chat Modal -->
+    <div id="orderChatModal" class="order-chat-overlay">
+        <div class="order-chat-modal">
+            <div class="order-chat-header">
+                <div class="header-left">
+                    <i class="fa-solid fa-box-open"></i>
+                    <div>
+                        <h3>Chat do Pedido</h3>
+                        <p id="chatOrderId">#ID-000000</p>
+                    </div>
+                </div>
+                <button class="close-modal" id="closeOrderChat"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="order-chat-top-cards">
+                <div class="order-product-card">
+                    <img src="" alt="Produto" id="chatOrderImg">
+                    <div class="product-info">
+                        <span class="label">PRODUTO</span>
+                        <h4 id="chatOrderName">Nome do Produto</h4>
+                        <div class="game-info">
+                            <span id="chatOrderGame">Jogo</span>
+                        </div>
+                    </div>
+                    <div class="product-quantity">
+                        <span class="label">QTD</span>
+                        <h4 id="chatOrderQty">1</h4>
+                    </div>
+                </div>
+                
+                <div class="order-payment-card">
+                    <div class="payment-method">
+                        <i class="fa-solid fa-qr-code"></i>
+                        <div>
+                            <span class="label">MÉTODO DE PAGAMENTO</span>
+                            <h4>Pix (Automático)</h4>
+                        </div>
+                    </div>
+                    <div class="order-status-badge" id="chatOrderStatus">
+                        Em Andamento
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-chat-messages" id="orderChatMessages">
+                <!-- Mensagens aparecerão aqui -->
+                <div class="chat-welcome-msg">
+                    <i class="fa-solid fa-comments"></i>
+                    <h4>Chat de Entrega</h4>
+                    <p>Utilize este chat para combinar a entrega do seu produto com o vendedor.</p>
+                </div>
+            </div>
+
+            <div class="order-chat-input-area">
+                <label for="orderChatFile" class="btn-attach">
+                    <i class="fa-solid fa-paperclip" id="attachIcon"></i>
+                    <img id="attachPreview" src="" alt="Preview" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    <input type="file" id="orderChatFile" hidden accept="image/*">
+                </label>
+                <div class="input-wrapper">
+                    <input type="text" id="orderChatMessageInput" placeholder="Digite sua mensagem...">
+                    <button id="btnSendOrderMessage">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox for Image Viewing -->
+    <div id="imageLightbox" class="lightbox-overlay" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightboxImage" src="" alt="Full Screen Image">
+    </div>
+
+    <script src="js/nav-direction.js"></script>
+    <script src="js/particles.js" defer></script>
+    <script src="js/perfil.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutoriais - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/tutoriais.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+
+<main class="tutorials-main">
+    <section class="tutorials-hero reveal reveal-active">
+      <div class="hero-top">
+        <span class="hero-label">SUPORTE TÉCNICO</span>
+        <h1>Tutoriais</h1>
+      </div>
+      <p>Central de ajuda especializada para otimizar sua experiência no ambiente digital.</p>
+    </section>
+
+    <div class="tutorials-layout reveal">
+      <aside class="tutorials-sidebar">
+        <h3 class="sidebar-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l-5.5 9h11z"/><circle cx="6" cy="18" r="3"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+          </svg>
+          Menu
+        </h3>
+        <div class="tutorial-nav-item active" data-category="tudo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Tudo
+        </div>
+        <div class="tutorial-nav-item" data-category="BÁSICO">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          Básico
+        </div>
+        <div class="tutorial-nav-item" data-category="SEGURANÇA">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          Segurança
+        </div>
+        <div class="tutorial-nav-item" data-category="CONFIGURAÇÃO">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          Configuração
+        </div>
+      </aside>
+
+
+      <section class="tutorials-grid" id="tutorialsList">
+        <a href="tutoriais/como-criar-gamepass.html" class="tutorial-card reveal" data-category="BÁSICO">
+          <div class="card-number">01</div>
+          <div class="card-info">
+            <div class="card-tag">BÁSICO</div>
+            <h3>Como criar um Passe</h3>
+            <p>Guia técnico para a criação de ativos de transferência na plataforma.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/ajuste-preco-regional.html" class="tutorial-card reveal" data-category="CONFIGURAÇÃO">
+          <div class="card-number">02</div>
+          <div class="card-info">
+            <div class="card-tag">CONFIGURAÇÃO</div>
+            <h3>Ajuste de Preço Regional</h3>
+            <p>Como configurar os valores para evitar variações automáticas do ecossistema.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/saldos-pendentes.html" class="tutorial-card reveal" data-category="BÁSICO">
+          <div class="card-number">03</div>
+          <div class="card-info">
+            <div class="card-tag">INFO</div>
+            <h3>Saldos Pendentes</h3>
+            <p>Entenda os prazos de processamento e liquidação do sistema (3 a 7 dias).</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/registro-atividades.html" class="tutorial-card reveal" data-category="SEGURANÇA">
+          <div class="card-number">04</div>
+          <div class="card-info">
+            <div class="card-tag">CONTA</div>
+            <h3>Registro de Atividades</h3>
+            <p>Localizando e conferindo o histórico de transações recebidas.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/verificacao-identidade.html" class="tutorial-card reveal" data-category="SEGURANÇA">
+          <div class="card-number">05</div>
+          <div class="card-info">
+            <div class="card-tag">SEGURANÇA</div>
+            <h3>Verificação de Identidade</h3>
+            <p>Procedimentos para autenticar seu perfil e aumentar os limites.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/modalidades-envio.html" class="tutorial-card reveal" data-category="BÁSICO">
+          <div class="card-number">06</div>
+          <div class="card-info">
+            <div class="card-tag">LOGÍSTICA</div>
+            <h3>Modalidades de Envio</h3>
+            <p>Diferenças entre envio via Passe, Grupo ou Autenticação Direta.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+
+        <a href="tutoriais/status-remessa.html" class="tutorial-card reveal" data-category="BÁSICO">
+          <div class="card-number">07</div>
+          <div class="card-info">
+            <div class="card-tag">PEDIDOS</div>
+            <h3>Status da Remessa</h3>
+            <p>Como rastrear o progresso da sua solicitação em tempo real.</p>
+          </div>
+          <div class="card-arrow">→</div>
+        </a>
+      </section>
+    </div>
+
+    <div id="noResults" style="display: none; text-align: center; padding: 100px 0; color: #444; font-family: 'Space Grotesk', sans-serif;">
+      <h2>NENHUM TUTORIAL ENCONTRADO</h2>
+      <p>Tente outros termos de busca.</p>
+    </div>
+  </main>
+
+    <div class="coming-soon-overlay" id="comingSoonOverlay">
+        <div class="coming-soon-card">
+            <div class="coming-soon-icon">
+                <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h2>Em Breve</h2>
+            <p>Nossa central de tutoriais está sendo preparada com guias detalhados e técnicos para garantir sua melhor experiência.</p>
+            <button class="btn-back-home" onclick="location.href='index.html'">Voltar ao Início</button>
+        </div>
+    </div>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" type="module" defer></script>
+<script src="js/tutoriais.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const overlay = document.getElementById('comingSoonOverlay');
+            if (overlay) {
+                overlay.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
+

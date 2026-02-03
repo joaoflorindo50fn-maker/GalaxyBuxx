@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hypershot - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+ 
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/hypershot.jpg" alt="Hypershot" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Hypershot</h1>
+        <p>Ação frenética e tiros precisos. Equipe-se com as melhores armas e skins.</p>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Chests</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=chest1x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/chest1x.png" alt="Chest 1x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Chest 1x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 5,78</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=chest3x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/chest3x.png" alt="Chest 3x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Chest 3x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 16,80</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=chestx23" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/chestx23.png" alt="Chest x23">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Chest x23</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 111,65</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=vip" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/vip.webp" alt="Vip">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Vip</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 9,07</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=rainbowbullets" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/rainbowbullets.png" alt="Rainbow Bullets">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Rainbow Bullets</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,52</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=67bundle" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/67bundle.png" alt="67 Bundle">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">67 Bundle</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,80</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=thebigguns" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/thebigguns.png" alt="The BIG Guns">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">The BIG Guns</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 29,37</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=pizzaparty" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/pizzaparty.png" alt="Pizza Party">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Pizza Party</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 9,07</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=starterpack" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/starterpack.png" alt="STARTER PACK!">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">STARTER PACK!</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,37</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=theessentials" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/theessentials.png" alt="THE ESSENTIALS!">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">THE ESSENTIALS!</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 18,03</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=lucky" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/lucky.png" alt="Lucky">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Lucky</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,52</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Revives</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=instantrevives5x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/instantrevives5x.png" alt="Instant Revives 5x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Instant Revives 5x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,22</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=instantrevives20x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/instantrevives20x.png" alt="Instant Revives 20x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Instant Revives 20x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,28</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Mythical Cases</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=mythicalcases1x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/mythicalcases1x.png" alt="Mythical Cases 1x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mythical Cases 1x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=mythicalcases10x" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/mythicalcases10x.png" alt="Mythical Cases 10x">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mythical Cases 10x</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 27,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Coins</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=10kcoins" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/10kcoins.png" alt="10k Coins">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">10k Coins</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,46</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=130kcoins" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/130kcoins.png" alt="130k Coins">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">130k Coins</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,52</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=640kcoins" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/640kcoins.png" alt="640k Coins">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">640k Coins</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 18,03</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=17mcoins" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/1.7mcoins.png" alt="1.7M Coins">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1.7M Coins</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 45,12</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=4mcoins" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/4mcoins.png" alt="4M Coins">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">4M Coins</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 90,27</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gems</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=1kgems" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/1kgems.png" alt="1k Gems">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1k Gems</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,46</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=11kgems" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/11kgems.png" alt="11k Gems">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">11k Gems</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,52</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=45kgems" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/45kgems.png" alt="45k Gems">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">45k Gems</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 18,03</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=115kgems" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/115kgems.png" alt="115k Gems">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">115k Gems</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 45,12</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+                        <a href="pages/gamepass-detail.html?game=hypershot&id=230kgems" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🔫 HYPERSHOT</div>
+            <img src="hypershot/230kgems.png" alt="230k Gems">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">230k Gems</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 90,27</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>

@@ -1,0 +1,100 @@
+/* RESET */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Montserrat', sans-serif;}
+body {background: radial-gradient(circle at top, #111, #000 70%); color:#fff; min-height:100vh;}
+
+/* HEADER */
+.topbar {
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 18px 30px;
+  background: rgba(20,20,20,0.85);
+  border-radius: 50px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  backdrop-filter: blur(10px);
+}
+.logo {font-size:20px; font-weight:800; display:flex; align-items:center; gap:8px;}
+.logo::before {content:"⬢"; color:#bdbdbd;}
+nav a {margin:0 14px; color:#aaa; text-decoration:none; font-size:14px; padding:8px 16px; border-radius:20px; transition:0.3s;}
+nav a:hover, nav a.active {background:#fff; color:#000;}
+button {cursor:pointer; padding:14px 34px; border-radius:30px; border:none; background:#fff; color:#000; font-weight:600; font-size:15px; transition:0.3s;}
+button:hover {transform:translateY(-2px); opacity:0.9;}
+
+/* USER MENU */
+.user-menu {position:relative; display:flex; flex-direction:column;}
+.user-button {display:flex; align-items:center; gap:10px; cursor:pointer;}
+.user-pic {width:40px; height:40px; border-radius:50%; border:2px solid #fff;}
+.user-info {display:flex; flex-direction:column;}
+.user-info #userName {font-weight:600;}
+.profile-text {font-size:0.75rem; color:rgba(255,255,255,0.5);}
+.arrow {color:#fff;}
+.dropdown {display:none; flex-direction:column; position:absolute; top:50px; right:0; background:#1c1c1c; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.5);}
+.dropdown a {color:#fff; padding:10px 20px; text-decoration:none;}
+.dropdown a:hover {background:#333;}
+
+/* LOGIN CARD */
+.login-area {display:flex; justify-content:center; align-items:center; min-height:80vh; padding:40px;}
+.login-card {background:#1c1c1c; padding:40px 50px; border-radius:20px; width:100%; max-width:400px; text-align:center; box-shadow:0 0 40px rgba(0,0,0,0.7);}
+.login-card h1 {margin-bottom:20px;}
+.login-card input {width:100%; padding:14px 16px; margin-bottom:15px; border-radius:12px; border:none; background:#111; color:#fff;}
+.login-card input::placeholder {color:rgba(255,255,255,0.5);}
+.login-card button {width:100%; padding:14px; border-radius:12px; border:none; background:#fff; color:#000; font-weight:600; cursor:pointer; transition:0.2s;}
+.login-card button:hover {opacity:0.9;}
+.login-card p {margin-top:10px; font-size:14px;}
+.login-card span {color:#00f; cursor:pointer;}
+
+/* ERROR CARD */
+.error-card {
+  display:none;
+  background:#ff4d4f;
+  color:#fff;
+  padding:14px 20px;
+  border-radius:12px;
+  font-weight:600;
+  margin-bottom:16px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.5);
+  animation: slideDown 0.3s ease forwards;
+}
+@keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+
+/* FOOTER */
+.footer {
+  margin-top:160px;
+  padding:60px 30px 30px;
+  border-top:1px solid #222;
+}
+.footer-grid {
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:30px;
+}
+.footer strong {display:block; margin-bottom:12px;}
+.footer a {display:block; color:#777; margin-bottom:6px; text-decoration:none; font-size:14px;}
+.footer a:hover {color:#fff;}
+.copy {display:block; text-align:center; margin-top:40px; color:#555; font-size:13px;}
+
+.error-card {
+  background: #2a0f0f;
+  color: #ff6b6b;
+  padding: 14px 16px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 80, 80, 0.3);
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

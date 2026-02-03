@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Steal a Brainrot - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/stealabrainrot.jpg" alt="Steal a Brainrot" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Steal a Brainrot</h1>
+        <p>A diversão caótica garantida. Adquira itens exclusivos para zoar com seus amigos.</p>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=stealab&id=adminpanel" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/adminpanel.png" alt="Admin Panel">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Admin Panel</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 146,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=2xmoney" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/2xmoney.png" alt="2x Money">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Money</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 5,92</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=vip" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/vip.png" alt="VIP">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">VIP</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 9,77</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Lucky Blocks</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=stealab&id=mythicluckyblock" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/mythic.png" alt="Mythic Lucky Block">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mythic Lucky Block</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=brainrotgodluckyblock" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/brainrot.png" alt="Brainrot God Lucky Block">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Brainrot God Lucky Block</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 20,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=secretluckyblock" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/secret.png" alt="Secret Lucky Block">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Secret Lucky Block</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 83,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gear</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=stealab&id=blackholeslap" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/blackhole.png" alt="Blackhole Slap">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Blackhole Slap</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,03</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=flyingcarpet" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/flyingcarpet.png" alt="Flying Carpet">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Flying Carpet</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,53</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=lasergun" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/lasergun.png" alt="Laser Gun">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Laser Gun</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 14,67</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=banhammer" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/banhammer.png" alt="Ban Hammer">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Ban Hammer</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 29,37</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Server Luck</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=stealab&id=2xlucky(15m)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/2xlucky.png" alt="2x Lucky (15m)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Lucky (15m)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,72</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Money</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=stealab&id=$27,000" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/27k.png" alt="$27,000">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$27,000</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,23</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=$225,000" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/225k.png" alt="$225,000">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$225,000</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,53</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=$900,000" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/900k.png" alt="$900,000">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$900,000</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,92</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=$4,500,000" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/4m5.png" alt="$4,500,000">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$4,500,000</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 24,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=stealab&id=$9,000,000" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🧠 STEAL A BRAINROT</div>
+            <img src="stealab/9m.png" alt="$9,000,000">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$9,000,000</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 48,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

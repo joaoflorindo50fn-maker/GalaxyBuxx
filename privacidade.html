@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacidade - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/particles.css">
+  <style>
+    :root {
+      --border-white: rgba(255, 255, 255, 0.1);
+      --accent-white: #ffffff;
+    }
+
+    body {
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .privacy-content {
+      max-width: 1000px;
+      margin: 150px auto 100px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .privacy-header {
+      text-align: left;
+      margin-bottom: 60px;
+      border-left: 4px solid var(--accent-white);
+      padding-left: 25px;
+    }
+
+    .privacy-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0 0 10px 0;
+      letter-spacing: 1px;
+    }
+
+    .privacy-header p {
+      color: #888;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .privacy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .privacy-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .privacy-card {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid var(--border-white);
+      padding: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .privacy-card:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .card-num {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.03);
+      user-select: none;
+    }
+
+    .privacy-card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin: 0 0 20px 0;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .privacy-card h2::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--accent-white);
+      display: inline-block;
+    }
+
+    .privacy-card p {
+      color: #bbb;
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .last-update {
+      margin-top: 50px;
+      text-align: center;
+      color: #555;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+
+<main class="privacy-content">
+    <section class="privacy-header">
+      <h1>Blindagem de Dados</h1>
+      <p>Sua privacidade é nossa prioridade absoluta. Entenda como operamos.</p>
+    </section>
+
+    <div class="privacy-grid">
+      <div class="privacy-card">
+        <span class="card-num">01</span>
+        <h2>Varredura Essencial</h2>
+        <p>Captamos apenas o que é vital para o drop. Solicitamos seu @ do Roblox para as entregas e o envio dos comprovantes. Dados de pagamento? Fique tranquilo. Nosso checkout é processado externamente por gateways de elite, garantindo que informações sensíveis nunca toquem nossos servidores.</p>
+      </div>
+
+      <div class="privacy-card">
+        <span class="card-num">02</span>
+        <h2>Firewall Ativo</h2>
+        <p>Erguemos defesas de criptografia SSL em cada batida de dado. Implementamos medidas de segurança robustas para blindar seu acesso contra qualquer tentativa de entrada não autorizada, seguindo os padrões mais rigorosos de proteção digital.</p>
+      </div>
+
+      <div class="privacy-card">
+        <span class="card-num">03</span>
+        <h2>Sem Mercadores</h2>
+        <p>Seus dados não são itens de troca. Não vendemos, transferimos ou leiloamos suas informações pessoais para terceiros. O uso é exclusivo para processar seus pedidos e otimizar sua jornada dentro da nossa plataforma.</p>
+      </div>
+
+      <div class="privacy-card">
+        <span class="card-num">04</span>
+        <h2>Rastros Inteligentes</h2>
+        <p>Utilizamos cookies apenas para calibrar a interface do site ao seu estilo. Você tem total controle para desativar esses sensores nas configurações do seu navegador, embora isso possa limitar algumas funções automáticas do radar do site.</p>
+      </div>
+    </div>
+
+    <p class="last-update">Protocolo atualizado em: Janeiro de 2026</p>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  <script src="js/index.js"></script>
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

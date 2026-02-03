@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo - GalaxyBuxx</title>
+  <link rel="stylesheet" href="./css/catalogo.css">
+  <link rel="stylesheet" href="./css/index.css">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="./css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./js/core.js" defer></script>
+<script src="./js/catalogo.js" defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <div class="catalog-container">
+      <aside class="categories-sidebar">
+        <h3 class="categories-title">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l-5.5 9h11z"/><circle cx="6" cy="18" r="3"/><rect x="15" y="15" width="6" height="6" rx="1"/>
+          </svg>
+          Categorias
+        </h3>
+        <div class="category-item active" data-category="tudo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Tudo
+        </div>
+        <div class="category-item" data-category="gamepass">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          Gamepasses
+        </div>
+      </aside>
+
+      <div class="catalog-content">
+        <div class="robux-custom-section">
+          <section class="section featured robux-item reveal">
+            <div class="featured-image">
+              <img src="rbx.jpg" alt="Robux">
+            </div>
+            <div class="featured-info">
+              <div class="featured-badges">
+                <span class="badge-outline">DESTAQUE</span>
+                <span class="badge-green">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M13 10V2L5 14h7v8l8-12h-7z"/></svg>
+                  PREÇO IMBATÍVEL
+                </span>
+              </div>
+              <h1>Robux <span class="personalizavel-gradient">Personalizável</span></h1>
+              <div class="price-box">
+                <span class="price-label">A PARTIR DE</span>
+                <span class="price-value">R$ 4,00 <span class="price-sub">/ 100 ROBUX</span></span>
+              </div>
+              <br>
+              <br>
+              <a href="pages/robux-details.html" class="btn-pill-white">
+                VER DETALHES
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </section>
+        </div>
+
+
+        <section class="section gp-extreme-section" id="gamepasses">
+          <h2 class="gp-extreme-section__title reveal">Gamepasses</h2>
+          <div class="gp-extreme-grid">
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('99forest.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/99forest.jpg" alt="99 Nights">
+              <span class="gp-extreme-card__title">99 Nights in the Forest</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('afs.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/noFilter.jpg" alt="Anime Fighting">
+              <span class="gp-extreme-card__title">Anime Fighting Simulator</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('arise.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/arise.jpg" alt="Arise">
+              <span class="gp-extreme-card__title">Arise Crossover</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('bladeball.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/blad.jpg" alt="Blade Ball">
+              <span class="gp-extreme-card__title">Blade Ball</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('block.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/block.jpg" alt="Blue Lock">
+              <span class="gp-extreme-card__title">Blue Lock: Rivals</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('bfruits.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/bfruits.jpg" alt="Blox Fruits">
+              <span class="gp-extreme-card__title">Blox Fruits</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('brook.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/brookhaven.jpg" alt="Brookhaven">
+              <span class="gp-extreme-card__title">Brookhaven</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('escapetsunami.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/escapetsunami.jpg" alt="Escape Tsunami For Brainrots">
+              <span class="gp-extreme-card__title">Escape Tsunami For Brainrots</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('fish.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/fishit.png" alt="Fish It!">
+              <span class="gp-extreme-card__title">Fish It!</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('gpo.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/gpo.jpg" alt="GPO">
+              <span class="gp-extreme-card__title">Grand Piece Online</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('hypershot.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/hypershot" alt="Hypershot">
+              <span class="gp-extreme-card__title">Hypershot</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('kingl.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/kingl.jpg" alt="King Legacy">
+              <span class="gp-extreme-card__title">King Legacy</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('stealab.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/stealabrainrot.jpg" alt="Steal a Brainrot">
+              <span class="gp-extreme-card__title">Steal a Brainrot</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('tapsimulator.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/tapsim.jpg" alt="Tap Simulator">
+              <span class="gp-extreme-card__title">Tap Simulator</span>
+            </div>
+            <div class="gp-extreme-card gamepass-item reveal" onclick="window.open('vbl.html','_self')">
+              <img class="gp-extreme-card__img" src="passimg/vbl.jpg" alt="Volleyball Legends">
+              <span class="gp-extreme-card__title">Volleyball Legends</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

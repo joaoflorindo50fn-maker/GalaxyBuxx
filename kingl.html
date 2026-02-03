@@ -1,0 +1,1402 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Legacy - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+  
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/kingl.jpg" alt="King Legacy" class="game-header-img">
+      <div class="game-header-info">
+        <h1>King Legacy</h1>
+        <p>Explore ilhas, enfrente chefes e domine habilidades lendárias. Monte seu poder e avance no mundo de King Legacy.</p>
+      </div>
+    </section>
+
+<section class="gp-category">
+      <h2 class="gp-category-title">Produtos</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=kingl&id=refundstats" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/refundstats.png" alt="Refund Stats">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Refund Stats</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,88</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=racererolls" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/racererolls.png" alt="Race Rerolls">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Race Rerolls</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gemas</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=kingl&id=25gem" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gem25.png" alt="25 Gem">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">25 Gem</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,17</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=125gem" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gem125.png" alt="125 Gem">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">125 Gem</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 15,72</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=250gem" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gem250.png" alt="250 Gem">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">250 Gem</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 29,02</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=500gem" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gem500.png" alt="500 Gem">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">500 Gem</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=1500gem" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gem1500.png" alt="1500 Gem">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1500 Gem</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 117,22</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Yen</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=kingl&id=$100k" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/100k.png" alt="$100k">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$100k</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=$500k" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/500k.png" alt="$500k">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$500k</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=$15m" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/1_5m.png" alt="$1.5m">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$1.5m</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,22</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=$35m" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/3_5m.png" alt="$3.5m">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$3.5m</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,32</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=$10m" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/10m.png" alt="$10m">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$10m</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+ 
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=kingl&id=nightblade" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/nightblade.png" alt="Night Blade">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Night Blade</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=devilfruitposition" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/devilfruit.png" alt="Devil Fruit Position">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Devil Fruit Position</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 87,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=questbelix2" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/questbeli.png" alt="Quest Beli x2">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Quest Beli x2</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=conqueror’sability" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/conqueror.png" alt="Conqueror’s Ability">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Conqueror’s Ability</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 87,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=coffinboat" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/coffinboat.png" alt="Coffin Boat">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Coffin Boat</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=legacypose" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/legacypose.png" alt="Legacy Pose">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Legacy Pose</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=2xdrops" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/2xdrops.png" alt="2x Drops">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Drops</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 26,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=1fruitstorage" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/fruitstorage.png" alt="+1 Fruit Storage">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+1 Fruit Storage</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 13,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=1slotpassive" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/slotpassive.png" alt="+1 Slot Passive">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+1 Slot Passive</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+ 
+    <section class="gp-category">
+      <h2 class="gp-category-title">Frutas Permanentes</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=kingl&id=spin" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/spin.png" alt="Spin">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spin</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=bomb" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/bomb.png" alt="Bomb">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Bomb</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,38</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=spike" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/spike.png" alt="Spike">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spike</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 10,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=pad" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/pad.png" alt="Pad">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Pad</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 10,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=giraffe" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/giraffe.png" alt="Giraffe">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Giraffe</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=barrier" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/barrier.png" alt="Barrier">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Barrier</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 14,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=telekinesis" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/telekinesis.png" alt="Telekinesis">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Telekinesis</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 15,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=wolf" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/wolf.png" alt="Wolf">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Wolf</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=love" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/love.png" alt="Love">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Love</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 21,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=smoke" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/smoke.png" alt="Smoke">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Smoke</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 21,88</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=shadow" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/shadow.png" alt="Shadow">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Shadow</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 22,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=string" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/string.png" alt="String">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">String</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 24,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=rubber" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/rubber.png" alt="Rubber">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Rubber</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 25,38</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=sand" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/sand.png" alt="Sand">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Sand</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 26,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=leopard" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/leopard.png" alt="Leopard">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Leopard</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 33,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=buddha" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/buddha.png" alt="Buddha">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Buddha</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=venom" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/venom.png" alt="Venom">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Venom</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=gravity" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gravity.png" alt="Gravity">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gravity</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 36,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=allo" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/allo.png" alt="Allo">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Allo</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 37,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=brachio" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/brachio.png" alt="Brachio">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Brachio</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 37,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=control" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/control.png" alt="Control">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Control</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 37,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=mammoth" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/mammoth.png" alt="Mammoth">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mammoth</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 38,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=spino" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/spino.png" alt="Spino">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spino</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 38,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=ice" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/ice.png" alt="Ice">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Ice</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 38,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=magma" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/magma.png" alt="Magma">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Magma</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 40,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+        
+                        <a href="pages/gamepass-detail.html?game=kingl&id=flame" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/flame.png" alt="Flame">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Flame</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 40,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=light" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/light.png" alt="Light">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Light</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 42,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=gas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gas.png" alt="Gas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 43,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=snow" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/snow.png" alt="Snow">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Snow</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 47,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=rumble" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/rumble.png" alt="Rumble">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Rumble</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=quake" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/quake.png" alt="Quake">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Quake</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 63,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=gold" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gold.png" alt="Gold">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gold</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 70,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=magnet" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/magnet.png" alt="Magnet">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Magnet</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 78,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=spirit" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/spirit.png" alt="Spirit">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spirit</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 78,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=gate" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/gate.png" alt="Gate">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gate</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 82,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=melody" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/melody.png" alt="Melody">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Melody</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 96,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=dough" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/dough.png" alt="Dough">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dough</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 99,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=toy" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/toy.png" alt="Toy">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Toy</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 105,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=phoenix" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/phoenix.png" alt="Phoenix">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Phoenix</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 109,38</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=kingl&id=dragon" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">👑 KING LEGACY</div>
+            <img src="kingl/dragon.png" alt="Dragon">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dragon</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 113,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const main = document.querySelector('main');
+      if (!main) return;
+      const sections = Array.from(main.querySelectorAll('section.gp-category'));
+      const byTitle = new Map(sections.map(s => [s.querySelector('.gp-category-title')?.textContent?.trim(), s]));
+      const order = ["Gamepasses", "Frutas Permanentes", "Produtos", "Yen", "Gemas"];
+      order.forEach(name => {
+        const section = byTitle.get(name);
+        if (section) main.appendChild(section);
+      });
+    })();
+  </script>
+  
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

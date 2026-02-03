@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blox Fruits - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+ 
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/bfruits.jpg" alt="Blox Fruits" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Blox Fruits</h1>
+        <p>Torne-se um mestre espadachim ou um poderoso usuário de frutas. As melhores gamepasses para sua jornada pirata.</p>
+      </div>
+    </section>
+
+    <!-- ====================== GAMEPASSES ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+        
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=2xdropchance" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/2xdropchance.png" alt="2x Drop Chance">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Drop Chance</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=fastboats" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/fastboats.png" alt="Fast Boats">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Fast Boats</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=2xmoney" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/2xmoney.png" alt="2x Money">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Money</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 15,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=2xmastery" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/2xmastery.png" alt="2x Mastery">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Mastery</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 15,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=darkblade" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/darkblade.png" alt="Dark Blade">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dark Blade</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 42,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=fruitnotifier" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/fruitnotifier.png" alt="Fruit Notifier">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Fruit Notifier</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 94,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ====================== PRODUCTS ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Produtos</h2>
+      <div class="gamepasses-grid">
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=1fruitstorage" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/fruitstorage.png" alt="+1 Fruit Storage">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+1 Fruit Storage</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 14,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=5xlegendaryscrolls" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/legendaryscrolls.png" alt="5x Legendary Scrolls">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">5x Legendary Scrolls</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 28,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=3xmythicalscrolls" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/mythicalscrolls.png" alt="3x Mythical Scrolls">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">3x Mythical Scrolls</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ====================== FRUTAS PERMANENTES ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Frutas Permanentes</h2>
+      <div class="gamepasses-grid">
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=rocket" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/rocket.png" alt="Rocket">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Rocket</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=spin" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/spin.png" alt="Spin">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spin</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=blade" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/blade.png" alt="Blade">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Blade</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=spring" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/spring.png" alt="Spring">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spring</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,30</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=bomb" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/bomb.png" alt="Bomb">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Bomb</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,70</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=smoke" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/smoke.png" alt="Smoke">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Smoke</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=spike" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/spike.png" alt="Spike">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spike</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 13,30</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=flame" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/flame.png" alt="Flame">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Flame</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 19,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=ice" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/ice.png" alt="Ice">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Ice</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 26,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=sand" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/sand.png" alt="Sand">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Sand</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 29,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=dark" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/dark.png" alt="Dark">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dark</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 33,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=eagle" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/eagle.png" alt="Eagle">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Eagle</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,13</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=diamond" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/diamond.png" alt="Diamond">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Diamond</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=light" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/light.png" alt="Light">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Light</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 38,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=rubber" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/rubber.png" alt="Rubber">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Rubber</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 42,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=ghost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/ghost.png" alt="Ghost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Ghost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 44,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=magma" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/magma.png" alt="Magma">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Magma</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 45,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=quake" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/quake.png" alt="Quake">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Quake</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=buddha" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/buddha.png" alt="Buddha">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Buddha</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 57,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=love" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/love.png" alt="Love">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Love</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 59,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=creation" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/creation.png" alt="Creation">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Creation</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 61,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=spider" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/spider.png" alt="Spider">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spider</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 63,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=sound" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/sound.png" alt="Sound">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Sound</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 66,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=phoenix" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/phoenix.png" alt="Phoenix">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Phoenix</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 70,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=portal" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/portal.png" alt="Portal">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Portal</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 70,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=lightning" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/lightning.png" alt="Lightning">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Lightning</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 73,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=pain" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/pain.png" alt="Pain">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Pain</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 77,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=blizzard" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/blizzard.png" alt="Blizzard">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Blizzard</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 78,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=gravity" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/gravity.png" alt="Gravity">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gravity</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 80,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=mammoth" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/mammoth.png" alt="Mammoth">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mammoth</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 82,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=trex" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/trex.png" alt="T-Rex">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">T-Rex</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 82,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=dough" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/dough.png" alt="Dough">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dough</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 84,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=shadow" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/shadow.png" alt="Shadow">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Shadow</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 84,88</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=venom" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/venom.png" alt="Venom">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Venom</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 85,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=gas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/gas.png" alt="Gas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Gas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 87,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=spirit" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/spirit.png" alt="Spirit">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Spirit</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 89,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=tiger" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/tiger.png" alt="Tiger">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Tiger</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 105,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=yeti" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/yeti.png" alt="Yeti">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Yeti</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 105,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=kitsune" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/kitsune.png" alt="Kitsune">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Kitsune</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 140,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=control" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/control.png" alt="Control">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Control</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 140,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=dragon" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/dragon.png" alt="Dragon">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Dragon</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 175,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ====================== FRAGMENTOS ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Fragmentos</h2>
+      <div class="gamepasses-grid">
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=500fragmentos" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/500fragmentos.png" alt="500 Fragmentos">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">500 Fragmentos</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=2100fragmentos" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/2100fragmentos.png" alt="2100 Fragmentos">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2100 Fragmentos</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=4500fragmentos" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/4500fragmentos.png" alt="4500 Fragmentos">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">4500 Fragmentos</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=10000fragmentos" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/10000fragmentos.png" alt="10000 Fragmentos">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">10000 Fragmentos</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=16000fragmentos" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/16000fragmentos.png" alt="16000 Fragmentos">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">16000 Fragmentos</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ====================== MONEY ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Money</h2>
+      <div class="gamepasses-grid">
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=$60k" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/60k.png" alt="$60k">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$60k</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=$305k" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/305k.png" alt="$305k">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$305k</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=$810k" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/810k.png" alt="$810k">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$810k</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=$18m" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/1_8m.png" alt="$1.8M">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$1.8M</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=$3m" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/3m.png" alt="$3M">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">$3M</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ====================== SIMULATION DATA ====================== -->
+    <section class="gp-category">
+      <h2 class="gp-category-title">Simulation Data</h2>
+      <div class="gamepasses-grid">
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=200simulationdata" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/200simulation.png" alt="+200 Simulation Data">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+200 Simulation Data</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=1000simulationdata" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/1000simulation.png" alt="+1000 Simulation Data">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+1000 Simulation Data</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=2700simulationdata" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/2700simulation.png" alt="+2700 Simulation Data">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+2700 Simulation Data</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=6000simulationdata" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/6000simulation.png" alt="+6000 Simulation Data">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+6000 Simulation Data</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=bfruits&id=10000simulationdata" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🍎 BLOX FRUITS</div>
+            <img src="bfruits/10000simulation.png" alt="+10000 Simulation Data">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+10000 Simulation Data</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 52,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

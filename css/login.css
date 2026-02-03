@@ -1,0 +1,338 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #0A0A0A;
+    color: white;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 90px; /* Espaço para o header fixo */
+    overflow-y: auto;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Adiciona padding para espaçamento */
+    flex-direction: column; /* Para permitir margens verticais no login-container */
+}
+
+.login-container {
+    background: #080808;
+    border-radius: 20px;
+    padding: 50px 40px;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #1a1a1a;
+    z-index: 10;
+    margin: 50px auto;
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 28px;
+}
+
+.login-container .subtitle {
+    text-align: center;
+    color: #B0B0B0;
+    margin-bottom: 30px;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    color: #6A6A6A;
+    font-size: 11px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #050505;
+    border-radius: 10px;
+    padding: 12px 15px;
+    border: 1px solid #151515;
+}
+
+.input-wrapper i {
+    color: #4A4A4A;
+    margin-right: 12px;
+    font-size: 16px;
+}
+
+.input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+    padding: 2px 0;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: #3A3A3A;
+}
+
+.forgot-password {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #00d1b2; /* Teal color from image */
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: opacity 0.3s;
+}
+
+.forgot-password:hover {
+    opacity: 0.8;
+}
+
+.main-btn {
+    padding: 14px;
+    border: none;
+    border-radius: 99px;
+    background: white;
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    width: 100%;
+    text-transform: none;
+    letter-spacing: 1px;
+}
+
+.main-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
+
+.divider {
+    margin: 25px 0;
+    color: #4A4A4A;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    letter-spacing: 1.5px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #151515;
+    margin: 0 20px;
+}
+
+.oauth-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.oauth-btn {
+    flex: 1;
+    height: 54px;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    background: #111;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.oauth-btn i {
+    font-size: 20px;
+    color: white;
+}
+
+.oauth-btn:hover {
+    background: #151515;
+    border-color: #222;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #6A6A6A;
+    font-size: 12px;
+}
+
+.register-link span {
+    cursor: pointer;
+    color: white;
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+.register-link span:hover {
+    text-decoration: underline;
+}
+
+/* Estilos para a transição */
+.login-container {
+    position: relative;
+    overflow: hidden; /* Garante que o conteúdo que se move para fora não seja visível */
+}
+
+#form-content {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-fade-out {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.form-fade-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.form-zoom-out {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.form-zoom-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Estilos para campos de registro */
+.input-group.hidden {
+    opacity: 0;
+    height: 0;
+    margin-bottom: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
+}
+
+.input-group:not(.hidden) {
+    opacity: 1;
+    height: auto; /* Ou um valor fixo se souber a altura */
+    margin-bottom: 20px;
+    transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out, margin-bottom 0.3s ease-in-out;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+    background: #080808;
+    color: #aaaaaa;
+    padding: 40px 20px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'Space Grotesk', sans-serif;
+    margin-top: 100px; /* Aumenta o espaço acima do footer para afastar do login */
+}
+
+.footer-column:first-child {
+    flex: 1;
+    max-width: 300px;
+    margin-right: auto;
+}
+
+.footer-column:not(:first-child) {
+    flex-shrink: 0;
+}
+
+.footer-column h4 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.footer-column p {
+    color: #aaaaaa;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 5px;
+}
+
+.footer-column a {
+    color: #aaaaaa;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.8;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-legal {
+    flex-basis: 100%;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+}

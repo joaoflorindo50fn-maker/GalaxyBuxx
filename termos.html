@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Termos de Uso - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/core.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/particles.css">
+  <style>
+    :root {
+      --border-white: rgba(255, 255, 255, 0.1);
+      --accent-white: #ffffff;
+    }
+
+    body {
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #000;
+    }
+
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .terms-content {
+      max-width: 1000px;
+      margin: 150px auto 100px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .terms-header {
+      text-align: left;
+      margin-bottom: 60px;
+      border-left: 4px solid var(--accent-white);
+      padding-left: 25px;
+    }
+
+    .terms-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin: 0 0 10px 0;
+      letter-spacing: 1px;
+    }
+
+    .terms-header p {
+      color: #888;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+      gap: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .terms-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .terms-card {
+      background: rgba(10, 10, 10, 0.8);
+      border: 1px solid var(--border-white);
+      padding: 40px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .terms-card:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-5px);
+    }
+
+    .terms-card h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0 0 15px 0;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terms-card h2::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--accent-white);
+      display: inline-block;
+    }
+
+    .terms-card p {
+      color: #bbb;
+      line-height: 1.7;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    .acceptance-note {
+      margin-top: 50px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed var(--border-white);
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+
+<main class="terms-content">
+    <section class="terms-header">
+      <h1>Protocolos de Compra</h1>
+      <p>Leia atentamente nossas diretrizes antes de iniciar sua transação.</p>
+    </section>
+
+    <div class="terms-grid">
+      <div class="terms-card">
+        <h2>Responsabilidade do Cliente</h2>
+        <p>O cliente deve fornecer informações corretas e completas no momento da compra. Dados incorretos podem causar atrasos ou impedir o acesso ao produto.</p>
+      </div>
+
+      <div class="terms-card">
+        <h2>Pagamento e Reembolso</h2>
+        <p>Após a confirmação do pagamento, não há possibilidade de reembolso. Disputas indevidas serão tratadas como tentativa de fraude. A loja não se responsabiliza por erros, ações do cliente ou falhas do Roblox.</p>
+      </div>
+
+      <div class="terms-card">
+        <h2>Ativação do Produto</h2>
+        <p>A Gamepass será processada em até 2 horas após o pagamento. Os Robux serão liberados pelo Roblox seguindo o prazo padrão de 5 a 7 dias.</p>
+      </div>
+
+      <div class="terms-card">
+        <h2>Preços Regionais</h2>
+        <p>O preço regional da Gamepass deve estar desativado. A loja não se responsabiliza por retenções causadas por preços regionais ativos no momento da compra.</p>
+      </div>
+
+      <div class="terms-card">
+        <h2>Prazo de Entrega</h2>
+        <p>O prazo padrão é de até 2 horas. Em casos excepcionais de estoque ou disponibilidade, este prazo pode ser estendido, mantendo o cliente sempre informado.</p>
+      </div>
+
+      <div class="terms-card">
+        <h2>Suporte Técnico</h2>
+        <p>Disponível para dúvidas ou problemas na entrega. Qualquer incidente deve ser comunicado oficialmente em até 72 horas após a transação.</p>
+      </div>
+    </div>
+
+    <div class="acceptance-note">
+      Os termos podem ser alterados sem aviso prévio. Ao realizar uma compra, você declara estar ciente e de acordo com todas as condições estabelecidas.
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  <script src="js/index.js"></script>
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

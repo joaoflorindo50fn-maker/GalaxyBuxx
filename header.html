@@ -1,0 +1,88 @@
+<div class="header-inner">
+  <div class="header-left">
+    <a href="/index.html" class="logo-wrapper">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Galaxy<span class="text-accent">Buxx</span></span>
+    </a>
+  </div>
+
+  <nav class="header-nav">
+    <ul>
+      <li><a href="/index.html">Início</a></li>
+      <li><a href="/pages/robux-details.html">Robux</a></li>
+      <li><a href="/catalogo.html#gamepasses">Produtos</a></li>
+      <li><a href="/tutoriais.html">Tutoriais</a></li>
+      <li><a href="/suporte.html">Suporte</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-right" id="auth-container">
+    <div id="auth-loading" class="auth-loading-skeleton"></div>
+  </div>
+</div>
+
+<!-- Template: Logged Out -->
+<template id="tpl-logged-out">
+  <div class="user-guest">
+    <a href="/login.html" class="header-auth-btn">Fazer Login</a>
+  </div>
+</template>
+
+<!-- Template: Logged In -->
+<template id="tpl-logged-in">
+  <div class="user-logged-area">
+    <div class="header-profile-wrapper">
+      <button class="header-profile-toggle" aria-label="Menu do usuário">
+        <span class="header-user-name user-name-text">Usuário</span>
+        <div class="header-avatar-wrapper">
+          <img src="" alt="Avatar" class="header-avatar user-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=User&background=222&color=fff'">
+        </div>
+        <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chevron-down.svg" class="chevron-down" alt="chevron">
+      </button>
+      
+      <div class="header-dropdown" data-active="false">
+        <div class="dropdown-header">
+          <div class="dropdown-avatar-large">
+            <img src="" alt="Avatar" class="header-avatar user-avatar-img">
+          </div>
+          <div class="dropdown-user-info">
+            <span class="dropdown-name user-name-text">Usuário</span>
+            <span class="dropdown-email user-email-text">email@exemplo.com</span>
+          </div>
+        </div>
+        
+        <div class="dropdown-divider"></div>
+        
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/perfil.html?tab=historico" class="dropdown-item">
+              <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/package.svg" class="dropdown-icon" alt="pedidos">
+              <span>Meus Pedidos</span>
+            </a>
+          </li>
+          <li>
+            <a href="/perfil.html?tab=perfil" class="dropdown-item">
+              <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/user.svg" class="dropdown-icon" alt="perfil">
+              <span>Meu Perfil</span>
+            </a>
+          </li>
+        </ul>
+        
+        <div class="dropdown-divider"></div>
+        
+        <div class="dropdown-footer">
+          <button id="logout-btn" class="logout-btn">
+            <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/log-out.svg" class="dropdown-icon" alt="sair">
+            <span>Sair da Conta</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produto - GalaxyBuxx</title>
+  <link rel="stylesheet" href="../css/index.css">
+  
+  <link rel="stylesheet" href="../css/product.css">
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+<main class="product-container">
+    <div class="product-master-card">
+      <div class="product-main-grid">
+        <!-- Left: Image -->
+        <div class="product-visual">
+          <img id="productImg" src="../99forest/20gem.png" alt="Produto" onerror="this.onerror=null;this.src='../placeholder-bw.png';console.error('Image failed to load:', this.src);">
+        </div>
+
+        <!-- Right: Info Card -->
+        <div class="product-info-card">
+          <div class="product-info">
+            <div class="product-category" id="productGame">JOGO</div>
+            <h1 id="productName">Nome do Produto</h1>
+            <div class="stock-badge">
+              <span class="status-dot green"></span>
+              <span id="productStock">999</span> em estoque
+            </div>
+            
+            <div class="price-wrapper">
+              <div class="price-main">R$ <span id="productPrice">0,00</span></div>
+              <div class="price-method">À vista no Pix</div>
+            </div>
+
+            <div class="options-section">
+              <label>ESCOLHA UMA OPÇÃO</label>
+              <div class="option-card active">
+                <div class="option-radio">
+                  <div class="radio-inner"></div>
+                </div>
+                <img id="optionImg" src="" alt="" class="option-thumb">
+                <div class="option-details">
+                  <span class="option-name" id="optionName">Opção Padrão</span>
+                  <span class="option-price">R$ <span id="optionPrice">0,00</span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="buy-now-btn" id="buyNowBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Comprar agora
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Badges -->
+    <div class="trust-badges">
+      <div class="badge-item">
+        <div class="badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <div class="badge-text">
+          <h3>Segurança total</h3>
+          <p>Criptografia SSL de ponta-a-ponta em todas as transações.</p>
+        </div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <div class="badge-text">
+          <h3>Pagamento Facilitado</h3>
+          <p>Aceitamos Pix, Cartões e Criptomoedas.</p>
+          <div class="payment-icons">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><path d="M7 7h.01M17 7h.01M7 17h.01M17 17h.01"></path></svg> <!-- Pix QR Code -->
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg> <!-- Card -->
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> <!-- Crypto -->
+          </div>
+        </div>
+      </div>
+      <div class="badge-item">
+        <div class="badge-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <div class="badge-text">
+          <h3>Suporte Online</h3>
+          <p>Dúvidas? Entre em contato com nosso time de atendimento.</p>
+        </div>
+      </div>
+    </div>
+</main>
+
+  <footer></footer>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+
+  const productData = {
+    id: params.get('id'),
+    name: params.get('name') || 'Produto sem nome',
+    game: params.get('game') || 'Jogo',
+    price: Number(params.get('price')) || 0,
+    image: params.get('image'),
+    stock: params.get('stock') || '999'
+  };
+
+  // TEXTOS
+  document.getElementById('productName').textContent = productData.name;
+  document.getElementById('productGame').textContent = productData.game;
+  document.getElementById('productPrice').textContent =
+    productData.price.toFixed(2).replace('.', ',');
+  document.getElementById('productStock').textContent = productData.stock;
+
+  // IMAGEM
+  const img = document.getElementById('productImg');
+  const optionImg = document.getElementById('optionImg');
+
+  const imagePath = productData.image
+    ? decodeURIComponent(productData.image)
+    : '../placeholder-bw.html';
+
+  img.src = imagePath;
+  optionImg.src = imagePath;
+
+  img.onerror = () => {
+    console.error('Falha ao carregar imagem:', imagePath);
+    img.src = '../placeholder-bw.html';
+    optionImg.src = '../placeholder-bw.html';
+  };
+
+  // OPÇÃO
+  document.getElementById('optionName').textContent = productData.name;
+  document.getElementById('optionPrice').textContent =
+    productData.price.toFixed(2).replace('.', ',');
+
+  // BOTÕES
+  document.getElementById('buyNowBtn')?.addEventListener('click', () => {
+    const params = new URLSearchParams(window.location.search);
+    window.location.href = '../checkout.html?' + params.toString();
+  });
+});
+</script>
+<script src="../js/nav-direction.js"></script>
+<script src="../js/particles.js" defer></script>
+</body>
+</html>

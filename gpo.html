@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grand Piece Online - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+ 
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/gpo.jpg" alt="Grand Piece Online" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Grand Piece Online</h1>
+        <p>Aventure-se no mundo de One Piece. Encontre frutas raras e itens lendários para sua jornada.</p>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Products</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=gpo&id=iceborngunblade" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/iceborngunblade.png" alt="Iceborn Gunblade">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Iceborn Gunblade</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 31,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=icebornkatana" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/icebornkatana.png" alt="Iceborn Katana">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Iceborn Katana</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 31,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=icebornblade" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/icebornblade.png" alt="Iceborn Blade">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Iceborn Blade</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 31,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=icebornrapier" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/icebornrapier.png" alt="Iceborn Rapier">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Iceborn Rapier</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 31,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=iceborndaggers" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/iceborndaggers.png" alt="Iceborn Daggers">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Iceborn Daggers</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 31,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=mythicalfruitchest" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/mythicalfruitchest.png" alt="Mythical Fruit Chest">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Mythical Fruit Chest</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 131,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=legendaryfruitchestblueprint" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/legendaryfruitblueprint.png" alt="Legendary Fruit Chest Blueprint">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Legendary Fruit Chest Blueprint</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 10,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=specialtailortoken(x10)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/specialtailortoken.png" alt="Special Tailor Token (x10)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Special Tailor Token (x10)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=hoverboard" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/hoverboard.png" alt="Hoverboard">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Hoverboard</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 78,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=coffinboat" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/coffinboat.png" alt="Coffin Boat">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Coffin Boat</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 58,35</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=1loadoutslot" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/loadoutslot.png" alt="+1 Loadout Slot">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">+1 Loadout Slot</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=striker" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/striker.png" alt="Striker">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Striker</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 78,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=thrilledship" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/thrilledship.png" alt="Thrilled Ship">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Thrilled Ship</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 21,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=devilfruitjournal" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/devilfruitjournal.png" alt="Devil Fruit Journal">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Devil Fruit Journal</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 19,71</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=huntersjournal" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/huntersjournal.png" alt="Hunters Journal">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Hunters Journal</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=goldenhammer" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/goldenhammer.png" alt="Golden Hammer">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Golden Hammer</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 5,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=fruitbag" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/fruitbag.png" alt="Fruit Bag">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Fruit Bag</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=bomi'slogpose" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/bomislogpose.png" alt="Bomi's Log Pose">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Bomi's Log Pose</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=tradingsign" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/tradingsign.png" alt="Trading Sign">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Trading Sign</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,38</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=spresetessence" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/spresetessence.png" alt="SP Reset Essence">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">SP Reset Essence</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,63</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=devilfruitremover" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/devilfruitremover.png" alt="Devil Fruit Remover">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Devil Fruit Remover</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=customspiritcolor" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/customspiritcolor.png" alt="Custom Spirit Color">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Custom Spirit Color</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Boosts</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=gpo&id=2xexp(5m)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/2xexp5m.png" alt="2x EXP (5 m)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x EXP (5 m)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,81</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=2xexp(15m)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/2xexp15m.png" alt="2x EXP (15 m)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x EXP (15 m)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 2,42</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=devilfruitnotifier(1h)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/devilfruitnotifier.png" alt="Devil Fruit Notifier (1h)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Devil Fruit Notifier (1h)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=2xdroprates(5m)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/2xdroprates5m.png" alt="2x Drop Rates (5m)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Drop Rates (5m)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,53</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=2xdroprates(1h)" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/2xdroprates1h.png" alt="2x Drop Rates (1h)">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Drop Rates (1h)</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 5,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Race Reroll</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=gpo&id=racererollx1" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/racereroll1.png" alt="Race Reroll x1">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Race Reroll x1</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,88</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=racererollx5" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/racereroll5.png" alt="Race Reroll x5">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Race Reroll x5</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 4,55</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=racererollx10" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/racereroll10.png" alt="Race Reroll x10">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Race Reroll x10</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,70</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=gpo&id=racererollx50" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏴‍☠️ GRAND PIECE ONLINE</div>
+            <img src="gpo/racereroll50.png" alt="Race Reroll x50">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Race Reroll x50</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 17,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+ 
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

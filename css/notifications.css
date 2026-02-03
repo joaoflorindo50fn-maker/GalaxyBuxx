@@ -1,0 +1,117 @@
+/* Notification System Styles */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.notification {
+    min-width: 300px;
+    max-width: 450px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform: translateX(120%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: all;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.success {
+    border-left: 4px solid #00c853;
+}
+
+.notification.error {
+    border-left: 4px solid #ff3d00;
+}
+
+.notification-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.notification.success .notification-icon {
+    color: #00c853;
+}
+
+.notification.error .notification-icon {
+    color: #ff3d00;
+}
+
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.notification-message {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.notification-close:hover {
+    color: #ffffff;
+}
+
+/* Progress bar for auto-close */
+.notification-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+}
+
+.notification-progress-bar {
+    height: 100%;
+    width: 100%;
+    transform-origin: left;
+}
+
+.notification.success .notification-progress-bar {
+    background: #00c853;
+}
+
+.notification.error .notification-progress-bar {
+    background: #ff3d00;
+}
+
+@keyframes progress-animation {
+    from { transform: scaleX(1); }
+    to { transform: scaleX(0); }
+}

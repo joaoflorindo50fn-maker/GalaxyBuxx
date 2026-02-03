@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volleyball Legends - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/vbl.jpg" alt="Volleyball Legends" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Volleyball Legends</h1>
+        <p>Torne-se uma lenda do vôlei. Adquira itens exclusivos e melhore seu desempenho em quadra.</p>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=vbl&id=vip" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/vip.png" alt="VIP">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">VIP</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 13,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gemas</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=vbl&id=250gemas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/250gem.png" alt="250 Gemas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">250 Gemas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,47</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=1,100gemas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/1100gem.png" alt="1,100 Gemas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1,100 Gemas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 13,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=2,900gemas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/2900gem.png" alt="2,900 Gemas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2,900 Gemas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 34,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=5,900gemas" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/5900gem.png" alt="5,900 Gemas">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">5,900 Gemas</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 206,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Yen</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=vbl&id=1,000iene" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/1000yen.png" alt="1,000 Iene">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1,000 Iene</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 6,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=2,500iene" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/2500yen.png" alt="2,500 Iene">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2,500 Iene</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 13,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=7,500iene" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/7500yen.png" alt="7,500 Iene">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">7,500 Iene</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 27,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=vbl&id=25,000iene" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🏐 VOLLEYBALL LEGENDS</div>
+            <img src="vbl/25000yen.png" alt="25,000 Iene">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">25,000 Iene</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 69,97</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+

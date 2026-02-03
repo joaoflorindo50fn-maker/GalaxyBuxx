@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GalaxyBuxx - Passes e Itens no Roblox</title>
+  <link rel="stylesheet" href="css/index.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+
+<canvas id="galaxy-particles"></canvas>
+
+<div id="main-content">
+<!-- HERO -->
+  <section class="hero reveal reveal-active">
+    <span class="badge" id="statusBadge">
+      <span class="status-dot"></span>
+      ONLINE • Atendimento Ativo
+      <span class="badge-tooltip">
+        <strong>Horário de funcionamento:</strong><br>
+        Todos os dias: 11:00 às 00:00
+      </span>
+    </span>
+    <h1>GalaxyBuxx - A melhor loja de <span class="robux-gradient">Robux</span> do Brasil.</h1>
+    <p class="hero-desc">Entrega rápida, segura e suporte humano de verdade.</p>
+    <div class="hero-separator"></div>
+    <button class="primary catalog-btn" id="catalogBtn" onclick="location.href='catalogo.html'">
+      Ver Catálogo
+      <span class="btn-tooltip">Clique para ver os preços</span>
+    </button>
+  </section>
+
+  <!-- Jogos em Destaque -->
+  <section class="section featured-games">
+    <h2 class="reveal">Jogos em Destaque</h2>
+    <div class="game-cards-wrapper reveal">
+      <div class="index-game-card gamepass-item reveal" onclick="window.open('99forest.html','_self')">
+        <img class="index-game-card__img" src="passimg/99forest.jpg" alt="99 Nights">
+        <span class="index-game-card__title">99 Nights in the Forest</span>
+      </div>
+      <div class="index-game-card gamepass-item reveal" onclick="window.open('bfruits.html','_self')">
+        <img class="index-game-card__img" src="passimg/bfruits.jpg" alt="Blox Fruits">
+        <span class="index-game-card__title">Blox Fruits</span>
+      </div>
+      <div class="index-game-card gamepass-item reveal" onclick="window.open('escapetsunami.html','_self')">
+        <img class="index-game-card__img" src="passimg/escapetsunami.jpg" alt="Escape Tsunami For Brainrots">
+        <span class="index-game-card__title">Escape Tsunami For Brainrots</span>
+      </div>
+      <div class="index-game-card gamepass-item reveal" onclick="window.open('fish.html','_self')">
+        <img class="index-game-card__img" src="passimg/fishit.png" alt="Fish It!">
+        <span class="index-game-card__title">Fish It!</span>
+      </div>
+      <div class="index-game-card gamepass-item reveal" onclick="window.open('stealab.html','_self')">
+        <img class="index-game-card__img" src="passimg/stealabrainrot.jpg" alt="Steal a Brainrot">
+        <span class="index-game-card__title">Steal a Brainrot</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Avaliações de Clientes -->
+  <section class="section">
+    <h2 class="reveal">Avaliações de Clientes</h2>
+    <div class="reviews-wrapper reveal">
+      <div class="reviews-carousel">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">E</div>
+            <div class="review-info">
+              <div class="review-name">Enzo R.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Processo rápido e organizado. Tudo ocorreu conforme o esperado.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">M</div>
+            <div class="review-info">
+              <div class="review-name">Miguel D.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Plataforma bem feita, valores justos e suporte respondeu rápido.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">I</div>
+            <div class="review-info">
+              <div class="review-name">Iago C.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Plataforma bem feita, valores justos e suporte respondeu rápido.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div class="review-info">
+              <div class="review-name">Davi F.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Atendimento incrível e entrega rápida. Melhor experiência!"</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">E</div>
+            <div class="review-info">
+              <div class="review-name">Enzo R.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Entrega super rápida! Comprei Robux e caiu na hora. Recomendo muito."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">M</div>
+            <div class="review-info">
+              <div class="review-name">Miguel D.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Experiência tranquila, sem complicações. Recomendo.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">I</div>
+            <div class="review-info">
+              <div class="review-name">Iago C.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Serviço confiável, com entrega conforme o combinado.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div class="review-info">
+              <div class="review-name">Davi F.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Atendimento incrível e entrega rápida. Melhor experiência!"</p>
+        </div>
+      </div>
+      <div class="reviews-carousel" aria-hidden="true">
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">E</div>
+            <div class="review-info">
+              <div class="review-name">Enzo R.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Entrega super rápida! Comprei Robux e caiu na hora. Recomendo muito."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">M</div>
+            <div class="review-info">
+              <div class="review-name">Miguel D.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Preço muito bom comparado a outros sites. O suporte me ajudou rapidinho."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">I</div>
+            <div class="review-info">
+              <div class="review-name">Iago C.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Melhor loja de Robux! Seguro e confiável. Já fiz 3 compras aqui."</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div class="review-info">
+              <div class="review-name">Davi F.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">"Atendimento incrível e entrega rápida. Melhor experiência!"</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">E</div>
+            <div class="review-info">
+              <div class="review-name">Enzo R.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Experiência tranquila, sem complicações. Recomendo.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">M</div>
+            <div class="review-info">
+              <div class="review-name">Miguel D.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Gostei da organização do site e da rapidez no atendimento.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">I</div>
+            <div class="review-info">
+              <div class="review-name">Iago C.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Serviço confiável, com entrega conforme o combinado.”</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar">D</div>
+            <div class="review-info">
+              <div class="review-name">Davi F.</div>
+              <div class="review-status">Cliente Verificado</div>
+            </div>
+          </div>
+          <p class="review-text">“Tudo certo do início ao fim. Voltarei a utilizar.”"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discord Section -->
+  <section class="section discord-section">
+    <div class="discord-card reveal">
+      <div class="discord-icon">
+        <i class="fa-brands fa-discord"></i>
+      </div>
+      <div class="discord-info">
+        <h3>Junte-se ao nosso Discord!</h3>
+        <p>Receba suporte prioritário, participe de sorteios e fique por dentro das novidades.</p>
+        <a href="https://discord.gg/PDWUgu8bvY" target="_blank" class="btn-discord">ENTRAR NO SERVIDOR</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+  <div id="messageBox"></div>
+  
+  <script src="js/index.js"></script>
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>

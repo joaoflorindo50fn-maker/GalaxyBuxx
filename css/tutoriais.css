@@ -1,0 +1,290 @@
+/* Design Exclusivo GalaxyBuxx - Minimalista Industrial Refinado */
+.tutorials-main {
+  max-width: 1400px;
+  margin: 160px auto 100px;
+  padding: 0 60px;
+  flex-grow: 1; /* Added to push footer down */
+}
+
+.tutorials-hero {
+  margin-bottom: 80px;
+  padding-left: 320px; /* Alinha com a grid: sidebar (240px) + gap (80px) */
+}
+
+.hero-top {
+  margin-bottom: 20px;
+}
+
+.hero-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.tutorials-hero h1 {
+  font-size: clamp(48px, 10vw, 100px);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 10px;
+  letter-spacing: -3px;
+}
+
+.tutorials-hero p {
+  color: #888;
+  font-size: 1.2rem;
+  max-width: 500px;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+
+/* Grid de Listagem */
+.tutorials-layout {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.tutorials-sidebar {
+  width: 240px;
+  background: #0a0a0a;
+  border-radius: 25px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 120px;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.tutorial-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px 20px;
+  border-radius: 15px;
+  color: #888;
+  cursor: pointer;
+  transition: 0.3s;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tutorial-nav-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  color: #fff;
+}
+
+.tutorial-nav-item.active {
+  background: #fff;
+  color: #000;
+}
+
+.tutorials-grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 992px) {
+  .tutorials-layout {
+    flex-direction: column;
+  }
+  .tutorials-sidebar {
+    width: 100%;
+    position: static;
+  }
+  .tutorials-hero {
+    padding-left: 0;
+  }
+}
+
+.tutorial-card {
+  display: grid;
+  grid-template-columns: 60px 1fr 40px;
+  gap: 20px; /* Added gap for separation */
+  align-items: center;
+  padding: 40px 0;
+  border-top: 1px solid #111;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.tutorial-card:last-child {
+  border-bottom: 1px solid #111;
+}
+
+.tutorial-card:hover {
+  background: rgba(255,255,255,0.02);
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1rem;
+  color: #333;
+  font-weight: 700;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.card-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+.card-info h3 {
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+.card-info p {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.card-arrow {
+  color: #222;
+  font-size: 1.5rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.tutorial-card:hover .card-arrow {
+  transform: translateX(5px);
+  color: #fff;
+}
+
+.tutorial-card:hover .card-number {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .tutorial-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .card-arrow {
+    display: none;
+  }
+}
+
+/* Coming Soon Overlay */
+.coming-soon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeInOverlay 0.5s ease forwards;
+}
+
+.coming-soon-card {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 60px 40px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    animation: slideUpCard 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.coming-soon-icon {
+    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 25px;
+    display: inline-block;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+.coming-soon-card h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #fff 0%, #444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.coming-soon-card p {
+    color: #888;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
+}
+
+.btn-back-home {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 16px 35px;
+    border-radius: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.btn-back-home:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUpCard {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}

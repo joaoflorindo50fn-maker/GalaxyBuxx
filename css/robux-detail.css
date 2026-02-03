@@ -1,0 +1,291 @@
+/* General container for the robux detail page */
+.robux-main-content {
+    padding-top: 120px; /* Ensure content clears the fixed header */
+}
+
+.robux-detail-container {
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto 60px auto;
+    background-color: #000000; /* Black background for the container */
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    color: #ffffff; /* White text color */
+}
+
+/* Image section styling */
+.robux-image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a; /* Darker background for image area */
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.robux-image-section img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Info section styling */
+.robux-info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.robux-summary-card {
+    background-color: #0a0a0a;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.robux-summary-card h1 {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+.robux-summary-card .in-stock {
+    font-size: 0.9em;
+    color: #cccccc; /* Light gray for in stock */
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.robux-summary-card .price-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.robux-summary-card .price-value {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #ffffff; /* White for price */
+}
+
+.robux-summary-card .price-sub {
+    font-size: 0.9em;
+    color: #aaaaaa;
+}
+
+/* Badges */
+.featured-badges {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.badge-outline {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    border: 1px solid #444444;
+}
+
+/* Options section (for quantity selection) */
+.options-section {
+    margin-top: 20px;
+}
+
+.options-section h3 {
+    font-size: 1.1em;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.option-card {
+    background-color: #1a1a1a;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.option-card:hover {
+    border-color: #888888; /* Light gray on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* White shadow on hover */
+    transform: translateY(-5px); /* Slight lift effect */
+}
+
+.option-card.active {
+    border-color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.option-card input[type="radio"] {
+    display: none; /* Hide default radio button */
+}
+
+.option-card label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+}
+
+.option-card label img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.option-card label span {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.option-card label span:last-child {
+    margin-left: auto;
+    color: #ffffff;
+}
+
+/* Action buttons */
+.actions-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-buy-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    font-family: 'Space Grotesk', sans-serif; /* Changed font */
+}
+
+.btn-buy-now {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.btn-buy-now:hover {
+    background-color: #cccccc;
+    transform: translateY(-2px);
+}
+
+.btn-buy-now svg {
+    margin-right: 10px;
+}
+
+/* Security info section */
+.security-info-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #000000;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.info-card {
+    flex: 1;
+    text-align: center;
+    padding: 20px;
+    background-color: #0a0a0a;
+    border-radius: 10px;
+    border: 1px solid #333333;
+}
+
+.info-card svg {
+    color: #ffffff;
+    margin-bottom: 15px;
+    width: 36px;
+    height: 36px;
+}
+
+.info-card h3 {
+    font-size: 1.2em;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 0.9em;
+    color: #aaaaaa;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .robux-detail-container {
+        flex-direction: column;
+        padding: 20px;
+        margin: 30px auto;
+    }
+
+    .robux-info-section h1 {
+        font-size: 2em;
+    }
+
+    .robux-info-section .price-value {
+        font-size: 1.8em;
+    }
+
+    .security-info-section {
+        flex-direction: column;
+        padding: 20px;
+        margin: 30px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .robux-detail-container {
+        gap: 20px;
+    }
+
+    .robux-info-section h1 {
+        font-size: 1.8em;
+    }
+
+    .robux-info-section .price-value {
+        font-size: 1.6em;
+    }
+
+    .btn-buy-now {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .info-card {
+        padding: 15px;
+    }
+
+    .info-card svg {
+        width: 30px;
+        height: 30px;
+    }
+}

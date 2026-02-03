@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anime Fighting Simulator - GalaxyBuxx</title>
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="css/catalogo.css" />
+  <link rel="stylesheet" href="css/gamepasses.css" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/core.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/particles.css">
+</head>
+<body>
+    <header></header>
+ 
+<canvas id="galaxy-particles"></canvas>
+<main>
+    <section class="game-header">
+      <img src="passimg/noFilter.jpg" alt="Anime Fighting Simulator" class="game-header-img">
+      <div class="game-header-info">
+        <h1>Anime Fighting Simulator</h1>
+        <p>Treine seus poderes e derrote vilões épicos. Encontre as melhores gamepasses para evoluir rápido.</p>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Gamepasses</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xstrength" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xstrenght.png" alt="2x Strength">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Strength</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xdurability" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xdura.png" alt="2x Durability">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Durability</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xchakra" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xchkra.png" alt="2x Chakra">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Chakra</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xsword" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xsword.png" alt="2x Sword">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Sword</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xagility" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xagility.png" alt="2x Agility">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Agility</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xspeed" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xspeed.png" alt="2x Speed">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Speed</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xyen.png" alt="2x Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=powerconceal" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/powerconceal.png" alt="Power Conceal">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Power Conceal</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=vipaccess" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/vip.png" alt="VIP Access">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">VIP Access</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 10,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=halfcooldown" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/halfcool.png" alt="Half Cooldown">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Half Cooldown</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=nolimit" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/nolimit.png" alt="No Limit">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">No Limit</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 26,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=fasterflight" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/fasterflight.png" alt="Faster Flight">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Faster Flight</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 5,25</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xchikara.png" alt="2x Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=chikaraheal" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/chkraheal.png" alt="Chikara Heal">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">Chikara Heal</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2xtokens" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2xtkens.png" alt="2x Tokens">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2x Tokens</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=4xgachaluck" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/4xgacha.png" alt="4x Gacha Luck">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">4x Gacha Luck</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Chikara</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=afs&id=5kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/5kchikara.png" alt="5k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">5k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,90</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=20kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/20kchikara.png" alt="20k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">20k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 3,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=45kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/45kchikara.png" alt="45k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">45k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 7,90</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=70kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/70kchikara.png" alt="70k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">70k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 12,20</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=135kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/135kchikara.png" alt="135k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">135k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 22,70</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=250kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/250kchikara.png" alt="250k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">250k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=550kchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/550kchikara.png" alt="550k Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">550k Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 70,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=1250mchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/1mchikara.png" alt="1.250M Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1.250M Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 140,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=2750mchikara" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2mchikara.png" alt="2.750M Chikara">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2.750M Chikara</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 280,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Yen</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=afs&id=250yen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/250 yen.png" alt="250 Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">250 Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">25 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=500yen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/500 yen.png" alt="500 Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">500 Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">49 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=1kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/1kyen.png" alt="1k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">99 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=25kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/2.5k.png" alt="2.5k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">2.5k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">199 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=75kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/7500k.png" alt="7.5k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">7.5k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">499 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=20kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/20k.png" alt="20k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">20k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">1249 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=50kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/50k.png" alt="50k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">50k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">2499 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=120kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/120k.png" alt="120k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">120k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">4999 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=275kyen" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/275k.png" alt="275k Yen">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">275k Yen</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">9999 Robux</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="gp-category">
+      <h2 class="gp-category-title">Boosters</h2>
+      <div class="gamepasses-grid">
+                        <a href="pages/gamepass-detail.html?game=afs&id=15mboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/15mboost.png" alt="15m Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">15m Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,50</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=30mboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/30mboost.png" alt="30m Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">30m Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 0,90</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=1hboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/1hbst.png" alt="1h Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1h Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 1,70</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=1dboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/1dbst.png" alt="1d Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">1d Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 8,75</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=7dboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/7dbst.png" alt="7d Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">7d Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 35,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+
+                        <a href="pages/gamepass-detail.html?game=afs&id=15dboost" class="gp-card">
+          <div class="gp-card-top">
+            <div class="gp-badge">🥊 ANIME FIGHTING SIMULATOR</div>
+            <img src="afsimg/15dbst.png" alt="15d Boost">
+          </div>
+          <div class="gp-card-info">
+            <h3 class="gp-card-title">15d Boost</h3>
+            <div class="gp-card-price-row">
+              <span class="gp-card-price">R$ 70,00</span>
+              <span class="gp-card-pix">À vista no Pix</span>
+            </div>
+            <button class="gp-card-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Comprar agora
+            </button>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-column">
+      <h4>SOBRE</h4>
+      <p>Somos a solução para o mercado digital, com uma plataforma moderna, prática e segura. Nosso compromisso é entregar a melhor experiência para os jogadores.</p>
+    </div>
+    <div class="footer-column">
+      <h4>ACESSO RÁPIDO</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="suporte.html">Suporte</a></li>
+        <li><a href="https://discord.gg/PDWUgu8bvY" target="_blank" rel="noopener">Comunidade</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>LEGAL</h4>
+      <ul>
+        <li><a href="privacidade.html">Privacidade</a></li>
+        <li><a href="termos.html">Termos</a></li>
+      </ul>
+    </div>
+    <div class="footer-legal">
+      <p>&copy; 2026 GalaxyBuxx. Todos os direitos reservados.</p>
+      <p>Não recebemos produtos por meios ilegais ou com finalidades ilícitas.</p>
+    </div>
+  </footer>
+
+
+  
+<script src="js/nav-direction.js"></script>
+<script src="js/particles.js" defer></script>
+</body>
+</html>
+
