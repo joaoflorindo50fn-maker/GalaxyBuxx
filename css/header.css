@@ -462,6 +462,21 @@ template {
     gap: 0;
     background: transparent;
     border: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .header-avatar-wrapper {
+    width: 36px !important;
+    height: 36px !important;
+    flex-shrink: 0;
+  }
+
+  .header-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   .chevron-down {
