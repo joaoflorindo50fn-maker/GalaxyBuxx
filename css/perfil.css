@@ -1802,3 +1802,138 @@ input:checked + .slider:before {
         grid-template-columns: 1fr;
     }
 }
+
+/* Extra Mobile Adaptations */
+@media (max-width: 768px) {
+    .profile-main {
+        margin-top: 100px;
+        padding: 0 15px;
+    }
+
+    .user-header-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+
+    .header-avatar-wrapper img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .header-user-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .header-security-badge {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .stats-card {
+        padding: 25px 20px;
+    }
+
+    .stats-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .orders-filter-tabs {
+        overflow-x: auto;
+        padding: 6px;
+        white-space: nowrap;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        display: flex;
+    }
+
+    .orders-filter-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .orders-table-wrapper {
+        overflow-x: auto;
+        margin: 0 -15px;
+        padding: 0 15px;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    /* Settings adjustments */
+    .profile-settings-header {
+        padding: 25px;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .settings-card {
+        padding: 25px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .security-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .btn-security-action {
+        width: 100%;
+    }
+
+    /* Admin Panel adjustments */
+    .admin-panel-header {
+        padding: 25px;
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .admin-tabs-nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+        scrollbar-width: none;
+    }
+
+    .admin-tabs-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .admin-tab-btn {
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-nav-item {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .stats-info h3 {
+        font-size: 1.6rem;
+    }
+
+    .header-user-details h2 {
+        font-size: 1.3rem;
+    }
+}
