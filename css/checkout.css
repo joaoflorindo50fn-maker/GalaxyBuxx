@@ -686,8 +686,67 @@
     font-family: 'Space Grotesk', sans-serif;
 }
 
-@media (max-width: 480px) {
-    .payment-modal {
+@media (max-width: 768px) {
+    .checkout-container {
+        margin-top: 80px;
+        padding: 0 15px;
+    }
+
+    .checkout-section {
         padding: 20px;
+        border-radius: 16px;
+    }
+
+    .pix-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .pix-check-icon {
+        align-self: flex-end;
+    }
+
+    .payment-methods-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .contact-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+        grid-column: span 1;
+    }
+
+    .total-value {
+        font-size: 1.5rem;
+    }
+
+    .payment-modal {
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .instruction-item {
+        gap: 10px;
+    }
+
+    .instruction-item p {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pix-title-row h3 {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
     }
 }

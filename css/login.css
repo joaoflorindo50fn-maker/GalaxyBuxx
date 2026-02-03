@@ -336,3 +336,48 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 20px;
 }
+
+/* Mobile Adaptation */
+@media (max-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .login-container {
+        padding: 30px 20px;
+        margin: 30px auto;
+        border-radius: 16px;
+    }
+
+    .login-container h2 {
+        font-size: 24px;
+    }
+
+    .login-container .subtitle {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .oauth-buttons {
+        gap: 10px;
+    }
+
+    .oauth-btn {
+        height: 48px;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .footer-column:first-child {
+        max-width: 100%;
+        margin-right: 0;
+    }
+}

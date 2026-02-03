@@ -444,3 +444,67 @@ template {
   font-weight: 600 !important;
   display: inline-block !important;
 }
+
+/* Mobile Adaptation */
+@media (max-width: 768px) {
+  header {
+    height: 70px;
+  }
+
+  .header-inner {
+    padding: 0 20px;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header-nav {
+    display: none !important; /* Hide desktop nav by default on mobile if it doesn't fit */
+  }
+
+  /* Optional: if you want a simple scrollable nav instead of hiding */
+  /*
+  .header-nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(8, 8, 8, 0.95);
+    backdrop-filter: blur(12px);
+    padding: 10px 0;
+    overflow-x: auto;
+    border-bottom: 1px solid var(--border-color);
+    display: flex !important;
+  }
+  .header-nav ul {
+    padding: 0 20px;
+    gap: 10px;
+  }
+  .header-nav ul li a {
+    white-space: nowrap;
+    padding: 6px 12px;
+  }
+  */
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .header-user-name {
+    display: none; /* Hide name on small screens to save space */
+  }
+
+  .header-profile-toggle {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .header-dropdown {
+    width: 260px;
+    position: fixed;
+    top: 70px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+  }
+}

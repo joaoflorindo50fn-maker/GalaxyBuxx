@@ -399,3 +399,90 @@ font-size:12px;
   .logo { font-size: 1.1rem; }
   .header-center { display: none; }
 }
+
+/* More Mobile Adaptations */
+@media (max-width: 768px) {
+  .catalog-container {
+    margin-top: 80px;
+    padding: 0 15px;
+  }
+
+  .categories-sidebar {
+    padding: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    gap: 10px;
+    background: transparent;
+    border: none;
+  }
+
+  .categories-title {
+    display: none; /* Hide title to save space for horizontal list */
+  }
+
+  .category-item {
+    display: inline-flex;
+    margin-bottom: 0;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .featured {
+    padding: 30px 20px;
+    min-height: auto;
+    border-radius: 30px;
+  }
+
+  .featured-image {
+    width: 200px;
+    height: 200px;
+    margin-left: 0;
+  }
+
+  .featured-info h1 {
+    font-size: 32px;
+  }
+
+  .featured-info p {
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+
+  .featured-actions {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .price-value {
+    font-size: 28px;
+  }
+
+  .gp-extreme-section__title {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+
+  .gp-extreme-grid {
+    gap: 15px 10px;
+  }
+
+  .gp-extreme-card {
+    height: auto;
+  }
+
+  .gp-extreme-card__img {
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gp-extreme-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-image {
+    width: 150px;
+    height: 150px;
+  }
+}

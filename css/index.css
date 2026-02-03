@@ -733,3 +733,92 @@ footer ul li a:hover {
     margin-right: 0;
   }
 }
+
+/* More Mobile Adaptations */
+@media (max-width: 768px) {
+  .main-content-with-header {
+    padding-top: 70px;
+  }
+
+  .hero {
+    margin: 100px 15px 50px;
+    padding: 60px 20px;
+    border-radius: 24px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .section {
+    margin: 50px auto;
+  }
+
+  .section h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .game-cards-wrapper {
+    gap: 20px 10px;
+    padding: 0 10px;
+  }
+
+  .index-game-card {
+    width: calc(50% - 10px);
+    height: auto;
+    min-width: 150px;
+  }
+
+  .index-game-card__img {
+    height: 120px;
+  }
+
+  .index-game-card__title {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .reviews-carousel {
+    animation-duration: 20s;
+  }
+
+  .review-card {
+    min-width: 280px;
+    max-width: 280px;
+    padding: 16px;
+  }
+
+  .discord-section {
+    padding: 0 15px;
+  }
+
+  .discord-card {
+    padding: 40px 20px;
+    border-radius: 24px;
+  }
+
+  .discord-info h3 {
+    font-size: 28px;
+  }
+
+  .discord-info p {
+    font-size: 15px;
+  }
+
+  footer {
+    padding: 40px 20px;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .index-game-card {
+    width: 100%;
+  }
+}
