@@ -97,6 +97,10 @@ header {
   align-items: center;
 }
 
+.header-nav ul li a i {
+  display: none;
+}
+
 .header-nav ul li a {
   color: var(--text-gray);
   text-decoration: none;
@@ -105,7 +109,9 @@ header {
   transition: all 0.3s;
   padding: 8px 16px;
   border-radius: 99px;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .header-nav ul li a:hover,
@@ -446,7 +452,7 @@ template {
 
 @media (max-width: 576px) {
   header {
-    height: 70px;
+    /* Height is handled by 768px query */
   }
 
   .logo-text {
@@ -541,7 +547,10 @@ template {
 /* Mobile Adaptation */
 @media (max-width: 768px) {
   header {
-    height: 70px;
+    height: auto !important;
+    min-height: 70px;
+    flex-direction: column !important;
+    background: rgba(8, 8, 8, 0.98) !important;
   }
 
   .header-inner {
@@ -549,42 +558,68 @@ template {
     display: flex !important;
     justify-content: space-between;
     align-items: center;
-  }
-
-  .header-nav {
-    display: none !important; /* Hide desktop nav by default on mobile if it doesn't fit */
-  }
-
-  /* Optional: if you want a simple scrollable nav instead of hiding */
-  /*
-  .header-nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
     width: 100%;
-    background: rgba(8, 8, 8, 0.95);
-    backdrop-filter: blur(12px);
-    padding: 10px 0;
-    overflow-x: auto;
-    border-bottom: 1px solid var(--border-color);
+    height: 70px;
+    flex-shrink: 0;
+  }
+
+  .header-nav {
     display: flex !important;
+    position: static !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-top: 1px solid var(--border-color) !important;
+    padding: 10px 0 !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
   }
+
+  .header-nav::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+
   .header-nav ul {
-    padding: 0 20px;
-    gap: 10px;
+    padding: 0 20px !important;
+    gap: 10px !important;
+    justify-content: flex-start !important;
+    width: max-content !important;
   }
+
   .header-nav ul li a {
-    white-space: nowrap;
-    padding: 6px 12px;
+    white-space: nowrap !important;
+    padding: 8px 16px !important;
+    font-size: 13px !important;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
-  */
+
+  .header-nav ul li a i {
+    display: block !important;
+    font-size: 14px;
+    color: var(--text-gray);
+  }
+
+  .header-nav ul li a.active {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff !important;
+  }
+
+  .header-nav ul li a.active i {
+    color: #fff !important;
+  }
 
   .logo-text {
     font-size: 18px;
   }
 
   .header-user-name {
-    display: none; /* Hide name on small screens to save space */
+    display: none;
   }
 
   .header-profile-toggle {
@@ -593,9 +628,9 @@ template {
   }
 
   .header-dropdown {
-    width: 260px;
+    width: calc(100vw - 20px);
     position: fixed;
-    top: 70px;
+    top: 75px;
     right: 10px;
     left: 10px;
     width: auto;
