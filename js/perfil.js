@@ -920,9 +920,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 table: 'order_messages',
                 filter: `order_id=eq.${orderId}`
             }, async (payload) => {
+                console.log('Nova mensagem recebida via realtime:', payload.new);
                 const newMessage = payload.new;
                 
-                // Evitar duplicata se já estiver na tela (otimismo)
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
                 const container = document.getElementById('orderChatMessages');
@@ -931,23 +931,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const isMe = newMessage.sender_id === user.id;
                 const msgFromAdmin = newMessage.is_support;
                 
-                let senderName = "";
-                if (isMe) {
-                    senderName = "Você";
-                } else if (msgFromAdmin) {
-                    // Garantir que o nome do admin está no cache
-                    if (!adminNamesCache[newMessage.sender_id]) {
-                        const { data: adminUser } = await supabase
-                            .from('users')
-                            .select('full_name')
-                            .eq('id', newMessage.sender_id)
-                            .single();
-                        if (adminUser) adminNamesCache[newMessage.sender_id] = adminUser.full_name;
-                    }
-                    senderName = adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx";
-                } else {
-                    senderName = "Cliente";
-                }
+                let senderName = isMe ? "Você" : (msgFromAdmin ? (adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx") : "Cliente");
 
                 const msgDiv = document.createElement('div');
                 msgDiv.className = `message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}`;
@@ -961,18 +945,25 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 container.appendChild(msgDiv);
                 container.scrollTop = container.scrollHeight;
+
+                // Buscar nome do admin em background se não tiver
+                if (msgFromAdmin && !isMe && !adminNamesCache[newMessage.sender_id]) {
+                    supabase.from('users').select('full_name').eq('id', newMessage.sender_id).single().then(({data}) => {
+                        if (data && data.full_name) {
+                            adminNamesCache[newMessage.sender_id] = data.full_name;
+                            msgDiv.querySelector('.message-sender').textContent = data.full_name;
+                        }
+                    });
+                }
             })
-            .subscribe();
+            .subscribe((status) => {
+                if (status === 'SUBSCRIBED') {
+                    console.log('Realtime subscribed for order:', orderId);
+                }
+            });
     }
 
-    document.getElementById('closeOrderChat')?.addEventListener('click', () => {
-        document.getElementById('orderChatModal').style.display = 'none';
-        if (orderMessagesSubscription) {
-            supabase.removeChannel(orderMessagesSubscription);
-        }
-    });
-
-    // Send Message
+    // Ao enviar mensagem, não recarregar tudo se o realtime estiver ativo
     async function sendOrderMessage() {
         const input = document.getElementById('orderChatMessageInput');
         const fileInput = document.getElementById('orderChatFile');
@@ -982,13 +973,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!currentOrderId || (!message && !file)) return;
 
-        // Visual feedback
         btnSend.disabled = true;
         btnSend.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>';
 
-        let attachmentUrl = null;
-
         try {
+            let attachmentUrl = null;
             if (file) {
                 const fileExt = file.name.split('.').pop();
                 const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
@@ -1021,10 +1010,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (error) throw error;
 
-            // Optimistic Update: Adicionar mensagem imediatamente com ID real
-            if (newMsg) {
+            // Sucesso: limpar inputs
+            input.value = '';
+            fileInput.value = '';
+            
+            // Reset preview
+            const attachIcon = document.getElementById('attachIcon');
+            const attachPreview = document.getElementById('attachPreview');
+            if (attachIcon) attachIcon.style.display = 'block';
+            if (attachPreview) {
+                attachPreview.style.display = 'none';
+                attachPreview.src = '';
+            }
+
+            // O realtime cuidará de adicionar a mensagem na tela
+            // mas como garantia de "0,1ms", podemos adicionar manualmente se o realtime demorar
+            if (newMsg && !document.querySelector(`[data-msg-id="${newMsg.id}"]`)) {
                 const container = document.getElementById('orderChatMessages');
-                if (container && !document.querySelector(`[data-msg-id="${newMsg.id}"]`)) {
+                if (container) {
                     const msgDiv = document.createElement('div');
                     msgDiv.className = `message sent ${currentUserIsAdmin ? 'admin-msg' : ''}`;
                     msgDiv.setAttribute('data-msg-id', newMsg.id);
@@ -1039,28 +1042,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             }
 
-            // If admin is sending message, mark order as handled by them
             if (currentUserIsAdmin) {
-                await supabase
-                    .from('orders')
-                    .update({ handled_by: user.id })
-                    .eq('id', currentOrderId);
+                await supabase.from('orders').update({ handled_by: user.id }).eq('id', currentOrderId);
             }
-
-            // Success
-            input.value = '';
-            fileInput.value = '';
-            
-            // Reset preview
-            const attachIcon = document.getElementById('attachIcon');
-            const attachPreview = document.getElementById('attachPreview');
-            if (attachIcon) attachIcon.style.display = 'block';
-            if (attachPreview) {
-                attachPreview.style.display = 'none';
-                attachPreview.src = '';
-            }
-            
-            loadOrderMessages(currentOrderId);
 
         } catch (err) {
             console.error('Erro no chat:', err);

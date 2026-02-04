@@ -195,11 +195,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 table: 'ticket_messages',
                 filter: `ticket_id=eq.${ticketId}`
             }, (payload) => {
+                console.log('Nova mensagem de ticket recebida:', payload.new);
                 const newMessage = payload.new;
                 
-                // Evitar duplicata se fomos nós que enviamos (otimismo)
-                const existingMsg = document.querySelector(`[data-msg-id="${newMessage.id}"]`);
-                if (existingMsg) return;
+                // Evitar duplicata
+                if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
                 // Renderizar apenas a nova mensagem
                 const msgDiv = document.createElement('div');
@@ -222,7 +222,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     chatMessages.scrollTop = chatMessages.scrollHeight;
                 }
             })
-            .subscribe();
+            .subscribe((status) => {
+                if (status === 'SUBSCRIBED') {
+                    console.log('Subscribed to ticket messages:', ticketId);
+                }
+            });
     }
 
     // Enviar Mensagem

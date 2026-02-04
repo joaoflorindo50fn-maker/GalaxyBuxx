@@ -548,13 +548,17 @@ template {
 @media (max-width: 768px) {
   header {
     height: auto !important;
-    min-height: 70px;
+    min-height: 115px;
     flex-direction: column !important;
     background: rgba(8, 8, 8, 0.98) !important;
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .header-inner {
-    padding: 0 20px;
+    padding: 0 15px;
     display: flex !important;
     justify-content: space-between;
     align-items: center;
@@ -567,40 +571,50 @@ template {
     display: flex !important;
     position: static !important;
     width: 100% !important;
-    background: rgba(255, 255, 255, 0.02) !important;
-    border-top: 1px solid var(--border-color) !important;
-    padding: 12px 15px !important;
-    justify-content: center !important;
-    overflow: visible !important;
+    background: rgba(255, 255, 255, 0.01) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    scrollbar-width: none;
+    height: 45px;
+  }
+
+  .header-nav::-webkit-scrollbar {
+    display: none;
   }
 
   .header-nav ul {
-    padding: 0 !important;
-    gap: 8px !important;
-    justify-content: center !important;
-    width: 100% !important;
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
+    padding: 0 10px !important;
+    gap: 0 !important;
+    justify-content: flex-start !important;
+    width: max-content !important;
+    display: flex !important;
+    height: 100%;
   }
 
   .header-nav ul li {
-    width: 100% !important;
+    width: auto !important;
+    height: 100%;
   }
 
   .header-nav ul li a {
-    white-space: normal !important;
-    padding: 8px 5px !important;
-    font-size: 11px !important;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    white-space: nowrap !important;
+    padding: 0 15px !important;
+    font-size: 13px !important;
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid transparent !important;
     display: flex !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 4px !important;
-    border-radius: 12px !important;
+    gap: 8px !important;
+    border-radius: 0 !important;
     height: 100% !important;
     text-align: center !important;
+    color: var(--text-gray) !important;
+    transition: all 0.2s ease;
   }
 
   .header-nav ul li a i {
@@ -610,13 +624,13 @@ template {
   }
 
   .header-nav ul li a.active {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
+    background: transparent !important;
+    border-bottom: 2px solid var(--accent-color) !important;
     color: #fff !important;
   }
 
   .header-nav ul li a.active i {
-    color: #fff !important;
+    color: var(--accent-color) !important;
   }
 
   .logo-text {
@@ -630,6 +644,14 @@ template {
   .header-profile-toggle {
     padding: 4px 8px;
     gap: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .header-avatar-wrapper {
+    width: 32px !important;
+    height: 32px !important;
   }
 
   .header-dropdown {
