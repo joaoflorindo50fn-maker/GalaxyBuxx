@@ -896,7 +896,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             return `
-                <div class="message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}">
+                <div class="message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}" data-msg-id="${msg.id}">
                     <span class="message-sender">${senderName}</span>
                     ${msg.message ? `<p>${msg.message}</p>` : ''}
                     ${msg.attachment_url ? `<img src="${msg.attachment_url}" class="message-attachment" onclick="openLightbox('${msg.attachment_url}')">` : ''}
@@ -907,21 +907,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         container.scrollTop = container.scrollHeight;
     }
-
-    // Lightbox Functions
-    window.openLightbox = (url) => {
-        const lightbox = document.getElementById('imageLightbox');
-        const img = document.getElementById('lightboxImage');
-        if (lightbox && img) {
-            img.src = url;
-            lightbox.style.display = 'flex';
-        }
-    };
-
-    window.closeLightbox = () => {
-        const lightbox = document.getElementById('imageLightbox');
-        if (lightbox) lightbox.style.display = 'none';
-    };
 
     function setupOrderMessagesRealtime(orderId) {
         if (orderMessagesSubscription) {
@@ -934,8 +919,48 @@ document.addEventListener('DOMContentLoaded', async () => {
                 schema: 'public',
                 table: 'order_messages',
                 filter: `order_id=eq.${orderId}`
-            }, () => {
-                loadOrderMessages(orderId);
+            }, async (payload) => {
+                const newMessage = payload.new;
+                
+                // Evitar duplicata se já estiver na tela (otimismo)
+                if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
+
+                const container = document.getElementById('orderChatMessages');
+                if (!container) return;
+
+                const isMe = newMessage.sender_id === user.id;
+                const msgFromAdmin = newMessage.is_support;
+                
+                let senderName = "";
+                if (isMe) {
+                    senderName = "Você";
+                } else if (msgFromAdmin) {
+                    // Garantir que o nome do admin está no cache
+                    if (!adminNamesCache[newMessage.sender_id]) {
+                        const { data: adminUser } = await supabase
+                            .from('users')
+                            .select('full_name')
+                            .eq('id', newMessage.sender_id)
+                            .single();
+                        if (adminUser) adminNamesCache[newMessage.sender_id] = adminUser.full_name;
+                    }
+                    senderName = adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx";
+                } else {
+                    senderName = "Cliente";
+                }
+
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}`;
+                msgDiv.setAttribute('data-msg-id', newMessage.id);
+                msgDiv.innerHTML = `
+                    <span class="message-sender">${senderName}</span>
+                    ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                    ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
+                    <span class="message-meta">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                `;
+
+                container.appendChild(msgDiv);
+                container.scrollTop = container.scrollHeight;
             })
             .subscribe();
     }
@@ -982,7 +1007,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 attachmentUrl = publicUrl;
             }
 
-            const { error } = await supabase
+            const { data: newMsg, error } = await supabase
                 .from('order_messages')
                 .insert({
                     order_id: currentOrderId,
@@ -990,9 +1015,29 @@ document.addEventListener('DOMContentLoaded', async () => {
                     message: message,
                     attachment_url: attachmentUrl,
                     is_support: currentUserIsAdmin
-                });
+                })
+                .select()
+                .single();
 
             if (error) throw error;
+
+            // Optimistic Update: Adicionar mensagem imediatamente com ID real
+            if (newMsg) {
+                const container = document.getElementById('orderChatMessages');
+                if (container && !document.querySelector(`[data-msg-id="${newMsg.id}"]`)) {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = `message sent ${currentUserIsAdmin ? 'admin-msg' : ''}`;
+                    msgDiv.setAttribute('data-msg-id', newMsg.id);
+                    msgDiv.innerHTML = `
+                        <span class="message-sender">Você</span>
+                        ${newMsg.message ? `<p>${newMsg.message}</p>` : ''}
+                        ${newMsg.attachment_url ? `<img src="${newMsg.attachment_url}" class="message-attachment" onclick="openLightbox('${newMsg.attachment_url}')">` : ''}
+                        <span class="message-meta">${new Date(newMsg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                    `;
+                    container.appendChild(msgDiv);
+                    container.scrollTop = container.scrollHeight;
+                }
+            }
 
             // If admin is sending message, mark order as handled by them
             if (currentUserIsAdmin) {

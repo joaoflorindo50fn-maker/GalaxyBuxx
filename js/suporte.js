@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!chatMessages) return;
 
         let html = messages.map(msg => `
-            <div class="message ${msg.is_support ? 'support' : 'user'}">
+            <div class="message ${msg.is_support ? 'support' : 'user'}" data-msg-id="${msg.id}">
                 <div class="message-bubble">
                     ${msg.message || ''}
                     ${msg.attachment_url ? `
@@ -196,8 +196,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 filter: `ticket_id=eq.${ticketId}`
             }, (payload) => {
                 const newMessage = payload.new;
-                // Adicionar mensagem individualmente para performance ou recarregar tudo
-                loadMessages(ticketId);
+                
+                // Evitar duplicata se fomos nós que enviamos (otimismo)
+                const existingMsg = document.querySelector(`[data-msg-id="${newMessage.id}"]`);
+                if (existingMsg) return;
+
+                // Renderizar apenas a nova mensagem
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `message ${newMessage.is_support ? 'support' : 'user'}`;
+                msgDiv.setAttribute('data-msg-id', newMessage.id);
+                msgDiv.innerHTML = `
+                    <div class="message-bubble">
+                        ${newMessage.message || ''}
+                        ${newMessage.attachment_url ? `
+                            <div class="message-attachment">
+                                <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
+                            </div>
+                        ` : ''}
+                    </div>
+                    <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
+                `;
+                
+                if (chatMessages) {
+                    chatMessages.appendChild(msgDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
             })
             .subscribe();
     }
@@ -267,9 +290,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (error) throw error;
 
-                // Optimistic UI Update: Adicionar a mensagem imediatamente na tela
+                // Optimistic UI Update: Adicionar a mensagem imediatamente na tela com ID temporário
+                const tempId = 'temp-' + Date.now();
                 const tempMsg = {
-                    id: 'temp-' + Date.now(),
+                    id: tempId,
                     message: message,
                     attachment_url: attachmentUrl,
                     is_support: false,
@@ -279,6 +303,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Adicionar ao final do chat
                 const msgDiv = document.createElement('div');
                 msgDiv.className = 'message user';
+                msgDiv.setAttribute('data-msg-id', tempId);
                 msgDiv.innerHTML = `
                     <div class="message-bubble">
                         ${tempMsg.message || ''}
@@ -297,10 +322,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 fileAttachment.value = '';
                 if (attachmentPreview) attachmentPreview.style.display = 'none';
                 
-                // Recarregar mensagens para garantir sincronia com o banco
-                setTimeout(async () => {
-                    await loadMessages(currentTicket.id);
-                }, 1000);
+                // Remover o setTimeout de recarregamento total, o Realtime cuidará disso de forma otimizada
                 
             } catch (error) {
                 console.error('Erro ao enviar mensagem:', error);
