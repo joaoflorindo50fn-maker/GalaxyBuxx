@@ -1966,4 +1966,68 @@ input:checked + .slider:before {
     .admin-stats-grid {
         grid-template-columns: 1fr !important;
     }
+
+    /* Ticket/Support Chat Mobile */
+    .ticket-chat-card {
+        min-height: 500px !important;
+    }
+
+    .ticket-chat-header {
+        padding: 15px 20px !important;
+    }
+
+    .ticket-chat-title-wrapper {
+        gap: 10px !important;
+    }
+
+    .chat-messages {
+        padding: 20px !important;
+    }
+
+    .chat-message {
+        max-width: 90% !important;
+    }
+
+    .chat-input-area {
+        padding: 15px 20px !important;
+    }
+
+    /* Order Chat Modal Mobile */
+    .order-chat-overlay {
+        padding-top: 0 !important;
+    }
+
+    .order-chat-modal {
+        width: 100% !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        border-radius: 0 !important;
+        border: none !important;
+    }
+
+    .order-chat-header {
+        padding: 15px 20px !important;
+    }
+
+    .order-chat-top-cards {
+        padding: 15px !important;
+        gap: 10px !important;
+        grid-template-columns: 1fr !important;
+    }
+
+    .order-product-card, .order-payment-card {
+        padding: 12px !important;
+    }
+
+    .order-chat-messages {
+        padding: 20px !important;
+    }
+
+    .order-chat-input-area {
+        padding: 15px 20px !important;
+    }
+
+    .message {
+        max-width: 85% !important;
+    }
 }

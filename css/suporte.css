@@ -188,12 +188,122 @@
 .status-replied { background: rgba(0, 255, 0, 0.1); color: #00ff00; }
 
 @media (max-width: 992px) {
-  .support-layout {
-    flex-direction: column;
+  .support-main {
+    margin-top: 140px;
+    padding: 0 20px;
   }
+
+  .support-header h1 {
+    font-size: 32px;
+  }
+
+  .support-header p {
+    font-size: 14px;
+  }
+
+  .support-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
   .support-sidebar {
     width: 100%;
-    position: static;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    gap: 10px;
+    overflow-x: auto;
+    border-radius: 15px;
+    position: sticky;
+    top: 120px;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+
+  .support-nav-item {
+    margin-bottom: 0;
+    padding: 12px 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+
+  .support-content {
+    width: 100%;
+  }
+
+  .support-balance-column {
+    display: none;
+  }
+
+  .ticket-card {
+    padding: 20px;
+  }
+
+  .ticket-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .ticket-icon {
+    margin: 0 auto;
+  }
+
+  .chat-container {
+    height: 500px;
+  }
+
+  .chat-header {
+    padding: 15px;
+  }
+
+  .chat-info h3 {
+    font-size: 14px;
+  }
+
+  .chat-status-badge {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .btn-close-ticket {
+    padding: 8px;
+    font-size: 10px;
+  }
+
+  .chat-input-wrapper {
+    padding: 8px 8px 8px 15px;
+    gap: 10px;
+  }
+
+  .chat-input-wrapper input {
+    font-size: 13px;
+  }
+
+  .btn-send-message {
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-container {
+    height: calc(100vh - 250px);
+  }
+
+  .chat-message {
+    max-width: 85%;
+    font-size: 13px;
   }
 }
 
