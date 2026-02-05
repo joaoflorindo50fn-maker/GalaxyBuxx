@@ -47,7 +47,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         params.set('image', finalImage);
         params.set('stock', '999');
-        window.location.href = `pages/gamepass-detail.html?${params.toString()}`;
+        
+        // Check if it's a Robux product to use the correct page
+        const isRobux = name.toLowerCase().includes('robux');
+        const targetPage = isRobux ? 'pages/robux-details.html' : 'pages/gamepass-detail.html';
+        
+        window.location.href = `${targetPage}?${params.toString()}`;
     };
 
     // Logout
@@ -1066,25 +1071,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
         `;
 
+        // Cache for avatars
+        if (!window.chatAvatarsCache) window.chatAvatarsCache = {};
+
         container.innerHTML = welcome + messages.map(msg => {
             const isMe = msg.sender_id === currentUserId;
             const msgFromAdmin = msg.is_support;
             
             let senderName = "";
+            let avatarUrl = "";
+
             if (isMe) {
                 senderName = "Você";
+                const meta = user.user_metadata || {};
+                avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=222&color=fff`;
             } else if (msgFromAdmin) {
                 senderName = adminNamesCache[msg.sender_id] || "Suporte GalaxyBuxx";
+                avatarUrl = `https://ui-avatars.com/api/?name=Admin&background=007bff&color=fff`;
             } else {
                 senderName = "Cliente";
+                avatarUrl = `https://ui-avatars.com/api/?name=C&background=222&color=fff`;
             }
 
+            const time = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
             return `
-                <div class="message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}" data-msg-id="${msg.id}">
-                    <span class="message-sender">${senderName}</span>
-                    ${msg.message ? `<p>${msg.message}</p>` : ''}
-                    ${msg.attachment_url ? `<img src="${msg.attachment_url}" class="message-attachment" onclick="openLightbox('${msg.attachment_url}')">` : ''}
-                    <span class="message-meta">${new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                <div class="message-wrapper ${isMe ? 'mine' : 'theirs'}" data-msg-id="${msg.id}">
+                    <div class="message-avatar">
+                        <img src="${avatarUrl}" alt="Avatar">
+                    </div>
+                    <div class="message-bundle">
+                        <div class="message-bubble">
+                            ${msg.message ? `<p>${msg.message}</p>` : ''}
+                            ${msg.attachment_url ? `<img src="${msg.attachment_url}" class="message-attachment" onclick="openLightbox('${msg.attachment_url}')">` : ''}
+                        </div>
+                        <span class="message-time-new">${time}</span>
+                    </div>
                 </div>
             `;
         }).join('');
@@ -1132,16 +1154,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             const isMe = newMessage.sender_id === currentUserId;
             const msgFromAdmin = newMessage.is_support;
             
-            let senderName = isMe ? "Você" : (msgFromAdmin ? (adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx") : "Cliente");
+            let senderName = "";
+            let avatarUrl = "";
+
+            if (isMe) {
+                senderName = "Você";
+                const meta = user.user_metadata || {};
+                avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=222&color=fff`;
+            } else if (msgFromAdmin) {
+                senderName = adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx";
+                avatarUrl = `https://ui-avatars.com/api/?name=Admin&background=007bff&color=fff`;
+            } else {
+                senderName = "Cliente";
+                avatarUrl = `https://ui-avatars.com/api/?name=C&background=222&color=fff`;
+            }
+
+            const time = new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
             const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}`;
+            msgDiv.className = `message-wrapper ${isMe ? 'mine' : 'theirs'}`;
             msgDiv.setAttribute('data-msg-id', newMessage.id);
             msgDiv.innerHTML = `
-                <span class="message-sender">${senderName}</span>
-                ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
-                ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
-                <span class="message-meta">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                <div class="message-avatar">
+                    <img src="${avatarUrl}" alt="Avatar">
+                </div>
+                <div class="message-bundle">
+                    <div class="message-bubble">
+                        ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                        ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
+                    </div>
+                    <span class="message-time-new">${time}</span>
+                </div>
             `;
 
             container.appendChild(msgDiv);

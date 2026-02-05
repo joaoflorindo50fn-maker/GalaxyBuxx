@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     total_price: `R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}`,
                     customer_contact: contactInfo,
                     order_status: "Aguardando Pagamento",
-                    type: "PEDIDO"
+                    type: "PEDIDO",
+                    subject: `Pedido Confirmado #${order.id.substring(0, 8).toUpperCase()} - GalaxyBuxx`,
+                    description: "Obrigado por escolher a GalaxyBuxx! Seu pedido foi recebido e está aguardando o pagamento. Confira os detalhes abaixo."
                 });
             }
 

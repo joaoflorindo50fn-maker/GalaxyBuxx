@@ -1420,176 +1420,186 @@ input:checked + .slider:before {
 }
 
 .order-card-admin-new {
-    background: #0d0d0d;
-    border: 1px solid #1a1a1a;
-    border-radius: 12px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    transition: all 0.3s ease;
+    gap: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .order-card-admin-new:hover {
-    border-color: #333;
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(50, 188, 173, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .admin-card-row-1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.85rem;
-    color: #888;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .admin-customer-info {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+}
+
+.admin-customer-info i {
+    font-size: 1.2rem;
+    color: #32bcad;
+    opacity: 0.8;
 }
 
 .admin-customer-info strong {
-    color: #eee;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
 }
 
 .admin-customer-info span {
-    color: #555;
+    color: rgba(255, 255, 255, 0.3);
     font-size: 0.8rem;
+}
+
+.admin-date-info {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 500;
 }
 
 .admin-card-row-2 {
     display: flex;
     align-items: center;
-    gap: 15px;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .admin-product-details {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     flex: 1;
 }
 
-.admin-product-name-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+.admin-order-id {
+    background: rgba(50, 188, 173, 0.1);
+    color: #32bcad;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.admin-product-name-new {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: block;
+}
+
+.admin-product-name-new:hover {
+    color: #32bcad;
+}
+
+.admin-product-qty {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
 .admin-game-subtext {
     font-size: 0.8rem;
-    color: #555;
-    font-weight: 400;
-}
-
-.admin-order-id {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 4px 10px;
-    border-radius: 6px;
-    color: #fff;
-    font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
-}
-
-.admin-product-name-new {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #3182ce;
-    font-family: 'Space Grotesk', sans-serif;
-    cursor: pointer;
-    transition: color 0.2s ease;
-    text-decoration: none;
-}
-
-.admin-product-name-new:hover {
-    color: #63b3ed;
-    text-decoration: underline;
-}
-
-.admin-product-qty {
-    color: #888;
-    font-weight: 700;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 2px;
 }
 
 .admin-price-box {
     text-align: right;
-    padding-left: 20px;
-    border-left: 1px solid #222;
+    padding-left: 25px;
+    border-left: 2px solid rgba(255, 255, 255, 0.03);
 }
 
 .admin-price-label {
     display: block;
-    font-size: 0.7rem;
-    color: #555;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
     text-transform: uppercase;
+    font-weight: 800;
     letter-spacing: 1px;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .admin-price-value {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #eee;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
 }
 
 .admin-card-row-3 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 15px;
-    border-top: 1px solid #1a1a1a;
-    gap: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+    gap: 15px;
 }
 
 .admin-status-controls {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
     flex: 1;
 }
 
 .status-select-admin-new {
-    background: #151515;
-    border: 1px solid #333;
-    color: #eee;
-    padding: 8px 15px;
-    border-radius: 8px;
+    flex: 1;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 12px;
     outline: none;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
-    min-width: 180px;
+    transition: all 0.3s;
 }
 
-.status-select-admin-new:focus {
-    border-color: #555;
+.status-select-admin-new:hover {
+    border-color: rgba(50, 188, 173, 0.5);
 }
 
 .btn-admin-chat-new {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid #333;
-    color: #eee;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-weight: 600;
+    background: #32bcad;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease;
-    font-size: 0.85rem;
+    transition: all 0.3s;
+    font-size: 0.9rem;
 }
 
 .btn-admin-chat-new:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: #555;
-}
-
-.admin-date-info {
-    font-size: 0.8rem;
-    color: #444;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(50, 188, 173, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -1757,15 +1767,17 @@ input:checked + .slider:before {
 .order-chat-modal {
     background: #0d0d0d;
     width: 95%;
-    max-width: 900px;
-    height: calc(100vh - 120px); /* Adjust height to fit below header */
-    border-radius: 30px;
+    max-width: 1000px;
+    height: 800px;
+    max-height: 90vh;
+    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
     position: relative;
+    z-index: 100000;
 }
 
 /* Beautified Table Action Button */
@@ -1822,31 +1834,56 @@ input:checked + .slider:before {
     padding: 20px 30px;
     background: rgba(255, 255, 255, 0.02);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.header-center h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.problem-report {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: opacity 0.3s;
+}
+
+.problem-report:hover {
+    opacity: 0.8;
 }
 
 .close-modal {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-dim);
-    width: 35px;
-    height: 35px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.3);
     font-size: 1.2rem;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 0.3s;
+    position: relative;
+    z-index: 20;
 }
 
 .close-modal:hover {
-    background: var(--danger);
     color: #fff;
-    border-color: var(--danger);
-    transform: rotate(90deg) scale(1.1);
+    transform: rotate(90deg);
 }
 
 .order-chat-header .header-left {
@@ -1967,65 +2004,93 @@ input:checked + .slider:before {
     line-height: 1.5;
 }
 
-/* Message Styles */
+/* Message Styles Overhaul */
 .message {
-    max-width: 70%;
-    padding: 12px 18px;
-    border-radius: 20px;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    position: relative;
     display: flex;
-    flex-direction: column;
-}
-
-.message-sender {
-    font-size: 0.65rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-    opacity: 0.7;
-    letter-spacing: 0.5px;
+    align-items: flex-end;
+    gap: 12px;
+    margin-bottom: 20px;
+    max-width: 85%;
 }
 
 .message.sent {
     align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message.received {
+    align-self: flex-start;
+}
+
+.chat-user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+}
+
+.message-bubble-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.message.sent .message-bubble-container {
+    align-items: flex-end;
+}
+
+.message-bubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    position: relative;
+    word-break: break-word;
+}
+
+.message.received .message-bubble {
+    background: #1e1e1e;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom-left-radius: 4px;
+}
+
+.message.sent .message-bubble {
     background: #32bcad;
     color: #fff;
     border-bottom-right-radius: 4px;
     box-shadow: 0 4px 15px rgba(50, 188, 173, 0.2);
 }
 
-.message.sent .message-sender {
-    text-align: right;
-}
-
-.message.received {
-    align-self: flex-start;
-    background: #1a1a1a;
-    color: #fff;
-    border-bottom-left-radius: 4px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.message.received.admin-msg {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(50, 188, 173, 0.3);
-}
-
-.message.received.admin-msg .message-sender {
+.message.admin-msg .message-bubble {
+    background: rgba(50, 188, 173, 0.1);
+    border: 1px solid rgba(50, 188, 173, 0.2);
     color: #32bcad;
 }
 
-.message-meta {
-    display: block;
-    font-size: 0.7rem;
-    margin-top: 6px;
-    opacity: 0.5;
+.message-time {
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
 }
 
-.message.sent .message-meta {
-    text-align: right;
+/* Scrollbar for chat */
+.order-chat-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-chat-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.order-chat-messages::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.order-chat-messages::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .message-attachment {
@@ -2037,10 +2102,10 @@ input:checked + .slider:before {
 
 .order-chat-input-area {
     padding: 20px 30px;
-    background: rgba(255, 255, 255, 0.02);
+    background: #0a0a0a;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 15px;
 }
 
@@ -2065,11 +2130,12 @@ input:checked + .slider:before {
 
 .input-wrapper {
     flex: 1;
-    background: rgba(255, 255, 255, 0.05);
+    background: #111;
     border-radius: 12px;
-    padding: 5px 5px 5px 15px;
+    padding: 10px 15px;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    gap: 10px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -2080,23 +2146,26 @@ input:checked + .slider:before {
     color: #fff;
     font-size: 0.95rem;
     outline: none;
-    padding: 10px 0;
+    padding: 8px 0;
+    min-height: 24px;
 }
 
 #btnSendOrderMessage {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    background: #32bcad;
-    color: #fff;
+    background: transparent;
+    color: #32bcad;
     border: none;
+    font-size: 1.4rem;
     cursor: pointer;
     transition: all 0.3s;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #btnSendOrderMessage:hover {
-    transform: scale(1.05);
-    filter: brightness(1.1);
+    transform: scale(1.1);
+    color: #fff;
 }
 
 /* Lightbox Styles */
@@ -2151,11 +2220,50 @@ input:checked + .slider:before {
     }
     
     .order-chat-top-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        padding: 10px 15px;
     }
-    
+
+    .order-product-card, .order-payment-card {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .order-product-card img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .order-payment-card i {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .order-product-card h4, .order-payment-card h4 {
+        font-size: 0.8rem;
+    }
+
+    .label {
+        font-size: 0.55rem;
+    }
+
+    .header-center {
+        display: none;
+    }
+
+    .order-chat-header {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .message {
-        max-width: 85%;
+        max-width: 90%;
+    }
+
+    .chat-user-avatar {
+        width: 32px;
+        height: 32px;
     }
 
     /* User Orders Mobile */

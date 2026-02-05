@@ -514,9 +514,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                         to_email: ticketData.email,
                         to_name: ticketData.name,
                         ticket_id: data[0].id.substring(0, 8).toUpperCase(),
-                        subject: ticketData.subject,
+                        subject: `Ticket Aberto: ${ticketData.subject} [#${data[0].id.substring(0, 8).toUpperCase()}]`,
                         message: ticketData.message,
-                        type: "SUPORTE"
+                        type: "SUPORTE",
+                        description: "Recebemos sua solicitação de suporte! Nossa equipe entrará em contato em breve através deste ticket ou e-mail."
                     });
                 }
 
