@@ -256,13 +256,20 @@
   }
 
   .chat-container {
-    height: 600px;
+    height: calc(100vh - 120px);
     background: #0a0a0a !important;
-    border-radius: 20px !important;
+    border-radius: 0 !important;
+    position: fixed;
+    top: 120px;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
   }
 
   .chat-messages {
+    height: calc(100% - 130px) !important;
     padding: 15px !important;
+    overflow-y: auto !important;
   }
 
   .message-bubble {

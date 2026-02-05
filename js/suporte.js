@@ -133,6 +133,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Switch View
         views.forEach(v => v.classList.remove('active'));
         chatTicketView.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        document.documentElement.style.overflow = 'hidden';
         
         // Load Messages
         await loadMessages(ticket.id);
@@ -182,12 +184,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
+    if (btnBackChat) {
+        btnBackChat.onclick = () => {
+            chatTicketView.classList.remove('active');
+            ticketsListView.classList.add('active');
+            document.body.style.overflow = ''; // Restore scroll
+            document.documentElement.style.overflow = '';
+            currentTicket = null;
+            if (messageSubscription) {
+                supabase.removeChannel(messageSubscription);
+                messageSubscription = null;
+            }
+            if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
+        };
+    }
+
     function subscribeToMessages(ticketId) {
         if (messageSubscription) {
             supabase.removeChannel(messageSubscription);
         }
 
-        // Canal único para suporte
+        // Remove server-side filter for better compatibility
         messageSubscription = supabase
             .channel(`ticket-chat-${ticketId}`)
             .on('postgres_changes', { 
@@ -197,7 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, (payload) => {
                 const newMessage = payload.new;
                 
-                // Filtro manual
+                // Client-side filter
                 if (newMessage.ticket_id !== ticketId) return;
 
                 // Evitar duplicata
@@ -227,15 +244,27 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
 
-        // Fallback Suporte
+        // Fallback Suporte ultra-rápido (300ms)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
-        window.ticketChatFallback = setInterval(() => {
+        window.ticketChatFallback = setInterval(async () => {
             if (currentTicket && currentTicket.id === ticketId) {
-                loadMessages(ticketId);
+                const { data: lastMsgs } = await supabase
+                    .from('ticket_messages')
+                    .select('id')
+                    .eq('ticket_id', ticketId)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                
+                if (lastMsgs && lastMsgs.length > 0) {
+                    const lastId = lastMsgs[0].id;
+                    if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
+                        loadMessages(ticketId);
+                    }
+                }
             } else {
                 clearInterval(window.ticketChatFallback);
             }
-        }, 5000);
+        }, 300);
     }
 
     // Enviar Mensagem

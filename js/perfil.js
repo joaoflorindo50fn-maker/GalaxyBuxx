@@ -832,9 +832,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         statusEl.className = `order-status-badge ${order.status.toLowerCase().replace(/ /g, '-')}`;
 
         modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        document.documentElement.style.overflow = 'hidden'; 
         loadOrderMessages(orderId);
         setupOrderMessagesRealtime(orderId);
     };
+
+    // Close modal logic
+    document.querySelectorAll('.btn-close-chat, .order-chat-modal').forEach(el => {
+        el.addEventListener('click', (e) => {
+            if (e.target === el || el.classList.contains('btn-close-chat')) {
+                const modal = document.getElementById('orderChatModal');
+                if (modal) modal.style.display = 'none';
+                document.body.style.overflow = ''; // Restore scroll
+                document.documentElement.style.overflow = '';
+                if (orderMessagesSubscription) {
+                    supabase.removeChannel(orderMessagesSubscription);
+                    orderMessagesSubscription = null;
+                }
+                if (window.orderChatFallback) clearInterval(window.orderChatFallback);
+            }
+        });
+    });
 
     async function loadOrderMessages(orderId) {
         const container = document.getElementById('orderChatMessages');
@@ -913,19 +932,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(orderMessagesSubscription);
         }
 
-        // Usar um nome de canal único e sem filtros complexos no início para garantir recebimento
-        orderMessagesSubscription = supabase.channel(`order-chat-${orderId}`)
+        // Remove server-side filter for better compatibility
+        orderMessagesSubscription = supabase.channel(`order_messages_${orderId}`)
             .on('postgres_changes', {
                 event: 'INSERT',
                 schema: 'public',
                 table: 'order_messages'
-            }, async (payload) => {
+            }, (payload) => {
                 const newMessage = payload.new;
                 
-                // Filtro manual para garantir que a mensagem é deste pedido
+                // Client-side filter
                 if (newMessage.order_id !== orderId) return;
-                
-                // Evitar duplicata
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
                 const container = document.getElementById('orderChatMessages');
@@ -949,32 +966,42 @@ document.addEventListener('DOMContentLoaded', async () => {
                 container.appendChild(msgDiv);
                 container.scrollTop = container.scrollHeight;
                 
-                // Se for admin e não tivermos o nome, buscar
-                if (msgFromAdmin && !isMe && !adminNamesCache[newMessage.sender_id]) {
-                    const { data: adminUser } = await supabase.from('users').select('full_name').eq('id', newMessage.sender_id).single();
-                    if (adminUser) {
-                        adminNamesCache[newMessage.sender_id] = adminUser.full_name;
-                        msgDiv.querySelector('.message-sender').textContent = adminUser.full_name;
-                    }
+                if (!isMe) {
+                    try {
+                        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+                        audio.play().catch(() => {});
+                    } catch(e) {}
                 }
             })
             .subscribe((status) => {
-                console.log(`Status do Chat (${orderId}):`, status);
+                console.log(`Status Realtime (${orderId}):`, status);
                 if (status === 'CHANNEL_ERROR') {
-                    console.error('Erro no Realtime, tentando reconectar...');
-                    setTimeout(() => setupOrderMessagesRealtime(orderId), 3000);
+                    setTimeout(() => setupOrderMessagesRealtime(orderId), 2000);
                 }
             });
             
-        // Fallback: Verificar novas mensagens a cada 5 segundos caso o realtime falhe
+        // Fallback ultra-rápido (300ms) para 0 delay real
         if (window.orderChatFallback) clearInterval(window.orderChatFallback);
-        window.orderChatFallback = setInterval(() => {
-            if (document.getElementById('orderChatModal').style.display === 'flex') {
-                loadOrderMessages(orderId);
+        window.orderChatFallback = setInterval(async () => {
+            const modal = document.getElementById('orderChatModal');
+            if (modal && modal.style.display === 'flex') {
+                const { data: lastMsgs } = await supabase
+                    .from('order_messages')
+                    .select('id')
+                    .eq('order_id', orderId)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                
+                if (lastMsgs && lastMsgs.length > 0) {
+                    const lastId = lastMsgs[0].id;
+                    if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
+                        loadOrderMessages(orderId);
+                    }
+                }
             } else {
                 clearInterval(window.orderChatFallback);
             }
-        }, 5000);
+        }, 300);
     }
 
     // Ao enviar mensagem, não recarregar tudo se o realtime estiver ativo

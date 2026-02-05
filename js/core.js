@@ -8,6 +8,11 @@ if (window.supabase && !window.supabaseClient) {
       persistSession: true,
       autoRefreshToken: true,
       detectSessionInUrl: true
+    },
+    realtime: {
+      params: {
+        events_per_second: 20
+      }
     }
   });
 }
@@ -19,6 +24,11 @@ function getSupabase() {
         persistSession: true,
         autoRefreshToken: true,
         detectSessionInUrl: true
+      },
+      realtime: {
+        params: {
+          events_per_second: 10
+        }
       }
     });
   }
