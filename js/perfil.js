@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     async function loadUserData(userData) {
         console.log("Loading user data for:", userData.id);
         
+        setupUserOrdersRealtime(userData.id);
+        
         // Force hide admin item by default
         const adminNavItem = document.getElementById('adminNavItem');
         if (adminNavItem) adminNavItem.classList.add('hidden');
@@ -823,6 +825,29 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentOrderFilter = 'ativos';
 
+    function setupUserOrdersRealtime(userId) {
+        supabase.channel(`user-orders-${userId}`)
+            .on('postgres_changes', { 
+                event: 'UPDATE', 
+                schema: 'public', 
+                table: 'orders',
+                filter: `user_id=eq.${userId}`
+            }, (payload) => {
+                console.log("Order updated:", payload.new);
+                loadUserOrders(); // Reload the list when any order changes
+                
+                // If the current chat is open for this order, update it too
+                if (currentOrderId === payload.new.id) {
+                    const statusEl = document.getElementById('chatOrderStatus');
+                    if (statusEl) {
+                        statusEl.textContent = payload.new.status;
+                        statusEl.className = `order-status-badge ${payload.new.status.toLowerCase().replace(/ /g, '-')}`;
+                    }
+                }
+            })
+            .subscribe();
+    }
+
     // Load User Orders
     async function loadUserOrders() {
         const { data: { user } } = await supabase.auth.getUser();
@@ -840,33 +865,70 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const { data: orders, error } = await query.order('created_at', { ascending: false });
 
-        const tbody = document.getElementById('ordersTableBody');
-        if (!tbody) return;
+        const container = document.getElementById('ordersListContainer');
+        if (!container) return;
 
         if (error || !orders || orders.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6" class="empty-table">Nenhum pedido encontrado nesta categoria.</td></tr>`;
+            container.innerHTML = `<div class="empty-table">Nenhum pedido encontrado nesta categoria.</div>`;
             return;
         }
 
-        tbody.innerHTML = orders.map(order => `
-            <tr>
-                <td>#${order.id.substring(0, 8).toUpperCase()}</td>
-                <td>${new Date(order.created_at).toLocaleDateString()}</td>
-                <td>${order.product_name}</td>
-                <td>R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}</td>
-                <td><span class="status-badge ${order.status.toLowerCase().replace(/ /g, '-')}">${order.status}</span></td>
-                <td>
-                    ${order.status === 'Em Andamento' || order.status === 'Concluído' ? 
-                        `<button class="btn-action-table" onclick="openOrderChat('${order.id}')">
-                            <i class="fa-solid fa-comments"></i> Chat
-                        </button>` : 
-                        `<button class="btn-action-table disabled" title="Aguardando confirmação">
-                            <i class="fa-solid fa-lock"></i>
-                        </button>`
-                    }
-                </td>
-            </tr>
-        `).join('');
+        container.innerHTML = orders.map(order => {
+            const date = new Date(order.created_at);
+            const formattedDate = date.toLocaleString('pt-BR', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            }).replace(',', '');
+
+            let displayStatus = order.status;
+            if (order.status === 'Em Andamento') displayStatus = 'Pendente';
+            if (order.status === 'Concluído') displayStatus = 'Entregue';
+
+            const statusClass = order.status.toLowerCase().replace(/ /g, '-');
+            const canChat = order.status === 'Em Andamento' || order.status === 'Concluído';
+
+            return `
+            <div class="order-card-new">
+                <div class="order-card-header-new">
+                    Compra <strong>#${order.id.substring(0, 8).toUpperCase()}</strong>
+                </div>
+                
+                <div class="order-card-middle-new">
+                    <div class="order-product-info-new">
+                        <span class="order-qty-new">${order.quantity}x</span>
+                        <span class="order-divider-new">|</span>
+                        <div class="order-product-name-wrapper">
+                            <span class="order-product-name-new">${order.product_name}</span>
+                            <span class="order-game-name-new">${order.product_game || 'GalaxyBuxx'}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="order-price-new">
+                        R$ ${parseFloat(order.total_price / order.quantity).toFixed(2).replace('.', ',')}
+                    </div>
+
+                    <button class="btn-ver-pedido" ${canChat ? `onclick="openOrderChat('${order.id}')"` : 'disabled title="Aguardando confirmação"'}>
+                        ${canChat ? 'Ver pedido' : 'Pendente'}
+                    </button>
+                </div>
+
+                <div class="order-card-footer-new">
+                    <div class="order-footer-item">
+                        ${formattedDate}
+                    </div>
+                    <div class="order-footer-item">
+                        Subtotal: <strong>R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}</strong>
+                    </div>
+                    <div class="order-footer-item">
+                        <span class="order-status-new ${statusClass}">${displayStatus}</span>
+                    </div>
+                </div>
+            </div>
+            `;
+        }).join('');
 
         // Statistics should always count total regardless of filter
         const { data: allOrders } = await supabase.from('orders').select('total_price, status').eq('user_id', user.id);
@@ -921,21 +983,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Close modal logic
-    document.querySelectorAll('.btn-close-chat, .order-chat-modal').forEach(el => {
-        el.addEventListener('click', (e) => {
-            if (e.target === el || el.classList.contains('btn-close-chat')) {
-                const modal = document.getElementById('orderChatModal');
-                if (modal) modal.style.display = 'none';
-                document.body.style.overflow = ''; // Restore scroll
-                document.documentElement.style.overflow = '';
-                if (orderMessagesSubscription) {
-                    supabase.removeChannel(orderMessagesSubscription);
-                    orderMessagesSubscription = null;
-                }
-                if (window.orderChatFallback) clearInterval(window.orderChatFallback);
-            }
+    const closeChat = () => {
+        const modal = document.getElementById('orderChatModal');
+        if (modal) modal.style.display = 'none';
+        document.body.style.overflow = ''; // Restore scroll
+        document.documentElement.style.overflow = '';
+        if (orderMessagesSubscription) {
+            supabase.removeChannel(orderMessagesSubscription);
+            orderMessagesSubscription = null;
+        }
+        if (window.orderChatFallback) clearInterval(window.orderChatFallback);
+    };
+
+    const closeBtn = document.getElementById('closeOrderChat');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeChat);
+    }
+
+    const orderModal = document.getElementById('orderChatModal');
+    if (orderModal) {
+        orderModal.addEventListener('click', (e) => {
+            if (e.target === orderModal) closeChat();
         });
-    });
+    }
 
     async function loadOrderMessages(orderId) {
         const container = document.getElementById('orderChatMessages');

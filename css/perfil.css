@@ -365,28 +365,182 @@ html {
     outline: none;
 }
 
-.orders-table-wrapper {
-    overflow-x: hidden;
+/* New Orders Card Layout */
+.orders-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.order-card-new {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: all 0.3s ease;
 }
 
-th {
-    text-align: left;
-    color: var(--text-dim);
-    font-size: 0.75rem;
-    padding: 15px;
-    border-bottom: 1px solid var(--card-border);
-    letter-spacing: 1px;
+.order-card-new:hover {
+    border-color: #333;
+    background: #111;
 }
 
-td {
-    padding: 15px;
-    border-bottom: 1px solid var(--card-border);
+.order-card-header-new {
+    font-size: 0.85rem;
+    color: #888;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.order-card-header-new strong {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #eee;
+    margin-left: 5px;
+}
+
+.order-card-middle-new {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.order-product-info-new {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.order-qty-new {
+    color: #888;
     font-size: 0.9rem;
+    min-width: 25px;
+}
+
+.order-divider-new {
+    color: #333;
+}
+
+.order-product-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.order-product-name-new {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #3182ce; /* Light blue as in image */
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.order-game-name-new {
+    font-size: 0.8rem;
+    color: #555; /* Faint description */
+}
+
+.order-price-new {
+    font-weight: 500;
+    color: #eee;
+    font-size: 0.95rem;
+    padding: 0 20px;
+    border-left: 1px solid #222;
+}
+
+.order-card-footer-new {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.85rem;
+    color: #888;
+    border-top: 1px solid #1a1a1a;
+    padding-top: 12px;
+}
+
+.order-footer-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.order-footer-item::after {
+    content: '|';
+    margin-left: 20px;
+    color: #222;
+}
+
+.order-footer-item:last-child::after {
+    display: none;
+}
+
+.order-status-new {
+    font-weight: 600;
+}
+
+.order-status-new.pendente, 
+.order-status-new.aguardando-pagamento {
+    color: #888;
+}
+
+.order-status-new.entregue,
+.order-status-new.concluído {
+    color: #00c853;
+}
+
+.btn-ver-pedido {
+    background: #0081fa;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.btn-ver-pedido:hover {
+    background: #0070da;
+    transform: translateY(-2px);
+}
+
+.btn-ver-pedido:disabled {
+    background: #222;
+    color: #555;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .order-card-middle-new {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .order-price-new {
+        border-left: none;
+        padding: 0;
+        font-size: 1.1rem;
+    }
+
+    .btn-ver-pedido {
+        width: 100%;
+    }
+
+    .order-card-footer-new {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .order-footer-item::after {
+        display: none;
+    }
 }
 
 .empty-table {
@@ -2011,13 +2165,41 @@ input:checked + .slider:before {
     }
 
     .order-chat-top-cards {
-        padding: 15px !important;
-        gap: 10px !important;
-        grid-template-columns: 1fr !important;
+        padding: 10px !important;
+        gap: 8px !important;
+        grid-template-columns: 1fr 1fr !important;
     }
 
     .order-product-card, .order-payment-card {
-        padding: 12px !important;
+        padding: 8px !important;
+        flex-direction: column;
+        text-align: center;
+        gap: 5px !important;
+    }
+
+    .order-product-card img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .order-payment-card i {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1rem !important;
+    }
+
+    .order-status-badge {
+        margin: 5px auto 0 !important;
+        font-size: 0.65rem !important;
+        padding: 4px 8px !important;
+    }
+
+    .order-product-card h4, .order-payment-card h4 {
+        font-size: 0.75rem !important;
+    }
+
+    .order-product-card .label, .order-payment-card .label {
+        font-size: 0.6rem !important;
     }
 
     .order-chat-messages {
