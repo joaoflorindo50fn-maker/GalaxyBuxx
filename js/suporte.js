@@ -204,9 +204,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(messageSubscription);
         }
 
-        // Remove server-side filter for better compatibility
-        messageSubscription = supabase
-            .channel(`ticket-chat-${ticketId}`)
+        // Global Listener + Client-side Filter (Mais confiável)
+        messageSubscription = supabase.channel(`global_support_messages`)
             .on('postgres_changes', { 
                 event: 'INSERT', 
                 schema: 'public', 
@@ -214,8 +213,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, (payload) => {
                 const newMessage = payload.new;
                 
-                // Client-side filter
-                if (newMessage.ticket_id !== ticketId) return;
+                // Filtro rigoroso no cliente
+                if (String(newMessage.ticket_id) !== String(ticketId)) return;
 
                 // Evitar duplicata
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
@@ -238,24 +237,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             })
             .subscribe((status) => {
-                console.log(`Status do Suporte (${ticketId}):`, status);
+                console.log(`Realtime Support Status:`, status);
                 if (status === 'CHANNEL_ERROR') {
-                    setTimeout(() => subscribeToMessages(ticketId), 3000);
+                    setTimeout(() => subscribeToMessages(ticketId), 1000);
                 }
             });
 
         // Fallback Suporte ultra-rápido (300ms)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
         window.ticketChatFallback = setInterval(async () => {
-            if (currentTicket && currentTicket.id === ticketId) {
-                const { data: lastMsgs } = await supabase
+            if (currentTicket && String(currentTicket.id) === String(ticketId)) {
+                const { data: lastMsgs, error } = await supabase
                     .from('ticket_messages')
                     .select('id')
                     .eq('ticket_id', ticketId)
                     .order('created_at', { ascending: false })
                     .limit(1);
                 
-                if (lastMsgs && lastMsgs.length > 0) {
+                if (!error && lastMsgs && lastMsgs.length > 0) {
                     const lastId = lastMsgs[0].id;
                     if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
                         loadMessages(ticketId);

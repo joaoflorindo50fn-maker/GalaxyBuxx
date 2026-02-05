@@ -1982,6 +1982,7 @@ input:checked + .slider:before {
 
     .chat-messages {
         padding: 20px !important;
+        overscroll-behavior: contain !important;
     }
 
     .chat-message {
@@ -2022,6 +2023,7 @@ input:checked + .slider:before {
     .order-chat-messages {
         padding: 15px !important;
         background: #0a0a0a !important;
+        overscroll-behavior: contain !important;
     }
 
     .order-chat-input-area {

@@ -270,6 +270,7 @@
     height: calc(100% - 130px) !important;
     padding: 15px !important;
     overflow-y: auto !important;
+    overscroll-behavior: contain !important;
   }
 
   .message-bubble {

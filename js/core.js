@@ -11,7 +11,7 @@ if (window.supabase && !window.supabaseClient) {
     },
     realtime: {
       params: {
-        events_per_second: 20
+        events_per_second: 50
       }
     }
   });
@@ -27,7 +27,7 @@ function getSupabase() {
       },
       realtime: {
         params: {
-          events_per_second: 10
+          events_per_second: 50
         }
       }
     });

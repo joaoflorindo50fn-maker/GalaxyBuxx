@@ -932,8 +932,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(orderMessagesSubscription);
         }
 
-        // Remove server-side filter for better compatibility
-        orderMessagesSubscription = supabase.channel(`order_messages_${orderId}`)
+        // Global Listener + Client-side Filter (Mais confiável)
+        orderMessagesSubscription = supabase.channel(`global_order_messages`)
             .on('postgres_changes', {
                 event: 'INSERT',
                 schema: 'public',
@@ -941,8 +941,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, (payload) => {
                 const newMessage = payload.new;
                 
-                // Client-side filter
-                if (newMessage.order_id !== orderId) return;
+                // Filtro rigoroso no cliente
+                if (String(newMessage.order_id) !== String(orderId)) return;
+                
+                // Evitar duplicidade
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
                 const container = document.getElementById('orderChatMessages');
@@ -974,25 +976,25 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             })
             .subscribe((status) => {
-                console.log(`Status Realtime (${orderId}):`, status);
+                console.log(`Realtime Order Status:`, status);
                 if (status === 'CHANNEL_ERROR') {
-                    setTimeout(() => setupOrderMessagesRealtime(orderId), 2000);
+                    setTimeout(() => setupOrderMessagesRealtime(orderId), 1000);
                 }
             });
             
-        // Fallback ultra-rápido (300ms) para 0 delay real
+        // Fallback redundante ultra-rápido (300ms)
         if (window.orderChatFallback) clearInterval(window.orderChatFallback);
         window.orderChatFallback = setInterval(async () => {
             const modal = document.getElementById('orderChatModal');
             if (modal && modal.style.display === 'flex') {
-                const { data: lastMsgs } = await supabase
+                const { data: lastMsgs, error } = await supabase
                     .from('order_messages')
                     .select('id')
                     .eq('order_id', orderId)
                     .order('created_at', { ascending: false })
                     .limit(1);
                 
-                if (lastMsgs && lastMsgs.length > 0) {
+                if (!error && lastMsgs && lastMsgs.length > 0) {
                     const lastId = lastMsgs[0].id;
                     if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
                         loadOrderMessages(orderId);
