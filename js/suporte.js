@@ -187,32 +187,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(messageSubscription);
         }
 
+        // Canal único para suporte
         messageSubscription = supabase
-            .channel(`ticket_messages:${ticketId}`)
+            .channel(`ticket-chat-${ticketId}`)
             .on('postgres_changes', { 
                 event: 'INSERT', 
                 schema: 'public', 
-                table: 'ticket_messages',
-                filter: `ticket_id=eq.${ticketId}`
+                table: 'ticket_messages'
             }, (payload) => {
-                console.log('Nova mensagem de ticket recebida:', payload.new);
                 const newMessage = payload.new;
                 
+                // Filtro manual
+                if (newMessage.ticket_id !== ticketId) return;
+
                 // Evitar duplicata
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
-                // Renderizar apenas a nova mensagem
+                // Renderizar nova mensagem
                 const msgDiv = document.createElement('div');
                 msgDiv.className = `message ${newMessage.is_support ? 'support' : 'user'}`;
                 msgDiv.setAttribute('data-msg-id', newMessage.id);
                 msgDiv.innerHTML = `
                     <div class="message-bubble">
                         ${newMessage.message || ''}
-                        ${newMessage.attachment_url ? `
-                            <div class="message-attachment">
-                                <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
-                            </div>
-                        ` : ''}
+                        ${newMessage.attachment_url ? `<div class="message-attachment"><img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')"></div>` : ''}
                     </div>
                     <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
                 `;
@@ -223,10 +221,21 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             })
             .subscribe((status) => {
-                if (status === 'SUBSCRIBED') {
-                    console.log('Subscribed to ticket messages:', ticketId);
+                console.log(`Status do Suporte (${ticketId}):`, status);
+                if (status === 'CHANNEL_ERROR') {
+                    setTimeout(() => subscribeToMessages(ticketId), 3000);
                 }
             });
+
+        // Fallback Suporte
+        if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
+        window.ticketChatFallback = setInterval(() => {
+            if (currentTicket && currentTicket.id === ticketId) {
+                loadMessages(ticketId);
+            } else {
+                clearInterval(window.ticketChatFallback);
+            }
+        }, 5000);
     }
 
     // Enviar Mensagem

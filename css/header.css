@@ -548,7 +548,7 @@ template {
 @media (max-width: 768px) {
   header {
     height: auto !important;
-    min-height: 115px;
+    min-height: 70px;
     flex-direction: column !important;
     background: rgba(8, 8, 8, 0.98) !important;
     position: sticky !important;
@@ -571,66 +571,46 @@ template {
     display: flex !important;
     position: static !important;
     width: 100% !important;
-    background: rgba(255, 255, 255, 0.01) !important;
+    background: rgba(255, 255, 255, 0.02) !important;
     border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-    padding: 0 !important;
-    justify-content: flex-start !important;
-    overflow-x: auto !important;
-    scrollbar-width: none;
-    height: 45px;
-  }
-
-  .header-nav::-webkit-scrollbar {
-    display: none;
+    padding: 8px 0 !important;
+    justify-content: center !important;
+    overflow: visible !important;
+    height: auto !important;
   }
 
   .header-nav ul {
-    padding: 0 10px !important;
-    gap: 0 !important;
-    justify-content: flex-start !important;
-    width: max-content !important;
+    padding: 0 5px !important;
+    gap: 15px !important;
+    justify-content: center !important;
+    width: 100% !important;
     display: flex !important;
-    height: 100%;
-  }
-
-  .header-nav ul li {
-    width: auto !important;
-    height: 100%;
+    flex-wrap: wrap !important;
   }
 
   .header-nav ul li a {
     white-space: nowrap !important;
-    padding: 0 15px !important;
+    padding: 6px 4px !important;
     font-size: 13px !important;
     background: transparent !important;
     border: none !important;
-    border-bottom: 2px solid transparent !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 8px !important;
-    border-radius: 0 !important;
-    height: 100% !important;
-    text-align: center !important;
     color: var(--text-gray) !important;
-    transition: all 0.2s ease;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
   }
 
   .header-nav ul li a i {
-    display: block !important;
-    font-size: 14px;
-    color: var(--text-gray);
+    display: none !important;
   }
 
   .header-nav ul li a.active {
-    background: transparent !important;
-    border-bottom: 2px solid var(--accent-color) !important;
     color: #fff !important;
+    border-bottom: 2px solid var(--accent-color) !important;
   }
 
   .header-nav ul li a.active i {
-    color: var(--accent-color) !important;
+    display: none !important;
   }
 
   .logo-text {

@@ -913,16 +913,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(orderMessagesSubscription);
         }
 
-        orderMessagesSubscription = supabase.channel(`order_messages_${orderId}`)
+        // Usar um nome de canal único e sem filtros complexos no início para garantir recebimento
+        orderMessagesSubscription = supabase.channel(`order-chat-${orderId}`)
             .on('postgres_changes', {
                 event: 'INSERT',
                 schema: 'public',
-                table: 'order_messages',
-                filter: `order_id=eq.${orderId}`
+                table: 'order_messages'
             }, async (payload) => {
-                console.log('Nova mensagem recebida via realtime:', payload.new);
                 const newMessage = payload.new;
                 
+                // Filtro manual para garantir que a mensagem é deste pedido
+                if (newMessage.order_id !== orderId) return;
+                
+                // Evitar duplicata
                 if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
                 const container = document.getElementById('orderChatMessages');
@@ -945,22 +948,33 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 container.appendChild(msgDiv);
                 container.scrollTop = container.scrollHeight;
-
-                // Buscar nome do admin em background se não tiver
+                
+                // Se for admin e não tivermos o nome, buscar
                 if (msgFromAdmin && !isMe && !adminNamesCache[newMessage.sender_id]) {
-                    supabase.from('users').select('full_name').eq('id', newMessage.sender_id).single().then(({data}) => {
-                        if (data && data.full_name) {
-                            adminNamesCache[newMessage.sender_id] = data.full_name;
-                            msgDiv.querySelector('.message-sender').textContent = data.full_name;
-                        }
-                    });
+                    const { data: adminUser } = await supabase.from('users').select('full_name').eq('id', newMessage.sender_id).single();
+                    if (adminUser) {
+                        adminNamesCache[newMessage.sender_id] = adminUser.full_name;
+                        msgDiv.querySelector('.message-sender').textContent = adminUser.full_name;
+                    }
                 }
             })
             .subscribe((status) => {
-                if (status === 'SUBSCRIBED') {
-                    console.log('Realtime subscribed for order:', orderId);
+                console.log(`Status do Chat (${orderId}):`, status);
+                if (status === 'CHANNEL_ERROR') {
+                    console.error('Erro no Realtime, tentando reconectar...');
+                    setTimeout(() => setupOrderMessagesRealtime(orderId), 3000);
                 }
             });
+            
+        // Fallback: Verificar novas mensagens a cada 5 segundos caso o realtime falhe
+        if (window.orderChatFallback) clearInterval(window.orderChatFallback);
+        window.orderChatFallback = setInterval(() => {
+            if (document.getElementById('orderChatModal').style.display === 'flex') {
+                loadOrderMessages(orderId);
+            } else {
+                clearInterval(window.orderChatFallback);
+            }
+        }, 5000);
     }
 
     // Ao enviar mensagem, não recarregar tudo se o realtime estiver ativo
