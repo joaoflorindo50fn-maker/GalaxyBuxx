@@ -32,6 +32,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     const btnSendResetLink = document.getElementById('btnSendResetLink');
     const modal = document.getElementById('resetPasswordModal');
 
+    // Helper for product redirection
+    window.redirectToProduct = (name, game, price, image) => {
+        const params = new URLSearchParams();
+        params.set('name', name);
+        params.set('game', game || 'GalaxyBuxx');
+        params.set('price', price);
+        params.set('image', image || '');
+        params.set('stock', '999');
+        window.location.href = `pages/gamepass-detail.html?${params.toString()}`;
+    };
+
     // Logout
     document.querySelectorAll('.logout-btn').forEach(btn => {
         btn.addEventListener('click', async (e) => {
@@ -299,6 +310,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const displayEmail = user?.email || order.customer_contact || 'Sem email';
                 const date = new Date(order.created_at).toLocaleString('pt-BR');
 
+                // Safer parameters for onclick
+                const nameEsc = order.product_name.replace(/'/g, "\\'");
+                const gameEsc = (order.product_game || '').replace(/'/g, "\\'");
+                const imgEsc = (order.product_image || '').replace(/'/g, "\\'");
+                const unitPrice = order.total_price / order.quantity;
+
                 return `
                 <div class="order-card-admin-new">
                     <div class="admin-card-row-1">
@@ -313,7 +330,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="admin-card-row-2">
                         <div class="admin-product-details">
                             <span class="admin-order-id">#${orderIdStr}</span>
-                            <span class="admin-product-name-new">${order.product_name}</span>
+                            <span class="admin-product-name-new" onclick="redirectToProduct('${nameEsc}', '${gameEsc}', '${unitPrice}', '${imgEsc}')">${order.product_name}</span>
                             <span class="admin-product-qty">x${order.quantity}</span>
                         </div>
                         <div class="admin-price-box">
@@ -862,6 +879,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const statusClass = order.status.toLowerCase().replace(/ /g, '-');
             const canChat = order.status === 'Em Andamento' || order.status === 'Concluído';
 
+            // Safer parameters for onclick
+            const nameEsc = order.product_name.replace(/'/g, "\\'");
+            const gameEsc = (order.product_game || '').replace(/'/g, "\\'");
+            const imgEsc = (order.product_image || '').replace(/'/g, "\\'");
+            const unitPrice = order.total_price / order.quantity;
+
             return `
             <div class="order-card-new">
                 <div class="order-card-header-new">
@@ -873,7 +896,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="order-qty-new">${order.quantity}x</span>
                         <span class="order-divider-new">|</span>
                         <div class="order-product-name-wrapper">
-                            <span class="order-product-name-new">${order.product_name}</span>
+                            <span class="order-product-name-new" onclick="redirectToProduct('${nameEsc}', '${gameEsc}', '${unitPrice}', '${imgEsc}')">${order.product_name}</span>
                             <span class="order-game-name-new">${order.product_game || 'GalaxyBuxx'}</span>
                         </div>
                     </div>
