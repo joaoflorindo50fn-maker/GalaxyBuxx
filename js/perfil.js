@@ -932,78 +932,86 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(orderMessagesSubscription);
         }
 
-        // Global Listener + Client-side Filter (Mais confiável)
-        orderMessagesSubscription = supabase.channel(`global_order_messages`)
-            .on('postgres_changes', {
-                event: 'INSERT',
-                schema: 'public',
-                table: 'order_messages'
-            }, (payload) => {
-                const newMessage = payload.new;
-                
-                // Filtro rigoroso no cliente
-                if (String(newMessage.order_id) !== String(orderId)) return;
-                
-                // Evitar duplicidade
-                if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
+        // Canal único por pedido para Broadcast + Postgres
+        orderMessagesSubscription = supabase.channel(`order_chat_${orderId}`)
+        .on('postgres_changes', {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'order_messages'
+        }, (payload) => {
+            // Filtro manual no JS é mais garantido que o filtro do Realtime
+            if (String(payload.new.order_id) === String(orderId)) {
+                handleNewOrderMessage(payload.new);
+            }
+        })
+        .on('broadcast', { event: 'new_message' }, (payload) => {
+            if (payload.payload && String(payload.payload.order_id) === String(orderId)) {
+                handleNewOrderMessage(payload.payload);
+            }
+        })
+        .subscribe((status) => {
+            console.log(`Realtime Order ${orderId} Status:`, status);
+        });
 
-                const container = document.getElementById('orderChatMessages');
-                if (!container) return;
-
-                const isMe = newMessage.sender_id === user.id;
-                const msgFromAdmin = newMessage.is_support;
-                
-                let senderName = isMe ? "Você" : (msgFromAdmin ? (adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx") : "Cliente");
-
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}`;
-                msgDiv.setAttribute('data-msg-id', newMessage.id);
-                msgDiv.innerHTML = `
-                    <span class="message-sender">${senderName}</span>
-                    ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
-                    ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
-                    <span class="message-meta">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                `;
-
-                container.appendChild(msgDiv);
-                container.scrollTop = container.scrollHeight;
-                
-                if (!isMe) {
-                    try {
-                        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-                        audio.play().catch(() => {});
-                    } catch(e) {}
-                }
-            })
-            .subscribe((status) => {
-                console.log(`Realtime Order Status:`, status);
-                if (status === 'CHANNEL_ERROR') {
-                    setTimeout(() => setupOrderMessagesRealtime(orderId), 1000);
-                }
-            });
+        function handleNewOrderMessage(newMessage) {
+            if (!newMessage || !newMessage.id) return;
             
-        // Fallback redundante ultra-rápido (300ms)
+            // Evitar duplicidade absoluta
+            if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
+
+            const container = document.getElementById('orderChatMessages');
+            if (!container) return;
+
+            // Garantir que temos o usuário atual
+            const currentUserId = user ? user.id : null;
+            const isMe = newMessage.sender_id === currentUserId;
+            const msgFromAdmin = newMessage.is_support;
+            
+            let senderName = isMe ? "Você" : (msgFromAdmin ? (adminNamesCache[newMessage.sender_id] || "Suporte GalaxyBuxx") : "Cliente");
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${isMe ? 'sent' : 'received'} ${msgFromAdmin && !isMe ? 'admin-msg' : ''}`;
+            msgDiv.setAttribute('data-msg-id', newMessage.id);
+            msgDiv.innerHTML = `
+                <span class="message-sender">${senderName}</span>
+                ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
+                <span class="message-meta">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            `;
+
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+            
+            if (!isMe) {
+                try {
+                    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+                    audio.play().catch(() => {});
+                } catch(e) {}
+            }
+        }
+            
+        // Fallback redundante agressivo (500ms) - Se o Realtime falhar, isso salva
         if (window.orderChatFallback) clearInterval(window.orderChatFallback);
         window.orderChatFallback = setInterval(async () => {
             const modal = document.getElementById('orderChatModal');
             if (modal && modal.style.display === 'flex') {
-                const { data: lastMsgs, error } = await supabase
+                const { data: lastMsgs } = await supabase
                     .from('order_messages')
-                    .select('id')
+                    .select('id, order_id, sender_id, message, attachment_url, is_support, created_at')
                     .eq('order_id', orderId)
                     .order('created_at', { ascending: false })
                     .limit(1);
                 
-                if (!error && lastMsgs && lastMsgs.length > 0) {
-                    const lastId = lastMsgs[0].id;
-                    if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
-                        loadOrderMessages(orderId);
+                if (lastMsgs && lastMsgs.length > 0) {
+                    const lastMsg = lastMsgs[0];
+                    if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
+                        handleNewOrderMessage(lastMsg);
                     }
                 }
             } else {
                 clearInterval(window.orderChatFallback);
             }
-        }, 300);
+        }, 500);
     }
 
     // Ao enviar mensagem, não recarregar tudo se o realtime estiver ativo
@@ -1052,6 +1060,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .single();
 
             if (error) throw error;
+
+            // Enviar via Broadcast para latência 0 (0.1ms)
+            if (orderMessagesSubscription) {
+                orderMessagesSubscription.send({
+                    type: 'broadcast',
+                    event: 'new_message',
+                    payload: newMsg
+                });
+            }
 
             // Sucesso: limpar inputs
             input.value = '';

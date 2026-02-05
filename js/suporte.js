@@ -204,66 +204,74 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(messageSubscription);
         }
 
-        // Global Listener + Client-side Filter (Mais confiável)
-        messageSubscription = supabase.channel(`global_support_messages`)
-            .on('postgres_changes', { 
-                event: 'INSERT', 
-                schema: 'public', 
-                table: 'ticket_messages'
-            }, (payload) => {
-                const newMessage = payload.new;
+        // Unique Channel (Broadcast + Postgres)
+        messageSubscription = supabase.channel(`ticket_chat_${ticketId}`)
+        .on('postgres_changes', { 
+            event: 'INSERT', 
+            schema: 'public', 
+            table: 'ticket_messages'
+        }, (payload) => {
+            if (String(payload.new.ticket_id) === String(ticketId)) {
+                handleNewSupportMessage(payload.new);
+            }
+        })
+        .on('broadcast', { event: 'new_message' }, (payload) => {
+            if (payload.payload && String(payload.payload.ticket_id) === String(ticketId)) {
+                handleNewSupportMessage(payload.payload);
+            }
+        })
+        .subscribe((status) => {
+            console.log(`Realtime Support ${ticketId} Status:`, status);
+        });
+
+        function handleNewSupportMessage(newMessage) {
+            if (!newMessage || !newMessage.id) return;
+            if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
+
+            // Renderizar nova mensagem
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${newMessage.is_support ? 'support' : 'user'}`;
+            msgDiv.setAttribute('data-msg-id', newMessage.id);
+            msgDiv.innerHTML = `
+                <div class="message-bubble">
+                    ${newMessage.message || ''}
+                    ${newMessage.attachment_url ? `<div class="message-attachment"><img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')"></div>` : ''}
+                </div>
+                <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
+            `;
+            
+            if (chatMessages) {
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
                 
-                // Filtro rigoroso no cliente
-                if (String(newMessage.ticket_id) !== String(ticketId)) return;
+                try {
+                    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+                    audio.play().catch(() => {});
+                } catch(e) {}
+            }
+        }
 
-                // Evitar duplicata
-                if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
-
-                // Renderizar nova mensagem
-                const msgDiv = document.createElement('div');
-                msgDiv.className = `message ${newMessage.is_support ? 'support' : 'user'}`;
-                msgDiv.setAttribute('data-msg-id', newMessage.id);
-                msgDiv.innerHTML = `
-                    <div class="message-bubble">
-                        ${newMessage.message || ''}
-                        ${newMessage.attachment_url ? `<div class="message-attachment"><img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')"></div>` : ''}
-                    </div>
-                    <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
-                `;
-                
-                if (chatMessages) {
-                    chatMessages.appendChild(msgDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                }
-            })
-            .subscribe((status) => {
-                console.log(`Realtime Support Status:`, status);
-                if (status === 'CHANNEL_ERROR') {
-                    setTimeout(() => subscribeToMessages(ticketId), 1000);
-                }
-            });
-
-        // Fallback Suporte ultra-rápido (300ms)
+        // Fallback redundante agressivo (500ms)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
         window.ticketChatFallback = setInterval(async () => {
             if (currentTicket && String(currentTicket.id) === String(ticketId)) {
-                const { data: lastMsgs, error } = await supabase
+                const { data: lastMsgs } = await supabase
                     .from('ticket_messages')
-                    .select('id')
+                    .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
                     .eq('ticket_id', ticketId)
                     .order('created_at', { ascending: false })
                     .limit(1);
                 
-                if (!error && lastMsgs && lastMsgs.length > 0) {
-                    const lastId = lastMsgs[0].id;
-                    if (!document.querySelector(`[data-msg-id="${lastId}"]`)) {
-                        loadMessages(ticketId);
+                if (lastMsgs && lastMsgs.length > 0) {
+                    const lastMsg = lastMsgs[0];
+                    if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
+                        handleNewSupportMessage(lastMsg);
                     }
                 }
             } else {
                 clearInterval(window.ticketChatFallback);
             }
-        }, 300);
+        }, 500);
     }
 
     // Enviar Mensagem
@@ -319,45 +327,48 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
                 }
 
-                const { error } = await supabase
+                const { data: savedMsg, error } = await supabase
                     .from('ticket_messages')
                     .insert([{
                         ticket_id: currentTicket.id,
                         sender_id: user.id,
                         message: message,
                         attachment_url: attachmentUrl,
-                        is_support: false
-                    }]);
+                        is_support: false // No suporte.js (página do cliente) sempre é false
+                    }])
+                    .select()
+                    .single();
 
                 if (error) throw error;
 
-                // Optimistic UI Update: Adicionar a mensagem imediatamente na tela com ID temporário
-                const tempId = 'temp-' + Date.now();
-                const tempMsg = {
-                    id: tempId,
-                    message: message,
-                    attachment_url: attachmentUrl,
-                    is_support: false,
-                    created_at: new Date().toISOString()
-                };
-                
-                // Adicionar ao final do chat
-                const msgDiv = document.createElement('div');
-                msgDiv.className = 'message user';
-                msgDiv.setAttribute('data-msg-id', tempId);
-                msgDiv.innerHTML = `
-                    <div class="message-bubble">
-                        ${tempMsg.message || ''}
-                        ${tempMsg.attachment_url ? `
-                            <div class="message-attachment">
-                                <img src="${tempMsg.attachment_url}" alt="Anexo">
-                            </div>
-                        ` : ''}
-                    </div>
-                    <span class="message-time">${new Date(tempMsg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
-                `;
-                chatMessages.appendChild(msgDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Broadcast para latência zero
+                if (messageSubscription && savedMsg) {
+                    messageSubscription.send({
+                        type: 'broadcast',
+                        event: 'new_message',
+                        payload: savedMsg
+                    });
+                }
+
+                // Optimistic UI Update: Adicionar a mensagem imediatamente na tela se ainda não estiver lá
+                if (savedMsg && !document.querySelector(`[data-msg-id="${savedMsg.id}"]`)) {
+                    const msgDiv = document.createElement('div');
+                    msgDiv.className = 'message user';
+                    msgDiv.setAttribute('data-msg-id', savedMsg.id);
+                    msgDiv.innerHTML = `
+                        <div class="message-bubble">
+                            ${savedMsg.message || ''}
+                            ${savedMsg.attachment_url ? `
+                                <div class="message-attachment">
+                                    <img src="${savedMsg.attachment_url}" alt="Anexo">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <span class="message-time">${new Date(savedMsg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
+                    `;
+                    chatMessages.appendChild(msgDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
 
                 chatInput.value = '';
                 fileAttachment.value = '';
