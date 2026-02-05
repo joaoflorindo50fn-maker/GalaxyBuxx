@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let currentTicketId = null;
     let currentOrderId = null;
     let orderMessagesSubscription = null;
+    let ticketMessagesSubscription = null;
     let adminNamesCache = {};
     let adminRealtimeSub = null;
     let pendingOrdersCount = 0;
@@ -590,8 +591,77 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Load messages
             loadTicketMessages(ticketId);
+            setupTicketMessagesRealtime(ticketId);
         }
     };
+
+    function setupTicketMessagesRealtime(ticketId) {
+        if (ticketMessagesSubscription) {
+            supabase.removeChannel(ticketMessagesSubscription);
+        }
+
+        ticketMessagesSubscription = supabase.channel(`ticket_chat_admin_${ticketId}`)
+        .on('postgres_changes', { 
+            event: 'INSERT', 
+            schema: 'public', 
+            table: 'ticket_messages'
+        }, (payload) => {
+            if (String(payload.new.ticket_id) === String(ticketId)) {
+                handleNewAdminTicketMessage(payload.new);
+            }
+        })
+        .on('broadcast', { event: 'new_message' }, (payload) => {
+            if (payload.payload && String(payload.payload.ticket_id) === String(ticketId)) {
+                handleNewAdminTicketMessage(payload.payload);
+            }
+        })
+        .subscribe();
+
+        function handleNewAdminTicketMessage(newMessage) {
+            if (document.querySelector(`[data-chat-msg-id="${newMessage.id}"]`)) return;
+
+            const messagesDiv = document.getElementById('adminChatMessages');
+            if (!messagesDiv) return;
+
+            const isMe = newMessage.sender_id === user.id;
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `chat-message ${newMessage.is_support ? 'admin' : 'customer'}`;
+            msgDiv.setAttribute('data-chat-msg-id', newMessage.id);
+            msgDiv.innerHTML = `
+                ${newMessage.message}
+                <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            `;
+            
+            messagesDiv.appendChild(msgDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+            if (!isMe) {
+                try {
+                    new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3').play().catch(() => {});
+                } catch(e) {}
+            }
+        }
+
+        // Fallback redundante para tickets (admin)
+        if (window.adminTicketFallback) clearInterval(window.adminTicketFallback);
+        window.adminTicketFallback = setInterval(async () => {
+            if (currentTicketId === ticketId) {
+                const { data } = await supabase
+                    .from('ticket_messages')
+                    .select('id, ticket_id, sender_id, message, is_support, created_at')
+                    .eq('ticket_id', ticketId)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                
+                if (data && data.length > 0) {
+                    handleNewAdminTicketMessage(data[0]);
+                }
+            } else {
+                clearInterval(window.adminTicketFallback);
+            }
+        }, 800);
+    }
 
     async function loadTicketMessages(ticketId) {
         const messagesDiv = document.getElementById('adminChatMessages');
@@ -605,7 +675,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!error && messages) {
             messagesDiv.innerHTML = messages.map(msg => `
-                <div class="chat-message ${msg.is_support ? 'admin' : 'customer'}">
+                <div class="chat-message ${msg.is_support ? 'admin' : 'customer'}" data-chat-msg-id="${msg.id}">
                     ${msg.message}
                     <span class="message-time">${new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
@@ -702,18 +772,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const { data: { user } } = await supabase.auth.getUser();
 
-        const { error } = await supabase
+        const { error, data: newMsg } = await supabase
             .from('ticket_messages')
             .insert({
                 ticket_id: currentTicketId,
                 sender_id: user.id,
                 message: message,
                 is_support: true
-            });
+            })
+            .select()
+            .single();
 
-        if (!error) {
+        if (!error && newMsg) {
             input.value = '';
-            loadTicketMessages(currentTicketId);
+            
+            // Broadcast para latência zero
+            if (ticketMessagesSubscription) {
+                ticketMessagesSubscription.send({
+                    type: 'broadcast',
+                    event: 'new_message',
+                    payload: newMsg
+                });
+            }
+
+            // O handleNewAdminTicketMessage será chamado via broadcast ou postgres_changes
         } else {
             alert('Erro ao enviar mensagem: ' + error.message);
         }
