@@ -1471,6 +1471,18 @@ input:checked + .slider:before {
     flex: 1;
 }
 
+.admin-product-name-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.admin-game-subtext {
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: 400;
+}
+
 .admin-order-id {
     background: rgba(255, 255, 255, 0.05);
     padding: 4px 10px;

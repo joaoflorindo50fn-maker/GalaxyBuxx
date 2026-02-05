@@ -96,6 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (error) throw error;
 
+            // Enviar e-mail de confirmação do pedido
+            if (window.sendEmailNotification) {
+                window.sendEmailNotification({
+                    to_email: user.email,
+                    to_name: `${firstName} ${lastName}`,
+                    order_id: order.id.substring(0, 8).toUpperCase(),
+                    product_name: order.product_name,
+                    product_game: order.product_game,
+                    quantity: order.quantity,
+                    total_price: `R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}`,
+                    customer_contact: contactInfo,
+                    order_status: "Aguardando Pagamento",
+                    type: "PEDIDO"
+                });
+            }
+
             showPaymentOverlay(order);
         } catch (err) {
             console.error('Erro ao criar pedido:', err);

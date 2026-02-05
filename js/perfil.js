@@ -38,7 +38,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         params.set('name', name);
         params.set('game', game || 'GalaxyBuxx');
         params.set('price', price);
-        params.set('image', image || '');
+        
+        // Fix image path for the pages/ folder
+        let finalImage = image || '';
+        if (finalImage && !finalImage.startsWith('http') && !finalImage.startsWith('../')) {
+            finalImage = '../' + finalImage;
+        }
+        
+        params.set('image', finalImage);
         params.set('stock', '999');
         window.location.href = `pages/gamepass-detail.html?${params.toString()}`;
     };
@@ -316,6 +323,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const imgEsc = (order.product_image || '').replace(/'/g, "\\'");
                 const unitPrice = order.total_price / order.quantity;
 
+                // Logic for "Robux Personalizado" in Admin
+                const isRobux = order.product_name.toLowerCase().includes('robux');
+                const adminSubtext = isRobux ? '<div class="admin-game-subtext">Robux Personalizado</div>' : (order.product_game ? `<div class="admin-game-subtext">${order.product_game}</div>` : '');
+
                 return `
                 <div class="order-card-admin-new">
                     <div class="admin-card-row-1">
@@ -330,7 +341,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="admin-card-row-2">
                         <div class="admin-product-details">
                             <span class="admin-order-id">#${orderIdStr}</span>
-                            <span class="admin-product-name-new" onclick="redirectToProduct('${nameEsc}', '${gameEsc}', '${unitPrice}', '${imgEsc}')">${order.product_name}</span>
+                            <div class="admin-product-name-wrapper">
+                                <span class="admin-product-name-new" onclick="redirectToProduct('${nameEsc}', '${gameEsc}', '${unitPrice}', '${imgEsc}')">${order.product_name}</span>
+                                ${adminSubtext}
+                            </div>
                             <span class="admin-product-qty">x${order.quantity}</span>
                         </div>
                         <div class="admin-price-box">
@@ -885,6 +899,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             const imgEsc = (order.product_image || '').replace(/'/g, "\\'");
             const unitPrice = order.total_price / order.quantity;
 
+            // Logic for "Robux Personalizado"
+            const isRobux = order.product_name.toLowerCase().includes('robux');
+            const subtext = isRobux ? 'Robux Personalizado' : (order.product_game || 'GalaxyBuxx');
+
             return `
             <div class="order-card-new">
                 <div class="order-card-header-new">
@@ -897,7 +915,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="order-divider-new">|</span>
                         <div class="order-product-name-wrapper">
                             <span class="order-product-name-new" onclick="redirectToProduct('${nameEsc}', '${gameEsc}', '${unitPrice}', '${imgEsc}')">${order.product_name}</span>
-                            <span class="order-game-name-new">${order.product_game || 'GalaxyBuxx'}</span>
+                            <span class="order-game-name-new">${subtext}</span>
                         </div>
                     </div>
                     

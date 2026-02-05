@@ -468,6 +468,58 @@ function initReveal() {
   });
 }
 
+/* =========================
+   EMAIL NOTIFICATION SYSTEM (EmailJS)
+========================= */
+
+// Configuração do EmailJS
+const EMAILJS_PUBLIC_KEY = "-24q3fs_ITyzP9R9A";
+const EMAILJS_SERVICE_ID = "service_3an3bbj";
+const EMAILJS_TEMPLATE_ID = "template_f7jzzfa";
+
+// Carregar SDK do EmailJS dinamicamente
+function loadEmailJS() {
+    if (window.emailjs) return Promise.resolve();
+    
+    return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+        script.onload = () => {
+            window.emailjs.init(EMAILJS_PUBLIC_KEY);
+            console.log("EmailJS inicializado com sucesso.");
+            resolve();
+        };
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+// Função global para enviar e-mails
+window.sendEmailNotification = async function(params) {
+    try {
+        await loadEmailJS();
+        
+        // Adiciona informações básicas comuns
+        const emailParams = {
+            site_name: "GalaxyBuxx",
+            year: new Date().getFullYear(),
+            ...params
+        };
+
+        const response = await window.emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            emailParams
+        );
+
+        console.log("E-mail enviado com sucesso!", response.status, response.text);
+        return true;
+    } catch (error) {
+        console.error("Erro ao enviar e-mail via EmailJS:", error);
+        return false;
+    }
+};
+
 function initUI() {
   loadHeader();
   loadFooter();

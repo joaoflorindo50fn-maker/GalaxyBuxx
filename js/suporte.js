@@ -508,6 +508,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (error) throw error;
 
+                // Enviar e-mail de confirmação do ticket
+                if (window.sendEmailNotification) {
+                    window.sendEmailNotification({
+                        to_email: ticketData.email,
+                        to_name: ticketData.name,
+                        ticket_id: data[0].id.substring(0, 8).toUpperCase(),
+                        subject: ticketData.subject,
+                        message: ticketData.message,
+                        type: "SUPORTE"
+                    });
+                }
+
                 // Inserir a mensagem inicial na tabela de mensagens
                 if (data && data[0]) {
                     await supabase
