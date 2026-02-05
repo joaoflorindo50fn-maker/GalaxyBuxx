@@ -246,29 +246,13 @@
                     <div class="admin-tab-content active" id="admin-pedidos">
                         <div class="admin-card">
                             <div class="card-header-admin">
-                                <h4>Gerenciar Pedidos</h4>
+                                <h4>Gerenciar Pedidos (Aguardando Pagamento)</h4>
                                 <div class="table-actions">
                                     <button class="btn-refresh"><i class="fa-solid fa-rotate"></i></button>
                                 </div>
                             </div>
-                            <div class="admin-table-wrapper">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>CLIENTE</th>
-                                            <th>PRODUTO</th>
-                                            <th>VALOR</th>
-                                            <th>STATUS</th>
-                                            <th>AÇÃO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="adminOrdersTable">
-                                        <tr>
-                                            <td colspan="6" class="empty-table">Carregando pedidos...</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="admin-orders-list-new" id="adminOrdersTable">
+                                <div class="empty-table">Carregando pedidos...</div>
                             </div>
                         </div>
                     </div>
@@ -278,24 +262,8 @@
                             <div class="card-header-admin">
                                 <h4>Fila de Em Andamento</h4>
                             </div>
-                            <div class="admin-table-wrapper">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>ID PEDIDO</th>
-                                            <th>CLIENTE</th>
-                                            <th>PRODUTO</th>
-                                            <th>ROBUX</th>
-                                            <th>STATUS</th>
-                                            <th>AÇÃO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="adminDeliveriesTable">
-                                        <tr>
-                                            <td colspan="6" class="empty-table">Nenhum pedido em andamento.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="admin-orders-list-new" id="adminDeliveriesTable">
+                                <div class="empty-table">Nenhum pedido em andamento.</div>
                             </div>
                         </div>
                     </div>
@@ -305,24 +273,8 @@
                             <div class="card-header-admin">
                                 <h4>Pedidos Concluídos</h4>
                             </div>
-                            <div class="admin-table-wrapper">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>DATA</th>
-                                            <th>CLIENTE</th>
-                                            <th>PEDIDO</th>
-                                            <th>TIPO</th>
-                                            <th>STATUS</th>
-                                            <th>AÇÃO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="adminProofsTable">
-                                        <tr>
-                                            <td colspan="6" class="empty-table">Nenhum pedido concluído encontrado.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="admin-orders-list-new" id="adminProofsTable">
+                                <div class="empty-table">Nenhum pedido concluído encontrado.</div>
                             </div>
                         </div>
                     </div>
@@ -332,24 +284,8 @@
                             <div class="card-header-admin">
                                 <h4>Pedidos Cancelados</h4>
                             </div>
-                            <div class="admin-table-wrapper">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>DATA</th>
-                                            <th>CLIENTE</th>
-                                            <th>PRODUTO</th>
-                                            <th>VALOR</th>
-                                            <th>STATUS</th>
-                                            <th>AÇÃO</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="adminCancelledTable">
-                                        <tr>
-                                            <td colspan="6" class="empty-table">Nenhum pedido cancelado.</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="admin-orders-list-new" id="adminCancelledTable">
+                                <div class="empty-table">Nenhum pedido cancelado.</div>
                             </div>
                         </div>
                     </div>

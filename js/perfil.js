@@ -250,8 +250,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 tableId = 'adminCancelledTable';
             }
 
-            const tbody = document.getElementById(tableId);
-            if (!tbody) return;
+            const container = document.getElementById(tableId);
+            if (!container) return;
 
             // 1. Buscar os pedidos
             const { data: orders, error: ordersError } = await supabase
@@ -262,23 +262,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (ordersError) {
                 console.error("Erro ao carregar pedidos:", ordersError);
-                tbody.innerHTML = `<tr><td colspan="6" class="empty-table">Erro ao carregar pedidos: ${ordersError.message}</td></tr>`;
+                container.innerHTML = `<div class="empty-table">Erro ao carregar pedidos: ${ordersError.message}</div>`;
                 return;
             }
-
-            console.log("Pedidos carregados:", orders); // Debug
 
             if (!orders || orders.length === 0) {
                 const msg = tabId === 'admin-pedidos' ? 'Nenhum pedido aguardando pagamento.' : 
                             tabId === 'admin-entregas' ? 'Nenhum pedido em andamento.' :
                             tabId === 'admin-comprovantes' ? 'Nenhum pedido concluído.' : 'Nenhum pedido cancelado.';
-                tbody.innerHTML = `<tr><td colspan="6" class="empty-table">${msg}</td></tr>`;
+                container.innerHTML = `<div class="empty-table">${msg}</div>`;
                 return;
             }
 
             // 2. Coletar IDs de usuários únicos e buscar seus dados
             const userIds = [...new Set(orders.map(o => o.user_id).filter(id => id))];
-            console.log("IDs de usuários para buscar:", userIds); // Debug
             let userMap = {};
 
             if (userIds.length > 0) {
@@ -287,83 +284,58 @@ document.addEventListener('DOMContentLoaded', async () => {
                     .select('id, username, email')
                     .in('id', userIds);
                 
-                if (userError) {
-                    console.error("Erro ao buscar dados de usuários:", userError);
-                }
-
                 if (userData) {
-                    console.log("Dados de usuários encontrados:", userData); // Debug
                     userData.forEach(u => {
                         userMap[u.id] = u;
                     });
                 }
             }
 
-            // 3. Renderizar a tabela unindo os dados
-            tbody.innerHTML = orders.map(order => {
+            // 3. Renderizar a lista unindo os dados
+            container.innerHTML = orders.map(order => {
                 const user = userMap[order.user_id];
                 const orderIdStr = order.id.substring(0, 8).toUpperCase();
-                
-                // Se não encontrar o usuário pela ID, tenta mostrar o que tem no pedido
                 const displayName = user?.username || order.customer_name || 'Usuário s/ nome';
                 const displayEmail = user?.email || order.customer_contact || 'Sem email';
-                
-                if (tabId === 'admin-pedidos') {
-                    return `
-                    <tr>
-                        <td>#${orderIdStr}</td>
-                        <td class="client-cell"><strong>${displayName}</strong><br><span>${displayEmail}</span></td>
-                        <td>${order.product_name} x${order.quantity}</td>
-                        <td>R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}</td>
-                        <td>
-                            <select class="status-select-admin" onchange="updateOrderStatus('${order.id}', this.value)">
-                                <option value="Aguardando Pagamento" selected>Aguardando Pagamento</option>
-                                <option value="Em Andamento">Em Andamento</option>
-                                <option value="Cancelado">Cancelado</option>
+                const date = new Date(order.created_at).toLocaleString('pt-BR');
+
+                return `
+                <div class="order-card-admin-new">
+                    <div class="admin-card-row-1">
+                        <div class="admin-customer-info">
+                            <i class="fa-solid fa-circle-user"></i>
+                            <strong>${displayName}</strong>
+                            <span>(${displayEmail})</span>
+                        </div>
+                        <div class="admin-date-info">${date}</div>
+                    </div>
+
+                    <div class="admin-card-row-2">
+                        <div class="admin-product-details">
+                            <span class="admin-order-id">#${orderIdStr}</span>
+                            <span class="admin-product-name-new">${order.product_name}</span>
+                            <span class="admin-product-qty">x${order.quantity}</span>
+                        </div>
+                        <div class="admin-price-box">
+                            <span class="admin-price-label">Valor Total</span>
+                            <span class="admin-price-value">R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}</span>
+                        </div>
+                    </div>
+
+                    <div class="admin-card-row-3">
+                        <div class="admin-status-controls">
+                            <select class="status-select-admin-new" onchange="updateOrderStatus('${order.id}', this.value)">
+                                <option value="Aguardando Pagamento" ${order.status === 'Aguardando Pagamento' ? 'selected' : ''}>Aguardando Pagamento</option>
+                                <option value="Em Andamento" ${order.status === 'Em Andamento' ? 'selected' : ''}>Em Andamento</option>
+                                <option value="Concluído" ${order.status === 'Concluído' ? 'selected' : ''}>Concluído</option>
+                                <option value="Cancelado" ${order.status === 'Cancelado' ? 'selected' : ''}>Cancelado</option>
                             </select>
-                        </td>
-                        <td>
-                            <button class="btn-action-table" onclick="openOrderChat('${order.id}')">
-                                <i class="fa-solid fa-comments"></i> Chat
+                            <button class="btn-admin-chat-new" onclick="openOrderChat('${order.id}')">
+                                <i class="fa-solid fa-comments"></i> Abrir Chat
                             </button>
-                        </td>
-                    </tr>`;
-                } else if (tabId === 'admin-entregas') {
-                    return `
-                    <tr>
-                        <td>#${orderIdStr}</td>
-                        <td class="client-cell"><strong>${displayName}</strong><br><span>${displayEmail}</span></td>
-                        <td>${order.product_name}</td>
-                        <td>${order.quantity}</td>
-                        <td>
-                            <select class="status-select-admin" onchange="updateOrderStatus('${order.id}', this.value)">
-                                <option value="Em Andamento" selected>Em Andamento</option>
-                                <option value="Concluído">Concluído</option>
-                                <option value="Cancelado">Cancelado</option>
-                            </select>
-                        </td>
-                        <td>
-                            <button class="btn-action-table" onclick="openOrderChat('${order.id}')">
-                                <i class="fa-solid fa-comments"></i> Chat
-                            </button>
-                        </td>
-                    </tr>`;
-                } else {
-                    const isCancelled = tabId === 'admin-cancelados';
-                    return `
-                    <tr>
-                        <td>${new Date(order.created_at).toLocaleDateString()}</td>
-                        <td class="client-cell"><strong>${displayName}</strong><br><span>${displayEmail}</span></td>
-                        <td>#${orderIdStr} - ${order.product_name}</td>
-                        <td>${isCancelled ? `R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}` : 'Entrega'}</td>
-                        <td><span class="status-badge ${isCancelled ? 'cancelled' : 'completed'}">${order.status}</span></td>
-                        <td>
-                            <button class="btn-action-table" onclick="openOrderChat('${order.id}')">
-                                <i class="fa-solid fa-eye"></i> Ver Chat
-                            </button>
-                        </td>
-                    </tr>`;
-                }
+                        </div>
+                    </div>
+                </div>`;
             }).join('');
         } else if (tabId === 'admin-tickets') {
             const ticketList = document.getElementById('adminTicketsList');

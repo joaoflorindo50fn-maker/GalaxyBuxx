@@ -1403,6 +1403,194 @@ input:checked + .slider:before {
     font-size: 1rem;
 }
 
+/* Admin New Orders Layout */
+.admin-orders-list-new {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+}
+
+.order-card-admin-new {
+    background: #0d0d0d;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.order-card-admin-new:hover {
+    border-color: #333;
+}
+
+.admin-card-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.admin-customer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-customer-info strong {
+    color: #eee;
+}
+
+.admin-customer-info span {
+    color: #555;
+    font-size: 0.8rem;
+}
+
+.admin-card-row-2 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.admin-product-details {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.admin-order-id {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: 700;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+}
+
+.admin-product-name-new {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #3182ce;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.admin-product-qty {
+    color: #888;
+    font-weight: 700;
+}
+
+.admin-price-box {
+    text-align: right;
+    padding-left: 20px;
+    border-left: 1px solid #222;
+}
+
+.admin-price-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.admin-price-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #eee;
+}
+
+.admin-card-row-3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #1a1a1a;
+    gap: 20px;
+}
+
+.admin-status-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+}
+
+.status-select-admin-new {
+    background: #151515;
+    border: 1px solid #333;
+    color: #eee;
+    padding: 8px 15px;
+    border-radius: 8px;
+    outline: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.85rem;
+    cursor: pointer;
+    min-width: 180px;
+}
+
+.status-select-admin-new:focus {
+    border-color: #555;
+}
+
+.btn-admin-chat-new {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #333;
+    color: #eee;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+}
+
+.btn-admin-chat-new:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #555;
+}
+
+.admin-date-info {
+    font-size: 0.8rem;
+    color: #444;
+}
+
+@media (max-width: 768px) {
+    .admin-card-row-2 {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .admin-price-box {
+        border-left: none;
+        padding-left: 0;
+        text-align: left;
+    }
+
+    .admin-card-row-3 {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-status-controls {
+        flex-direction: column;
+    }
+
+    .status-select-admin-new, .btn-admin-chat-new {
+        width: 100%;
+    }
+}
+
 /* Status Select in Admin Table */
 .status-select-admin {
     background: #0f0f0f;
