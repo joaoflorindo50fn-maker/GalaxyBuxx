@@ -557,35 +557,42 @@ template {
   }
 
   .header-inner {
-    padding: 0 15px !important;
-    display: grid !important;
-    grid-template-columns: 1fr auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
     align-items: center !important;
     width: 100% !important;
-    min-height: 60px !important;
+    height: auto !important;
+    min-height: auto !important;
     gap: 0 !important;
   }
 
   .header-left {
     order: 1 !important;
-    grid-column: 1 !important;
+    flex: 1 !important;
+    padding: 10px 15px !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .header-right {
     order: 2 !important;
-    grid-column: 2 !important;
+    flex: 0 0 auto !important;
+    padding: 10px 15px !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .header-nav {
     order: 3 !important;
-    grid-column: 1 / -1 !important;
     width: 100% !important;
     display: flex !important;
-    background: rgba(255, 255, 255, 0.02) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
-    padding: 10px 0 !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 8px 0 !important;
     justify-content: center !important;
     overflow: hidden !important;
+    position: relative !important;
   }
 
   .header-nav ul {
