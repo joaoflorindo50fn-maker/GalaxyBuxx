@@ -1086,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const meta = user.user_metadata || {};
                 avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=222&color=fff`;
             } else if (msgFromAdmin) {
-                senderName = adminNamesCache[msg.sender_id] || "Suporte GalaxyBuxx";
+                senderName = "Admin";
                 avatarUrl = `https://ui-avatars.com/api/?name=Admin&background=007bff&color=fff`;
             } else {
                 senderName = "Cliente";
@@ -1101,6 +1101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <img src="${avatarUrl}" alt="Avatar">
                     </div>
                     <div class="message-bundle">
+                        <span class="message-sender-name">${senderName}</span>
                         <div class="message-bubble">
                             ${msg.message ? `<p>${msg.message}</p>` : ''}
                             ${msg.attachment_url ? `<img src="${msg.attachment_url}" class="message-attachment" onclick="openLightbox('${msg.attachment_url}')">` : ''}
@@ -1179,6 +1180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <img src="${avatarUrl}" alt="Avatar">
                 </div>
                 <div class="message-bundle">
+                    <span class="message-sender-name">${senderName}</span>
                     <div class="message-bubble">
                         ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
                         ${newMessage.attachment_url ? `<img src="${newMessage.attachment_url}" class="message-attachment" onclick="openLightbox('${newMessage.attachment_url}')">` : ''}
@@ -1297,13 +1299,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const container = document.getElementById('orderChatMessages');
                 if (container) {
                     const msgDiv = document.createElement('div');
-                    msgDiv.className = `message sent ${currentUserIsAdmin ? 'admin-msg' : ''}`;
+                    msgDiv.className = `message-wrapper mine`;
                     msgDiv.setAttribute('data-msg-id', newMsg.id);
                     msgDiv.innerHTML = `
-                        <span class="message-sender">Você</span>
-                        ${newMsg.message ? `<p>${newMsg.message}</p>` : ''}
-                        ${newMsg.attachment_url ? `<img src="${newMsg.attachment_url}" class="message-attachment" onclick="openLightbox('${newMsg.attachment_url}')">` : ''}
-                        <span class="message-meta">${new Date(newMsg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        <div class="message-bundle">
+                            <div class="message-bubble">
+                                ${newMsg.message ? `<p>${newMsg.message}</p>` : ''}
+                                ${newMsg.attachment_url ? `<img src="${newMsg.attachment_url}" class="message-attachment" onclick="openLightbox('${newMsg.attachment_url}')">` : ''}
+                            </div>
+                            <span class="message-time-new">${new Date(newMsg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
                     `;
                     container.appendChild(msgDiv);
                     container.scrollTop = container.scrollHeight;

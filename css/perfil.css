@@ -2005,74 +2005,117 @@ input:checked + .slider:before {
 }
 
 /* Message Styles Overhaul */
-.message {
+.order-chat-messages {
     display: flex;
-    align-items: flex-end;
-    gap: 12px;
-    margin-bottom: 20px;
-    max-width: 85%;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    height: 450px;
+    scroll-behavior: smooth;
+    background: #080808;
 }
 
-.message.sent {
+.message-wrapper {
+    display: flex;
+    gap: 12px;
+    max-width: 85%;
+    position: relative;
+    animation: messageIn 0.3s ease-out;
+}
+
+@keyframes messageIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-wrapper.theirs {
+    align-self: flex-start;
+}
+
+.message-wrapper.mine {
     align-self: flex-end;
     flex-direction: row-reverse;
 }
 
-.message.received {
-    align-self: flex-start;
-}
-
-.chat-user-avatar {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.05);
+.message-avatar {
     flex-shrink: 0;
 }
 
-.message-bubble-container {
+.message-avatar img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid #1a1a1a;
+    object-fit: cover;
+}
+
+.message-wrapper.mine .message-avatar {
+    display: none;
+}
+
+.message-bundle {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    max-width: 100%;
 }
 
-.message.sent .message-bubble-container {
-    align-items: flex-end;
+.message-sender-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #444;
+    margin-bottom: 2px;
+}
+
+.message-wrapper.mine .message-sender-name {
+    display: none;
 }
 
 .message-bubble {
-    padding: 12px 18px;
+    padding: 12px 16px;
     border-radius: 18px;
     font-size: 0.95rem;
     line-height: 1.5;
-    position: relative;
     word-break: break-word;
+    position: relative;
 }
 
-.message.received .message-bubble {
-    background: #1e1e1e;
-    color: rgba(255, 255, 255, 0.9);
+.message-wrapper.theirs .message-bubble {
+    background: #121212;
+    color: #eee;
     border-bottom-left-radius: 4px;
 }
 
-.message.sent .message-bubble {
-    background: #32bcad;
+.message-wrapper.mine .message-bubble {
+    background: #1a1a1a;
     color: #fff;
+    border: 1px solid #222;
     border-bottom-right-radius: 4px;
-    box-shadow: 0 4px 15px rgba(50, 188, 173, 0.2);
 }
 
-.message.admin-msg .message-bubble {
-    background: rgba(50, 188, 173, 0.1);
-    border: 1px solid rgba(50, 188, 173, 0.2);
-    color: #32bcad;
+.message-time-new {
+    font-size: 0.7rem;
+    color: #333;
+    margin-top: 2px;
 }
 
-.message-time {
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.3);
-    margin: 0 4px;
+.message-wrapper.theirs .message-time-new {
+    align-self: flex-start;
+    margin-left: 4px;
+}
+
+.message-wrapper.mine .message-time-new {
+    align-self: flex-end;
+    margin-right: 4px;
+}
+
+.message-attachment {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
 /* Scrollbar for chat */
@@ -2221,32 +2264,35 @@ input:checked + .slider:before {
     
     .order-chat-top-cards {
         grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        padding: 10px 15px;
+        gap: 8px;
+        padding: 8px 12px;
+        background: #050505;
     }
 
     .order-product-card, .order-payment-card {
-        padding: 10px;
-        gap: 10px;
+        padding: 8px;
+        gap: 8px;
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
     }
 
     .order-product-card img {
-        width: 40px;
-        height: 40px;
+        width: 35px;
+        height: 35px;
     }
 
     .order-payment-card i {
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
     }
 
     .order-product-card h4, .order-payment-card h4 {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     .label {
-        font-size: 0.55rem;
+        font-size: 0.5rem;
     }
 
     .header-center {
@@ -2257,11 +2303,11 @@ input:checked + .slider:before {
         grid-template-columns: 1fr 1fr;
     }
 
-    .message {
+    .message-wrapper {
         max-width: 90%;
     }
 
-    .chat-user-avatar {
+    .message-avatar img {
         width: 32px;
         height: 32px;
     }
