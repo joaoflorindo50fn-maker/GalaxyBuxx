@@ -127,8 +127,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Chat Logic
     function closeChatUI() {
+        // Reset scroll safely for mobile
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
+        document.body.style.position = '';
+        
         if (messageSubscription) {
             supabase.removeChannel(messageSubscription);
             messageSubscription = null;
@@ -141,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     async function openChat(ticket) {
+        if (!ticket) return;
         currentTicket = ticket;
         
         // Update UI
@@ -152,7 +156,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Switch View
         views.forEach(v => v.classList.remove('active'));
         chatTicketView.classList.add('active');
-        document.body.style.overflow = 'hidden'; 
+        
+        // Mobile-friendly scroll lock
+        document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
         
         // Load Messages
@@ -160,10 +166,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Subscribe to real-time updates
         subscribeToMessages(ticket.id);
-
-        // Se for o ticket original (primeira mensagem), podemos renderizar se necessário
-        // mas o ideal é que a primeira mensagem do ticket já esteja na tabela ticket_messages
-        // No insert do ticket, podemos opcionalmente inserir a primeira mensagem
     }
 
     async function loadMessages(ticketId) {
@@ -235,7 +237,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }).join('');
 
         chatMessages.innerHTML = html;
-        chatMessages.scrollTop = chatMessages.scrollHeight;
+        requestAnimationFrame(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
     }
 
     // Link back button if it exists (using the correct variable backToList)
@@ -321,41 +325,48 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (chatMessages) {
                 chatMessages.appendChild(msgElement);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                // Usar requestAnimationFrame para scroll suave sem travar a UI thread
+                requestAnimationFrame(() => {
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                });
                 
-                try {
-                    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-                    audio.play().catch(() => {});
-                } catch(e) {}
+                // Notificação sonora apenas se não for minha própria mensagem (evita lag ao enviar)
+                if (!isMe) {
+                    try {
+                        const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
+                        audio.volume = 0.5;
+                        audio.play().catch(() => {});
+                    } catch(e) {}
+                }
             }
         }
 
-        // Fallback redundante menos agressivo (3s)
+        // Fallback redundante mais leve para mobile (5s)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
         window.ticketChatFallback = setInterval(async () => {
-            if (currentTicket && String(currentTicket.id) === String(ticketId)) {
-                try {
-                    const { data: lastMsgs } = await supabase
-                        .from('ticket_messages')
-                        .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
-                        .eq('ticket_id', ticketId)
-                        .order('created_at', { ascending: false })
-                        .limit(1);
-                    
-                    if (lastMsgs && lastMsgs.length > 0) {
-                        const lastMsg = lastMsgs[0];
-                        if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
-                            handleNewSupportMessage(lastMsg);
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Polling error:', e);
-                }
-            } else {
+            if (!currentTicket || String(currentTicket.id) !== String(ticketId)) {
                 clearInterval(window.ticketChatFallback);
-                window.ticketChatFallback = null;
+                return;
             }
-        }, 3000);
+
+            try {
+                const { data: lastMsgs } = await supabase
+                    .from('ticket_messages')
+                    .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
+                    .eq('ticket_id', ticketId)
+                    .order('created_at', { ascending: false })
+                    .limit(1);
+                
+                if (lastMsgs && lastMsgs.length > 0) {
+                    const lastMsg = lastMsgs[0];
+                    if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
+                        handleNewSupportMessage(lastMsg);
+                    }
+                }
+            } catch (e) {
+                console.warn('Polling status:', e.message);
+            }
+        }, 5000);
     }
 
     // Enviar Mensagem
@@ -449,7 +460,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <span class="message-time">${new Date(savedMsg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
                     `;
                     chatMessages.appendChild(msgDiv);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    requestAnimationFrame(() => {
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    });
                 }
 
                 chatInput.value = '';
