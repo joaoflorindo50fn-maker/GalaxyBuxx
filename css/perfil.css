@@ -2457,13 +2457,31 @@ input:checked + .slider:before {
         width: 100% !important;
         padding: 20px !important;
         border-radius: 15px !important;
-        order: 2 !important;
+        order: 1 !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     .profile-nav {
         display: grid !important;
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
+        order: 1 !important;
+    }
+
+    .sidebar-footer {
+        order: 2 !important;
+        margin-top: 10px !important;
+    }
+
+    .sidebar-user {
+        order: 3 !important;
+        margin-top: 20px !important;
+        margin-bottom: 0 !important;
+        padding-top: 20px !important;
+        border-top: 1px solid var(--card-border) !important;
+        border-bottom: none !important;
+        padding-bottom: 0 !important;
     }
 
     .profile-nav-item {
@@ -2473,7 +2491,7 @@ input:checked + .slider:before {
     }
 
     .profile-content {
-        order: 1 !important;
+        order: 2 !important;
         width: 100% !important;
     }
 
