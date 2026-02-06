@@ -127,11 +127,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Chat Logic
     function closeChatUI() {
-        // Reset scroll safely for mobile
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        document.body.style.position = '';
-        
         if (messageSubscription) {
             supabase.removeChannel(messageSubscription);
             messageSubscription = null;
@@ -156,10 +151,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Switch View
         views.forEach(v => v.classList.remove('active'));
         chatTicketView.classList.add('active');
-        
-        // Mobile-friendly scroll lock
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
         
         // Load Messages
         await loadMessages(ticket.id);

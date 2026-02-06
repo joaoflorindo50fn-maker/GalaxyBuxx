@@ -1065,39 +1065,44 @@
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .chat-container { 
-    height: 100dvh; 
-    border-radius: 0; 
-    border: none; 
-    margin: 0;
+    height: 70vh; 
+    border-radius: 20px; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 10px 0;
   }
   
   .chat-header { 
     padding: 15px; 
     gap: 10px; 
-    flex-wrap: wrap; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .chat-info {
-    order: 1;
     flex: 1;
+    min-width: 0;
   }
-  
-  .btn-back-to-list {
-    order: 0;
+
+  .chat-info h3 {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  
+
   .chat-status-badge {
-    order: 2;
+    padding: 4px 8px;
+    font-size: 9px;
   }
 
   .btn-close-ticket { 
-    order: 3;
-    padding: 12px; 
-    font-size: 11px; 
-    margin-left: 0; 
-    width: 100%; 
+    padding: 10px; 
+    font-size: 10px; 
+    margin: 10px 15px;
+    width: auto; 
     justify-content: center; 
-    margin-top: 5px; 
   }
   
   .chat-messages { 
@@ -1105,18 +1110,23 @@
   }
   
   .message { 
-    max-width: 90%; 
+    max-width: 85%; 
+    font-size: 13px;
   }
   
   .message-wrapper {
-    max-width: 95%;
+    max-width: 90%;
   }
 
   .chat-input-area { 
-    padding: 15px; 
+    padding: 10px 15px 20px; 
   }
   
   .chat-input-wrapper {
-    padding: 5px 5px 5px 15px;
+    padding: 5px 5px 5px 12px;
+  }
+
+  .chat-input-wrapper input {
+    font-size: 13px;
   }
 }
