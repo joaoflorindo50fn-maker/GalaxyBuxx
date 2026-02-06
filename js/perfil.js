@@ -846,24 +846,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (icon) icon.style.display = 'block';
                 if (preview) { preview.src = ''; preview.style.display = 'none'; }
                 
-                // Notificar o cliente por e-mail da nova resposta
-                if (window.sendEmailNotification) {
-                    supabase.from('tickets').select('email, name, subject').eq('id', currentTicketId).single()
-                        .then(({ data: ticket }) => {
-                            if (ticket) {
-                                window.sendEmailNotification({
-                                    to_email: ticket.email,
-                                    to_name: ticket.name,
-                                    ticket_id: currentTicketId.substring(0, 8).toUpperCase(),
-                                    subject: `Resposta no seu Ticket: ${ticket.subject} [#${currentTicketId.substring(0, 8).toUpperCase()}]`,
-                                    message: message,
-                                    type: "TICKET_REPLY",
-                                    description: "Nossa equipe de suporte acabou de responder ao seu ticket. Confira a resposta abaixo:"
-                                });
-                            }
-                        });
-                }
-
                 if (ticketMessagesSubscription) {
                     ticketMessagesSubscription.send({
                         type: 'broadcast',
@@ -900,26 +882,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             window.showNotification('Status do pedido atualizado!', 'success');
 
-            // Enviar e-mail de mudança de status se tivermos os dados
-            if (window.sendEmailNotification && orderData) {
-                // Tenta pegar o e-mail do usuário se for um ID do Supabase
+            // Notificar cliente por e-mail
+            if (orderData) {
                 let targetEmail = orderData.customer_contact;
                 if (orderData.user_id) {
-                    const { data: userData } = await supabase.from('users').select('email').eq('id', orderData.user_id).single();
-                    if (userData?.email) targetEmail = userData.email;
+                    const { data: ud } = await supabase.from('users').select('email').eq('id', orderData.user_id).single();
+                    if (ud?.email) targetEmail = ud.email;
                 }
-
+                
                 window.sendEmailNotification({
                     to_email: targetEmail,
-                    customer_email: targetEmail,
                     to_name: orderData.customer_name,
-                    customer_name: orderData.customer_name,
-                    order_id: orderId.substring(0, 8).toUpperCase(),
-                    product_name: orderData.product_name,
-                    order_status: newStatus,
-                    type: "STATUS_UPDATE",
-                    subject: `Atualização no seu Pedido #${orderId.substring(0, 8).toUpperCase()} - GalaxyBuxx`,
-                    description: `O status do seu pedido foi atualizado para: **${newStatus}**. Confira mais detalhes no seu painel.`
+                    subject: `Status Atualizado: ${newStatus} [#${orderId.substring(0, 8).toUpperCase()}]`,
+                    description: `O status do seu pedido foi atualizado para: **${newStatus}**.`
                 });
             }
 
@@ -1407,31 +1382,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .single();
 
             if (error) throw error;
-
-            // Notificar o cliente se for uma resposta do suporte
-            if (currentUserIsAdmin && window.sendEmailNotification) {
-                supabase.from('orders').select('user_id, product_name, customer_name, customer_contact').eq('id', currentOrderId).single()
-                    .then(async ({ data: orderData }) => {
-                        if (orderData) {
-                            let targetEmail = orderData.customer_contact;
-                            if (orderData.user_id) {
-                                const { data: userData } = await supabase.from('users').select('email').eq('id', orderData.user_id).single();
-                                if (userData?.email) targetEmail = userData.email;
-                            }
-
-                            window.sendEmailNotification({
-                                to_email: targetEmail,
-                                to_name: orderData.customer_name,
-                                order_id: currentOrderId.substring(0, 8).toUpperCase(),
-                                product_name: orderData.product_name,
-                                message: message,
-                                type: "ORDER_REPLY",
-                                subject: `Nova mensagem no seu Pedido #${currentOrderId.substring(0, 8).toUpperCase()} - GalaxyBuxx`,
-                                description: "Nossa equipe de suporte enviou uma nova mensagem no chat do seu pedido. Confira abaixo:"
-                            });
-                        }
-                    });
-            }
 
             // Enviar via Broadcast para latência 0 (0.1ms)
             if (orderMessagesSubscription) {

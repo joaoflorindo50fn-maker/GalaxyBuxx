@@ -579,21 +579,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (error) throw error;
 
-                // Enviar e-mail de confirmação do ticket
-                if (window.sendEmailNotification && data && data[0]) {
-                    const tid = data[0].id.substring(0, 8).toUpperCase();
-                    window.sendEmailNotification({
-                        to_email: ticketData.email,
-                        customer_email: ticketData.email,
-                        to_name: ticketData.name,
-                        customer_name: ticketData.name,
-                        ticket_id: tid,
-                        subject: `Ticket Aberto: ${ticketData.subject} [#${tid}]`,
-                        message: ticketData.message,
-                        type: "SUPORTE",
-                        description: "Recebemos sua solicitação de suporte! Nossa equipe entrará em contato em breve através deste ticket ou e-mail."
-                    });
-                }
+                // Enviar e-mail de confirmação
+                const tid = data[0].id.substring(0, 8).toUpperCase();
+                window.sendEmailNotification({
+                    to_email: ticketData.email,
+                    to_name: ticketData.name,
+                    subject: `Ticket de Suporte Aberto [#${tid}]`,
+                    description: "Recebemos seu chamado! Nossa equipe analisará sua solicitação em breve.",
+                    message: ticketData.message
+                });
 
                 // Inserir a mensagem inicial na tabela de mensagens
                 if (data && data[0]) {

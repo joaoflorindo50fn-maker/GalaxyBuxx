@@ -96,25 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (error) throw error;
 
-            // Enviar e-mail de confirmação do pedido
-            if (window.sendEmailNotification) {
-                window.sendEmailNotification({
-                    to_email: user.email,
-                    customer_email: user.email,
-                    to_name: `${firstName} ${lastName}`,
-                    customer_name: `${firstName} ${lastName}`,
-                    order_id: order.id.substring(0, 8).toUpperCase(),
-                    product_name: order.product_name,
-                    product_game: order.product_game,
-                    quantity: order.quantity,
-                    total_price: `R$ ${parseFloat(order.total_price).toFixed(2).replace('.', ',')}`,
-                    customer_contact: contactInfo,
-                    order_status: "Aguardando Pagamento",
-                    type: "PEDIDO",
-                    subject: `Pedido Confirmado #${order.id.substring(0, 8).toUpperCase()} - GalaxyBuxx`,
-                    description: "Obrigado por escolher a GalaxyBuxx! Seu pedido foi recebido e está aguardando o pagamento. Confira os detalhes abaixo."
-                });
-            }
+            // Enviar e-mail de confirmação
+            window.sendEmailNotification({
+                to_email: user.email,
+                to_name: `${firstName} ${lastName}`,
+                order_id: order.id.substring(0, 8).toUpperCase(),
+                subject: `Pedido Recebido! #${order.id.substring(0, 8).toUpperCase()}`,
+                description: "Seu pedido foi criado e estamos aguardando o pagamento via Pix.",
+                product_name: order.product_name
+            });
 
             showPaymentOverlay(order);
         } catch (err) {

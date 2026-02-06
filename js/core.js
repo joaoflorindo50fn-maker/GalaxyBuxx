@@ -469,113 +469,99 @@ function initReveal() {
 }
 
 /* =========================
-   EMAIL NOTIFICATION SYSTEM (EmailJS)
+   SISTEMA DE NOTIFICAÇÃO (EmailJS)
 ========================= */
 
-// Configuração do EmailJS
-const EMAILJS_PUBLIC_KEY = "-24q3fs_ITyzP9R9A";
-const EMAILJS_SERVICE_ID = "service_3an3bbj";
-const EMAILJS_TEMPLATE_ID = "template_f7jzzfa";
+// CONFIGURAÇÃO - VERIFIQUE NO SEU DASHBOARD DO EMAILJS
+const EMAILJS_PUBLIC_KEY = "7db2P2EUxIYXLkhaF";
+const EMAILJS_SERVICE_ID = "service_kurkpcw";
+const EMAILJS_TEMPLATE_ID = "template_611ei15";
 
-// Carregar SDK do EmailJS dinamicamente
-function loadEmailJS() {
-    return new Promise((resolve, reject) => {
-        // Se já carregou e inicializou, resolve na hora
-        if (window.emailjs && typeof window.emailjs.send === 'function') {
-            resolve();
-            return;
-        }
-        
-        // Se o script já está no DOM mas ainda não inicializou o objeto
-        if (document.querySelector('script[src*="emailjs"]')) {
-            const checkInterval = setInterval(() => {
-                if (window.emailjs && typeof window.emailjs.send === 'function') {
-                    clearInterval(checkInterval);
-                    resolve();
-                }
-            }, 100);
-            
-            // Timeout de 5s para o intervalo
-            setTimeout(() => { 
-                clearInterval(checkInterval); 
-                if (window.emailjs && typeof window.emailjs.send === 'function') resolve();
-                else reject(new Error("EmailJS script exists but object not found after timeout")); 
-            }, 5000);
-            return;
-        }
+// Função para carregar e inicializar o SDK
+async function initEmailJS() {
+    if (window.emailjs) return true;
 
+    return new Promise((resolve) => {
         const script = document.createElement('script');
         script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-        script.async = true;
         script.onload = () => {
-            if (window.emailjs) {
-                emailjs.init({
-                    publicKey: EMAILJS_PUBLIC_KEY,
-                    blockHeadless: true
-                });
-                console.log("EmailJS v4 inicializado com sucesso via onload.");
-                resolve();
-            } else {
-                reject(new Error("EmailJS script loaded but window.emailjs not found"));
-            }
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY,
+                blockHeadless: true
+            });
+            console.log("🚀 EmailJS Initialized");
+            resolve(true);
         };
-        script.onerror = (err) => {
-            console.error("Falha ao carregar o script do EmailJS:", err);
-            reject(err);
+        script.onerror = () => {
+            console.error("❌ Failed to load EmailJS SDK");
+            resolve(false);
         };
         document.head.appendChild(script);
     });
 }
 
-// Função global para enviar e-mails
+// Função Global de Envio
 window.sendEmailNotification = async function(params) {
-    console.log("Iniciando envio de e-mail:", params.type || "GERAL", params);
     try {
-        await loadEmailJS();
-        
-        // Garantir inicialização do EmailJS antes de cada envio
-        if (window.emailjs) {
-            emailjs.init({
-                publicKey: EMAILJS_PUBLIC_KEY,
-                blockHeadless: true
-            });
-        }
+        console.log("📤 Tentando enviar e-mail...", params.subject);
+        await initEmailJS();
 
-        const recipientEmail = params.to_email || params.email || params.user_email;
-        const recipientName = params.to_name || params.customer_name || params.name || (recipientEmail ? recipientEmail.split('@')[0] : "Cliente");
-
-        if (!recipientEmail) {
-            console.error("ERRO: E-mail não enviado: destinatário não identificado.");
-            return false;
-        }
-
-        const emailParams = {
-            to_name: recipientName,
-            to_email: recipientEmail,
-            user_name: recipientName,
-            user_email: recipientEmail,
-            customer_name: recipientName,
-            customer_email: recipientEmail,
-            site_name: "GalaxyBuxx",
-            year: new Date().getFullYear(),
-            ...params
+        // Template Params - Use esses nomes no seu template do EmailJS:
+        // {{to_name}}, {{to_email}}, {{subject}}, {{message}}, {{order_id}}, {{product_name}}
+        const templateParams = {
+            to_name: params.to_name || "Cliente",
+            to_email: params.to_email || params.email,
+            subject: params.subject || "Notificação GalaxyBuxx",
+            message: params.message || "",
+            description: params.description || "",
+            order_id: params.order_id || "N/A",
+            product_name: params.product_name || "N/A",
+            site_name: "GalaxyBuxx"
         };
 
-        console.log("Enviando parâmetros para EmailJS:", emailParams);
-
-        const result = await emailjs.send(
+        const response = await emailjs.send(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
-            emailParams
+            templateParams
         );
 
-        console.log("✅ Resultado EmailJS:", result.status === 200 ? "SUCESSO" : "FALHA", result.text);
+        console.log("✅ E-mail enviado!", response.status, response.text);
         return true;
     } catch (error) {
-        console.error("❌ Erro crítico no sistema de e-mail:", error);
+        console.error("❌ Erro no EmailJS:", error);
+        
+        if (error.status === 404) {
+            console.error("ERRO 404: Conta, Serviço ou Template não encontrado!");
+            console.error("Verifique se o SERVICE_ID e TEMPLATE_ID estão corretos.");
+        }
         return false;
     }
 };
+
+// Teste rápido via console: 
+// sendEmailNotification({ to_email: 'seu@email.com', subject: 'Teste', message: 'Funcionando!' })
+
+window.testEmail = async function(email) {
+    if (!email) {
+        console.log("Uso: testEmail('seu-email@gmail.com')");
+        return;
+    }
+    console.log("🧪 Iniciando teste de e-mail...");
+    const ok = await window.sendEmailNotification({
+        to_email: email,
+        to_name: "Testador",
+        subject: "Teste de Configuração",
+        message: "Se você recebeu isso, o EmailJS está funcionando corretamente!",
+        description: "Teste realizado pelo sistema de diagnóstico."
+    });
+    
+    if (ok) {
+        alert("E-mail enviado! Verifique sua caixa de entrada.");
+    } else {
+        alert("Falha no envio. Abra o Console (F12) para ver o erro.");
+    }
+};
+
 
 function initUI() {
   loadHeader();
