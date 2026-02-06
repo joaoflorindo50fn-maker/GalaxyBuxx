@@ -437,17 +437,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Optimistic UI Update: Adicionar a mensagem imediatamente na tela se ainda não estiver lá
                 if (savedMsg && !document.querySelector(`[data-msg-id="${savedMsg.id}"]`)) {
                     const msgDiv = document.createElement('div');
-                    msgDiv.className = 'message user';
+                    msgDiv.className = 'message sent';
                     msgDiv.setAttribute('data-msg-id', savedMsg.id);
                     msgDiv.innerHTML = `
-                        <div class="message-bubble">
-                            ${savedMsg.message || ''}
-                            ${savedMsg.attachment_url ? `
-                                <div class="message-attachment">
-                                    <img src="${savedMsg.attachment_url}" alt="Anexo">
-                                </div>
-                            ` : ''}
-                        </div>
+                        ${savedMsg.message ? `<p>${savedMsg.message}</p>` : ''}
+                        ${savedMsg.attachment_url ? `
+                            <div class="message-attachment">
+                                <img src="${savedMsg.attachment_url}" alt="Anexo" onclick="window.open('${savedMsg.attachment_url}', '_blank')">
+                            </div>
+                        ` : ''}
                         <span class="message-time">${new Date(savedMsg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
                     `;
                     chatMessages.appendChild(msgDiv);
