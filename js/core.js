@@ -509,9 +509,12 @@ window.sendEmailNotification = async function(params) {
 
         // Template Params - Enriquecidos para layout profissional
         const templateParams = {
-            // Informações Básicas
+            // Variáveis Universais (para qualquer template)
+            from_name: "GalaxyBuxx",
             to_name: params.to_name || "Cliente",
             to_email: params.to_email || params.email,
+            user_name: params.to_name || "Cliente",
+            reply_to: "suporte.galaxybuxx@gmail.com",
             subject: params.subject || "Notificação GalaxyBuxx",
             message: params.message || "",
             
@@ -520,24 +523,24 @@ window.sendEmailNotification = async function(params) {
             is_order: type.includes('order') || type.includes('status'),
             is_ticket: type.includes('ticket'),
             
-            // Detalhes do Pedido (se houver)
+            // Detalhes do Pedido
             order_id: params.order_id ? params.order_id.substring(0, 8).toUpperCase() : "N/A",
             product_name: params.product_name || "N/A",
-            product_value: params.product_value || "0,00",
+            product_value: params.product_value ? `R$ ${params.product_value}` : "R$ 0,00",
             product_qty: params.product_qty || "1",
             order_status: params.order_status || "Pendente",
             payment_method: params.payment_method || "Pix",
             
-            // Detalhes do Ticket (se houver)
+            // Detalhes do Ticket
             ticket_id: params.ticket_id ? params.ticket_id.substring(0, 8).toUpperCase() : "N/A",
             ticket_subject: params.ticket_subject || "Suporte",
             ticket_status: params.ticket_status || "Aberto",
             
-            // Rodapé e Branding
+            // Branding
             site_url: window.location.origin,
             site_name: "GalaxyBuxx",
             current_year: new Date().getFullYear(),
-            description: params.description || ""
+            description: params.description || "Temos uma nova atualização para você."
         };
 
         const response = await emailjs.send(
