@@ -190,43 +190,48 @@ document.addEventListener('DOMContentLoaded', async () => {
         let html = messages.map(msg => {
             const isMe = msg.sender_id === currentUserId;
             const msgFromAdmin = msg.is_support;
-            
-            let senderName = "";
-            let avatarUrl = "";
-
-            if (msgFromAdmin) {
-                senderName = "Suporte GalaxyBuxx";
-                avatarUrl = `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`;
-            } else {
-                senderName = "Cliente";
-                if (isMe && currentUser && currentUser.user_metadata) {
-                    avatarUrl = currentUser.user_metadata.avatar_url || `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
-                } else {
-                    avatarUrl = `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
-                }
-            }
-
             const time = new Date(msg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 
-            return `
-                <div class="message-wrapper ${isMe ? 'mine' : 'theirs'} ${msgFromAdmin ? 'admin-msg' : ''}" data-msg-id="${msg.id}">
-                    <div class="message-avatar">
-                        <img src="${avatarUrl}" alt="Avatar">
+            if (isMe) {
+                // Estilo Antigo (Bolha simples)
+                return `
+                    <div class="message sent" data-msg-id="${msg.id}">
+                        ${msg.message ? `<p>${msg.message}</p>` : ''}
+                        ${msg.attachment_url ? `
+                            <div class="message-attachment">
+                                <img src="${msg.attachment_url}" alt="Anexo" onclick="window.open('${msg.attachment_url}', '_blank')">
+                            </div>
+                        ` : ''}
+                        <span class="message-time">${time}</span>
                     </div>
-                    <div class="message-bundle">
-                        <span class="message-sender-name">${senderName}</span>
-                        <div class="message-bubble">
-                            ${msg.message ? `<p>${msg.message}</p>` : ''}
-                            ${msg.attachment_url ? `
-                                <div class="message-attachment">
-                                    <img src="${msg.attachment_url}" alt="Anexo" onclick="window.open('${msg.attachment_url}', '_blank')">
-                                </div>
-                            ` : ''}
+                `;
+            } else {
+                // Estilo Novo (Com Avatar e Nome - Igual Chat de Pedidos)
+                let senderName = msgFromAdmin ? "Suporte GalaxyBuxx" : "Cliente";
+                let avatarUrl = msgFromAdmin 
+                    ? `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`
+                    : `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+
+                return `
+                    <div class="message-wrapper theirs ${msgFromAdmin ? 'admin-msg' : ''}" data-msg-id="${msg.id}">
+                        <div class="message-avatar">
+                            <img src="${avatarUrl}" alt="Avatar">
                         </div>
-                        <span class="message-time-new">${time}</span>
+                        <div class="message-bundle">
+                            <span class="message-sender-name">${senderName}</span>
+                            <div class="message-bubble">
+                                ${msg.message ? `<p>${msg.message}</p>` : ''}
+                                ${msg.attachment_url ? `
+                                    <div class="message-attachment">
+                                        <img src="${msg.attachment_url}" alt="Anexo" onclick="window.open('${msg.attachment_url}', '_blank')">
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <span class="message-time-new">${time}</span>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
+            }
         }).join('');
 
         chatMessages.innerHTML = html;
@@ -270,47 +275,52 @@ document.addEventListener('DOMContentLoaded', async () => {
             const currentUserId = currentUser ? currentUser.id : null;
             const isMe = newMessage.sender_id === currentUserId;
             const msgFromAdmin = newMessage.is_support;
-            
-            let senderName = "";
-            let avatarUrl = "";
-
-            if (msgFromAdmin) {
-                senderName = "Suporte GalaxyBuxx";
-                avatarUrl = `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`;
-            } else {
-                senderName = "Cliente";
-                if (isMe && currentUser && currentUser.user_metadata) {
-                    avatarUrl = currentUser.user_metadata.avatar_url || `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
-                } else {
-                    avatarUrl = `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
-                }
-            }
-
             const time = new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 
-            const msgWrapper = document.createElement('div');
-            msgWrapper.className = `message-wrapper ${isMe ? 'mine' : 'theirs'} ${msgFromAdmin ? 'admin-msg' : ''}`;
-            msgWrapper.setAttribute('data-msg-id', newMessage.id);
-            msgWrapper.innerHTML = `
-                <div class="message-avatar">
-                    <img src="${avatarUrl}" alt="Avatar">
-                </div>
-                <div class="message-bundle">
-                    <span class="message-sender-name">${senderName}</span>
-                    <div class="message-bubble">
-                        ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
-                        ${newMessage.attachment_url ? `
-                            <div class="message-attachment">
-                                <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
-                            </div>
-                        ` : ''}
+            const msgElement = document.createElement('div');
+            msgElement.setAttribute('data-msg-id', newMessage.id);
+
+            if (isMe) {
+                // Estilo Antigo (Bolha simples)
+                msgElement.className = 'message sent';
+                msgElement.innerHTML = `
+                    ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                    ${newMessage.attachment_url ? `
+                        <div class="message-attachment">
+                            <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
+                        </div>
+                    ` : ''}
+                    <span class="message-time">${time}</span>
+                `;
+            } else {
+                // Estilo Novo (Com Avatar e Nome)
+                let senderName = msgFromAdmin ? "Suporte GalaxyBuxx" : "Cliente";
+                let avatarUrl = msgFromAdmin 
+                    ? `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`
+                    : `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+
+                msgElement.className = `message-wrapper theirs ${msgFromAdmin ? 'admin-msg' : ''}`;
+                msgElement.innerHTML = `
+                    <div class="message-avatar">
+                        <img src="${avatarUrl}" alt="Avatar">
                     </div>
-                    <span class="message-time-new">${time}</span>
-                </div>
-            `;
+                    <div class="message-bundle">
+                        <span class="message-sender-name">${senderName}</span>
+                        <div class="message-bubble">
+                            ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                            ${newMessage.attachment_url ? `
+                                <div class="message-attachment">
+                                    <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <span class="message-time-new">${time}</span>
+                    </div>
+                `;
+            }
             
             if (chatMessages) {
-                chatMessages.appendChild(msgWrapper);
+                chatMessages.appendChild(msgElement);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
                 
                 try {

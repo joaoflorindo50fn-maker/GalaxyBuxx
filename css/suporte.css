@@ -749,13 +749,44 @@
   border-radius: 10px;
 }
 
+/* Message Styles */
+.message {
+  max-width: 80%;
+  margin-bottom: 15px;
+  padding: 12px 18px;
+  border-radius: 18px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+  word-wrap: break-word;
+  animation: messageIn 0.3s ease-out;
+}
+
+.message.sent {
+  align-self: flex-end;
+  background: #fff;
+  color: #000;
+  border-bottom-right-radius: 4px;
+}
+
+.message-time {
+  font-size: 10px;
+  opacity: 0.5;
+  margin-top: 5px;
+  display: block;
+  text-align: right;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
 .message-wrapper {
   display: flex;
   gap: 12px;
   max-width: 85%;
   position: relative;
   animation: messageIn 0.3s ease-out;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  align-self: flex-start;
 }
 
 @keyframes messageIn {
@@ -764,12 +795,7 @@
 }
 
 .message-wrapper.theirs {
-  align-self: flex-start;
-}
-
-.message-wrapper.mine {
-  align-self: flex-end;
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 .message-avatar {
@@ -784,10 +810,6 @@
   object-fit: cover;
 }
 
-.message-wrapper.mine .message-avatar {
-  display: none;
-}
-
 .message-bundle {
   display: flex;
   flex-direction: column;
@@ -797,18 +819,15 @@
 
 .message-sender-name {
   font-size: 0.7rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.2);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
   margin-bottom: 2px;
   letter-spacing: 0.3px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .message-wrapper.theirs .message-sender-name {
   margin-left: 4px;
-}
-
-.message-wrapper.mine .message-sender-name {
-  display: none;
 }
 
 .message-bubble {
@@ -818,35 +837,17 @@
   line-height: 1.5;
   word-break: break-word;
   position: relative;
-}
-
-.message-wrapper.theirs .message-bubble {
   background: #121212;
   color: #eee;
   border-bottom-left-radius: 4px;
-}
-
-.message-wrapper.mine .message-bubble {
-  background: #1a1a1a;
-  color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom-right-radius: 4px;
 }
 
 .message-time-new {
   font-size: 0.65rem;
   color: rgba(255, 255, 255, 0.15);
   margin-top: 4px;
-}
-
-.message-wrapper.theirs .message-time-new {
-  align-self: flex-start;
   margin-left: 4px;
-}
-
-.message-wrapper.mine .message-time-new {
-  align-self: flex-end;
-  margin-right: 4px;
 }
 
 .message-attachment {
