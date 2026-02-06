@@ -335,6 +335,47 @@ html {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-refresh-user {
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.btn-refresh-user:hover {
+    background: var(--text-main);
+    color: #000;
+    transform: rotate(180deg);
+    border-color: var(--text-main);
+}
+
+.btn-refresh-user:active {
+    transform: rotate(180deg) scale(0.9);
+}
+
+.btn-refresh-user.refreshing i {
+    animation: rotateRefresh 0.8s linear infinite;
+}
+
+@keyframes rotateRefresh {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
 .section-title h3 {
     font-size: 1.3rem;
     margin: 0 0 5px;
@@ -389,9 +430,43 @@ html {
 }
 
 .order-card-header-new {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     font-size: 0.85rem;
     color: #888;
     font-family: 'Space Grotesk', sans-serif;
+}
+
+.btn-cancel-order {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 75, 75, 0.1);
+    color: #ff4b4b;
+    border: 1px solid rgba(255, 75, 75, 0.2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.btn-cancel-order:hover {
+    background: #ff4b4b;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 75, 75, 0.3);
+}
+
+.btn-cancel-order:active {
+    transform: translateY(0);
 }
 
 .order-card-header-new strong {
@@ -2642,10 +2717,23 @@ input:checked + .slider:before {
         gap: 15px !important;
     }
 
-    .orders-filter-tabs {
+    .header-actions {
         width: 100% !important;
+        display: flex !important;
+        gap: 10px !important;
+    }
+
+    .orders-filter-tabs {
+        flex: 1 !important;
+        width: auto !important;
         justify-content: space-between !important;
         display: flex !important;
+    }
+
+    .btn-refresh-user {
+        width: 42px !important;
+        height: 42px !important;
+        flex-shrink: 0 !important;
     }
 
     .filter-btn {

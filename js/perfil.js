@@ -949,6 +949,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const statusClass = order.status.toLowerCase().replace(/ /g, '-');
             const canChat = order.status === 'Em Andamento' || order.status === 'Concluído';
+            const showCancelBtn = order.status === 'Aguardando Pagamento';
 
             // Safer parameters for onclick
             const nameEsc = order.product_name.replace(/'/g, "\\'");
@@ -963,7 +964,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             return `
             <div class="order-card-new">
                 <div class="order-card-header-new">
-                    Compra <strong>#${order.id.substring(0, 8).toUpperCase()}</strong>
+                    <span>Compra <strong>#${order.id.substring(0, 8).toUpperCase()}</strong></span>
+                    ${showCancelBtn ? `<button class="btn-cancel-order" onclick="cancelOrder('${order.id}')"><i class="fa-solid fa-xmark"></i> Cancelar</button>` : ''}
                 </div>
                 
                 <div class="order-card-middle-new">
@@ -1019,6 +1021,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             loadUserOrders();
         });
     });
+
+    // Refresh Button logic
+    const btnRefreshUser = document.getElementById('refreshOrders');
+    if (btnRefreshUser) {
+        btnRefreshUser.addEventListener('click', async () => {
+            btnRefreshUser.classList.add('refreshing');
+            await loadUserOrders();
+            setTimeout(() => {
+                btnRefreshUser.classList.remove('refreshing');
+            }, 500);
+        });
+    }
+
+    window.cancelOrder = async (orderId) => {
+        if (!confirm('Tem certeza que deseja cancelar este pedido?')) return;
+
+        try {
+            const { error } = await supabase
+                .from('orders')
+                .update({ status: 'Cancelado' })
+                .eq('id', orderId);
+
+            if (error) throw error;
+
+            showNotification('Pedido cancelado com sucesso!', 'success');
+            loadUserOrders(); // Refresh the list
+        } catch (err) {
+            console.error('Erro ao cancelar pedido:', err);
+            showNotification('Erro ao cancelar pedido. Tente novamente.', 'error');
+        }
+    };
 
     window.openOrderChat = async (orderId) => {
         currentOrderId = orderId;
