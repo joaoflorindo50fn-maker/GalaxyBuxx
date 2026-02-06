@@ -1083,56 +1083,56 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     window.cancelOrder = async (orderId) => {
+        console.log("Iniciando cancelamento do pedido:", orderId);
         const modal = document.getElementById('cancelOrderModal');
         const confirmBtn = document.getElementById('confirmCancelOrder');
         const closeBtn = document.getElementById('closeCancelModal');
 
-        if (!modal || !confirmBtn || !closeBtn) {
+        if (!modal) {
             if (!confirm('Tem certeza que deseja cancelar este pedido?')) return;
-        } else {
-            // Show custom modal
-            modal.style.display = 'flex';
-
-            const result = await new Promise((resolve) => {
-                const onConfirm = () => {
-                    cleanup();
-                    resolve(true);
-                };
-                const onCancel = () => {
-                    cleanup();
-                    resolve(false);
-                };
-                const cleanup = () => {
-                    confirmBtn.removeEventListener('click', onConfirm);
-                    closeBtn.removeEventListener('click', onCancel);
-                    modal.style.display = 'none';
-                };
-
-                confirmBtn.addEventListener('click', onConfirm);
-                closeBtn.addEventListener('click', onCancel);
-                
-                // Also close on click outside
-                modal.onclick = (e) => {
-                    if (e.target === modal) onCancel();
-                };
-            });
-
-            if (!result) return;
+            executeCancel(orderId);
+            return;
         }
 
-        try {
-            const { error } = await supabase
-                .from('orders')
-                .update({ status: 'Cancelado' })
-                .eq('id', orderId);
+        modal.style.display = 'flex';
 
-            if (error) throw error;
+        // Remover listeners antigos para evitar múltiplas execuções
+        const newConfirmBtn = confirmBtn.cloneNode(true);
+        confirmBtn.parentNode.replaceChild(newConfirmBtn, confirmBtn);
+        
+        const newCloseBtn = closeBtn.cloneNode(true);
+        closeBtn.parentNode.replaceChild(newCloseBtn, closeBtn);
 
-            showNotification('Pedido cancelado com sucesso!', 'success');
-            loadUserOrders(); // Refresh the list
-        } catch (err) {
-            console.error('Erro ao cancelar pedido:', err);
-            showNotification('Erro ao cancelar pedido. Tente novamente.', 'error');
+        newCloseBtn.onclick = () => {
+            modal.style.display = 'none';
+        };
+
+        newConfirmBtn.onclick = async () => {
+            modal.style.display = 'none';
+            await executeCancel(orderId);
+        };
+
+        async function executeCancel(id) {
+            try {
+                const { error } = await supabase
+                    .from('orders')
+                    .update({ status: 'Cancelado' })
+                    .eq('id', id);
+
+                if (error) throw error;
+
+                window.showNotification('Pedido cancelado com sucesso!', 'success');
+                
+                // Recarregar os pedidos
+                if (typeof loadUserOrders === 'function') {
+                    await loadUserOrders();
+                } else {
+                    window.location.reload();
+                }
+            } catch (err) {
+                console.error('Erro ao cancelar pedido:', err);
+                window.showNotification('Erro ao cancelar pedido.', 'error');
+            }
         }
     };
 

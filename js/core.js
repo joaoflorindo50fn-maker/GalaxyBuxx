@@ -507,40 +507,18 @@ window.sendEmailNotification = async function(params) {
         console.log(`📤 Enviando e-mail [${type}]...`, params.subject);
         await initEmailJS();
 
-        // Template Params - Enriquecidos para layout profissional
+        // Template Params - Nomes simplificados para máxima compatibilidade
         const templateParams = {
-            // Variáveis Universais (para qualquer template)
             from_name: "GalaxyBuxx",
+            user_name: params.to_name || "Cliente",
             to_name: params.to_name || "Cliente",
             to_email: params.to_email || params.email,
-            user_name: params.to_name || "Cliente",
-            reply_to: "suporte.galaxybuxx@gmail.com",
             subject: params.subject || "Notificação GalaxyBuxx",
-            message: params.message || "",
-            
-            // Contexto e Tipo
-            email_type: type,
-            is_order: type.includes('order') || type.includes('status'),
-            is_ticket: type.includes('ticket'),
-            
-            // Detalhes do Pedido
+            message: params.message || params.description || "Você tem uma nova atualização no seu pedido.",
             order_id: params.order_id ? params.order_id.substring(0, 8).toUpperCase() : "N/A",
-            product_name: params.product_name || "N/A",
-            product_value: params.product_value ? `R$ ${params.product_value}` : "R$ 0,00",
-            product_qty: params.product_qty || "1",
-            order_status: params.order_status || "Pendente",
-            payment_method: params.payment_method || "Pix",
-            
-            // Detalhes do Ticket
             ticket_id: params.ticket_id ? params.ticket_id.substring(0, 8).toUpperCase() : "N/A",
-            ticket_subject: params.ticket_subject || "Suporte",
-            ticket_status: params.ticket_status || "Aberto",
-            
-            // Branding
-            site_url: window.location.origin,
-            site_name: "GalaxyBuxx",
-            current_year: new Date().getFullYear(),
-            description: params.description || "Temos uma nova atualização para você."
+            status: params.order_status || params.ticket_status || "Atualizado",
+            site_name: "GalaxyBuxx"
         };
 
         const response = await emailjs.send(
