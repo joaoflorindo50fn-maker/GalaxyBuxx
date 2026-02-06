@@ -243,40 +243,46 @@ document.addEventListener('DOMContentLoaded', async () => {
             supabase.removeChannel(messageSubscription);
         }
 
-        // Unique Channel (Broadcast + Postgres)
-        messageSubscription = supabase.channel(`ticket_chat_${ticketId}`)
+        // Canal com configurações de alta performance para latência mínima
+        messageSubscription = supabase.channel(`ticket_chat_${ticketId}`, {
+            config: {
+                broadcast: { self: true },
+                presence: { key: currentUser?.id }
+            }
+        })
         .on('postgres_changes', { 
             event: 'INSERT', 
             schema: 'public', 
-            table: 'ticket_messages'
+            table: 'ticket_messages',
+            filter: `ticket_id=eq.${ticketId}`
         }, (payload) => {
-            if (String(payload.new.ticket_id) === String(ticketId)) {
-                handleNewSupportMessage(payload.new);
-            }
+            handleNewSupportMessage(payload.new);
         })
         .on('broadcast', { event: 'new_message' }, (payload) => {
-            if (payload.payload && String(payload.payload.ticket_id) === String(ticketId)) {
+            if (payload.payload) {
                 handleNewSupportMessage(payload.payload);
             }
         })
-        .subscribe((status) => {
-            console.log(`Realtime Support ${ticketId} Status:`, status);
+        .subscribe(async (status) => {
+            if (status === 'SUBSCRIBED') {
+                console.log('⚡ Conexão Ultrarrápida Ativada');
+            }
         });
 
         function handleNewSupportMessage(newMessage) {
             if (!newMessage || !newMessage.id) return;
+            // Evita duplicatas mas processa na velocidade da luz
             if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
             const currentUserId = currentUser ? currentUser.id : null;
-            const isMe = newMessage.sender_id === currentUserId;
+            const isMe = String(newMessage.sender_id) === String(currentUserId);
             const msgFromAdmin = newMessage.is_support;
-            const time = new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+            const time = new Date(newMessage.created_at || new Date()).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
 
             const msgElement = document.createElement('div');
             msgElement.setAttribute('data-msg-id', newMessage.id);
 
             if (isMe) {
-                // Estilo Antigo (Bolha simples)
                 msgElement.className = 'message sent';
                 msgElement.innerHTML = `
                     ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
@@ -288,7 +294,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <span class="message-time">${time}</span>
                 `;
             } else {
-                // Estilo Novo (Com Avatar e Nome)
                 let senderName = msgFromAdmin ? "Suporte GalaxyBuxx" : "Cliente";
                 let avatarUrl = msgFromAdmin 
                     ? `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`
@@ -316,48 +321,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             if (chatMessages) {
                 chatMessages.appendChild(msgElement);
-                // Usar requestAnimationFrame para scroll suave sem travar a UI thread
                 requestAnimationFrame(() => {
                     chatMessages.scrollTop = chatMessages.scrollHeight;
                 });
                 
-                // Notificação sonora apenas se não for minha própria mensagem (evita lag ao enviar)
                 if (!isMe) {
                     try {
                         const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3');
-                        audio.volume = 0.5;
+                        audio.volume = 0.4;
                         audio.play().catch(() => {});
                     } catch(e) {}
                 }
             }
         }
 
-        // Fallback redundante mais leve para mobile (5s)
+        // Fallback de polling reduzido para 2s (seguro e rápido)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
         window.ticketChatFallback = setInterval(async () => {
-            if (!currentTicket || String(currentTicket.id) !== String(ticketId)) {
-                clearInterval(window.ticketChatFallback);
-                return;
+            if (!currentTicket) return;
+            const { data } = await supabase.from('ticket_messages')
+                .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
+                .eq('ticket_id', ticketId)
+                .order('created_at', { ascending: false }).limit(1);
+            if (data?.[0] && !document.querySelector(`[data-msg-id="${data[0].id}"]`)) {
+                handleNewSupportMessage(data[0]);
             }
-
-            try {
-                const { data: lastMsgs } = await supabase
-                    .from('ticket_messages')
-                    .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
-                    .eq('ticket_id', ticketId)
-                    .order('created_at', { ascending: false })
-                    .limit(1);
-                
-                if (lastMsgs && lastMsgs.length > 0) {
-                    const lastMsg = lastMsgs[0];
-                    if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
-                        handleNewSupportMessage(lastMsg);
-                    }
-                }
-            } catch (e) {
-                console.warn('Polling status:', e.message);
-            }
-        }, 5000);
+        }, 2000);
     }
 
     // Enviar Mensagem
