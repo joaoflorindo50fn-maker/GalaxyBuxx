@@ -405,84 +405,209 @@ font-size:12px;
   .catalog-container {
     margin-top: 80px;
     padding: 0 15px;
+    gap: 20px;
   }
 
   .categories-sidebar {
-    padding: 15px;
+    padding: 10px 5px;
     overflow-x: auto;
     white-space: nowrap;
     display: flex;
-    gap: 10px;
+    gap: 8px;
     background: transparent;
     border: none;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 90px;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(0,0,0,0.8);
+    border-radius: 0;
+    margin: 0 -15px 20px;
+    padding: 15px;
+    scrollbar-width: none;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .categories-sidebar::-webkit-scrollbar {
+    display: none;
   }
 
   .categories-title {
-    display: none; /* Hide title to save space for horizontal list */
+    display: none;
   }
 
   .category-item {
     display: inline-flex;
     margin-bottom: 0;
-    padding: 10px 16px;
-    font-size: 12px;
+    padding: 8px 16px;
+    font-size: 11px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    flex-shrink: 0;
+    border-radius: 50px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .category-item.active {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+  }
+
+  .category-item svg {
+    width: 14px;
+    height: 14px;
   }
 
   .featured {
     padding: 30px 20px;
     min-height: auto;
-    border-radius: 30px;
+    border-radius: 24px;
+    gap: 20px;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 1) 0%, rgba(10, 10, 10, 1) 100%);
+    border: 1px solid rgba(255,255,255,0.1);
+    flex-direction: column !important;
+    text-align: center;
   }
 
   .featured-image {
-    width: 200px;
-    height: 200px;
-    margin-left: 0;
+    width: 100% !important;
+    max-width: 250px;
+    height: 200px !important;
+    margin: 0 auto !important;
+    border-radius: 20px;
+    background: transparent;
+  }
+
+  .featured-info {
+    width: 100%;
   }
 
   .featured-info h1 {
     font-size: 32px;
+    line-height: 1.1;
+    margin-bottom: 15px;
   }
 
   .featured-info p {
-    font-size: 15px;
-    margin-bottom: 30px;
+    font-size: 14px;
+    margin-bottom: 25px;
+    opacity: 0.7;
+    max-width: 100%;
+  }
+
+  .featured-badges {
+    justify-content: center;
+    margin-bottom: 20px;
   }
 
   .featured-actions {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btn-pill-white {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 24px;
+    font-size: 14px;
+    border-radius: 14px;
+  }
+
+  .price-box {
+    align-items: center;
+    margin-bottom: 20px;
   }
 
   .price-value {
     font-size: 28px;
+    justify-content: center;
   }
 
   .gp-extreme-section__title {
-    font-size: 28px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin: 40px 0 20px;
+    text-align: center;
   }
 
   .gp-extreme-grid {
-    gap: 15px 10px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0 5px;
   }
 
   .gp-extreme-card {
     height: auto;
+    border-radius: 16px;
+    max-width: none;
+    border-width: 1px;
+    background: #0a0a0a;
   }
 
   .gp-extreme-card__img {
-    height: 140px;
+    height: 130px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .gp-extreme-card__title {
+    font-size: 12px;
+    padding: 12px 8px;
+    min-height: 54px;
+    line-height: 1.3;
   }
 }
 
 @media (max-width: 480px) {
-  .gp-extreme-grid {
-    grid-template-columns: 1fr;
+  .catalog-container {
+    margin-top: 70px;
+    padding: 0 10px;
   }
-  
+
+  .categories-sidebar {
+    top: 85px;
+    margin: 0 -10px 15px;
+  }
+
   .featured-image {
-    width: 150px;
-    height: 150px;
+    height: 160px !important;
+  }
+
+  .featured-info h1 {
+    font-size: 26px;
+  }
+
+  .gp-extreme-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .gp-extreme-card__img {
+    height: 110px;
+  }
+
+  .gp-extreme-card__title {
+    font-size: 11px;
+    padding: 10px 6px;
+  }
+
+  footer {
+    padding: 40px 20px;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .footer-column {
+    max-width: 100% !important;
+    margin: 0 !important;
+    width: 100%;
+  }
+
+  .footer-column h4 {
+    margin-top: 20px;
   }
 }

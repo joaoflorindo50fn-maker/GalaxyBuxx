@@ -266,6 +266,77 @@
     z-index: 2000;
   }
 
+  .chat-header {
+    padding: 15px !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+
+  .btn-back-to-list {
+    width: 35px !important;
+    height: 35px !important;
+  }
+
+  .chat-info {
+    min-width: 0;
+  }
+
+  .chat-info h3 {
+    font-size: 14px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chat-status-badge {
+    padding: 4px 10px !important;
+    font-size: 10px !important;
+    order: 3;
+  }
+
+  .btn-close-ticket {
+    margin-left: auto !important;
+    padding: 8px 12px !important;
+    font-size: 10px !important;
+    order: 4;
+    white-space: nowrap;
+    width: auto;
+    min-width: fit-content;
+  }
+
+  @media (max-width: 400px) {
+    .btn-close-ticket {
+      padding: 8px !important;
+    }
+    .btn-close-ticket {
+      font-size: 0 !important;
+    }
+    .btn-close-ticket i {
+      font-size: 16px !important;
+      margin: 0 !important;
+    }
+  }
+
+  .ticket-item {
+    padding: 15px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 15px !important;
+  }
+
+  .ticket-item-info {
+    width: 100% !important;
+  }
+
+  .ticket-status {
+    align-self: flex-start !important;
+  }
+
+  .support-form {
+    grid-template-columns: 1fr !important;
+    gap: 15px !important;
+  }
+
   .chat-messages {
     height: calc(100% - 130px) !important;
     padding: 15px !important;
