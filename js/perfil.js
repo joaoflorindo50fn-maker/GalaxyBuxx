@@ -634,17 +634,56 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!messagesDiv) return;
 
             const isMe = newMessage.sender_id === user.id;
-
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `chat-message ${newMessage.is_support ? 'admin' : 'customer'}`;
-            msgDiv.setAttribute('data-chat-msg-id', newMessage.id);
-            msgDiv.innerHTML = `
-                ${newMessage.message}
-                <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-            `;
+            const time = new Date(newMessage.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             
-            messagesDiv.appendChild(msgDiv);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            const msgElement = document.createElement('div');
+            msgElement.setAttribute('data-chat-msg-id', newMessage.id);
+
+            if (isMe) {
+                // Estilo Clássico (Balão Branco)
+                msgElement.className = 'message sent';
+                msgElement.style.alignSelf = 'flex-end'; // Garantir que vai pra direita no admin
+                msgElement.innerHTML = `
+                    ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                    ${newMessage.attachment_url ? `
+                        <div class="message-attachment">
+                            <img src="${newMessage.attachment_url}" alt="Anexo" onclick="openLightbox('${newMessage.attachment_url}')">
+                        </div>
+                    ` : ''}
+                    <span class="message-time">${time}</span>
+                `;
+            } else {
+                // Estilo Oposto (Avatar + Nome)
+                const msgFromAdmin = newMessage.is_support;
+                let senderName = msgFromAdmin ? "Suporte GalaxyBuxx" : "Cliente";
+                let avatarUrl = msgFromAdmin 
+                    ? `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`
+                    : `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+
+                msgElement.className = `message-wrapper theirs ${msgFromAdmin ? 'admin-msg' : ''}`;
+                msgElement.innerHTML = `
+                    <div class="message-avatar">
+                        <img src="${avatarUrl}" alt="Avatar">
+                    </div>
+                    <div class="message-bundle">
+                        <span class="message-sender-name">${senderName}</span>
+                        <div class="message-bubble">
+                            ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                            ${newMessage.attachment_url ? `
+                                <div class="message-attachment">
+                                    <img src="${newMessage.attachment_url}" alt="Anexo" onclick="openLightbox('${newMessage.attachment_url}')">
+                                </div>
+                            ` : ''}
+                        </div>
+                        <span class="message-time-new">${time}</span>
+                    </div>
+                `;
+            }
+
+            messagesDiv.appendChild(msgElement);
+            requestAnimationFrame(() => {
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            });
 
             if (!isMe) {
                 try {
@@ -684,130 +723,143 @@ document.addEventListener('DOMContentLoaded', async () => {
             .order('created_at', { ascending: true });
 
         if (!error && messages) {
-            messagesDiv.innerHTML = messages.map(msg => `
-                <div class="chat-message ${msg.is_support ? 'admin' : 'customer'}" data-chat-msg-id="${msg.id}">
-                    ${msg.message}
-                    <span class="message-time">${new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                </div>
-            `).join('');
+            const { data: { user } } = await supabase.auth.getUser();
+            messagesDiv.innerHTML = messages.map(msg => {
+                const isMe = msg.sender_id === user?.id;
+                const time = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                if (isMe) {
+                    return `
+                        <div class="message sent" style="align-self: flex-end;" data-chat-msg-id="${msg.id}">
+                            <div class="message-bubble">
+                                ${msg.message ? `<p>${msg.message}</p>` : ''}
+                                ${msg.attachment_url ? `
+                                    <div class="message-attachment">
+                                        <img src="${msg.attachment_url}" alt="Anexo" onclick="openLightbox('${msg.attachment_url}')">
+                                    </div>
+                                ` : ''}
+                            </div>
+                            <span class="message-time">${time}</span>
+                        </div>
+                    `;
+                } else {
+                    const msgFromAdmin = msg.is_support;
+                    let senderName = msgFromAdmin ? "Suporte GalaxyBuxx" : "Cliente";
+                    let avatarUrl = msgFromAdmin 
+                        ? `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`
+                        : `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+
+                    return `
+                        <div class="message-wrapper theirs ${msgFromAdmin ? 'admin-msg' : ''}" data-chat-msg-id="${msg.id}">
+                            <div class="message-avatar">
+                                <img src="${avatarUrl}" alt="Avatar">
+                            </div>
+                            <div class="message-bundle">
+                                <span class="message-sender-name">${senderName}</span>
+                                <div class="message-bubble">
+                                    ${msg.message ? `<p>${msg.message}</p>` : ''}
+                                    ${msg.attachment_url ? `
+                                        <div class="message-attachment">
+                                            <img src="${msg.attachment_url}" alt="Anexo" onclick="openLightbox('${msg.attachment_url}')">
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <span class="message-time-new">${time}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
             
-            // Scroll to bottom
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            requestAnimationFrame(() => {
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            });
         }
     }
 
-    // Ticket Status Confirmation Logic
-    const confirmOverlay = document.getElementById('confirmOverlay');
-    const confirmYes = document.getElementById('confirmYes');
-    const confirmNo = document.getElementById('confirmNo');
-    let pendingTicketStatus = null;
-
-    window.handleAdminTicketStatusChange = (newStatus) => {
-        if (!currentTicketId) return;
-
-        if (newStatus === 'resolved') {
-            pendingTicketStatus = 'resolved';
-            if (confirmOverlay) confirmOverlay.style.display = 'flex';
-        } else {
-            updateTicketStatus(newStatus);
-        }
-    };
-
-    confirmYes?.addEventListener('click', async () => {
-        if (currentTicketId && pendingTicketStatus) {
-            await updateTicketStatus(pendingTicketStatus);
-            if (confirmOverlay) confirmOverlay.style.display = 'none';
-            pendingTicketStatus = null;
+    // Attach preview for Admin Ticket
+    document.getElementById('adminChatFile')?.addEventListener('change', function() {
+        const icon = document.getElementById('adminAttachIcon');
+        const preview = document.getElementById('adminAttachPreview');
+        if (this.files && this.files.length > 0) {
+            const file = this.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (preview) { preview.src = e.target.result; preview.style.display = 'block'; }
+                if (icon) icon.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
         }
     });
 
-    confirmNo?.addEventListener('click', () => {
-        if (confirmOverlay) confirmOverlay.style.display = 'none';
-        pendingTicketStatus = null;
-    });
-
-    // Update Ticket Status
-    window.updateTicketStatus = async (newStatus) => {
-        if (!currentTicketId) return;
-
-        if (newStatus === 'resolved') {
-            try {
-                const { error } = await supabase
-                    .from('tickets')
-                    .delete()
-                    .eq('id', currentTicketId);
-
-                if (!error) {
-                    showNotification('Ticket resolvido e removido!', 'success');
-                    // Esconder chat e limpar ID
-                    const chatView = document.getElementById('adminTicketChat');
-                    const noSelected = document.getElementById('noTicketSelected');
-                    if (chatView) chatView.classList.add('hidden');
-                    if (noSelected) noSelected.classList.remove('hidden');
-                    
-                    currentTicketId = null;
-                    
-                    // Recarregar a lista após um pequeno delay
-                    setTimeout(() => {
-                        loadAdminTabData('admin-tickets');
-                    }, 300);
-                } else {
-                    console.error('Erro ao deletar ticket:', error);
-                    showNotification('Erro ao remover ticket.', 'error');
-                }
-            } catch (err) {
-                console.error('Erro na operação de delete:', err);
-            }
-            return;
-        }
-
-        const { error } = await supabase
-            .from('tickets')
-            .update({ status: newStatus })
-            .eq('id', currentTicketId);
-
-        if (!error) {
-            showNotification('Status do ticket atualizado!', 'success');
-            loadAdminTabData('admin-tickets'); // Refresh list
-        }
-    };
-
-    // Send Message Form
+    // Send Message Form Admin Ticket
     document.getElementById('adminChatForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
         const input = document.getElementById('adminChatMessageInput');
+        const fileInput = document.getElementById('adminChatFile');
+        const btnSend = document.getElementById('btnSendAdminMessage');
         const message = input.value.trim();
+        const file = fileInput.files[0];
 
-        if (!message || !currentTicketId) return;
+        if ((!message && !file) || !currentTicketId) return;
 
-        const { data: { user } } = await supabase.auth.getUser();
+        if (btnSend) btnSend.disabled = true;
 
-        const { error, data: newMsg } = await supabase
-            .from('ticket_messages')
-            .insert({
-                ticket_id: currentTicketId,
-                sender_id: user.id,
-                message: message,
-                is_support: true
-            })
-            .select()
-            .single();
-
-        if (!error && newMsg) {
-            input.value = '';
+        try {
+            const { data: { user } } = await supabase.auth.getUser();
+            let attachmentUrl = null;
             
-            // Broadcast para latência zero
-            if (ticketMessagesSubscription) {
-                ticketMessagesSubscription.send({
-                    type: 'broadcast',
-                    event: 'new_message',
-                    payload: newMsg
-                });
+            if (file) {
+                const fileExt = file.name.split('.').pop();
+                const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
+                const filePath = `ticket-attachments/${fileName}`;
+
+                const { error: uploadError } = await supabase.storage
+                    .from('tickets-attachments')
+                    .upload(filePath, file);
+
+                if (!uploadError) {
+                    const { data: { publicUrl } } = supabase.storage
+                        .from('tickets-attachments')
+                        .getPublicUrl(filePath);
+                    attachmentUrl = publicUrl;
+                }
             }
 
-            // O handleNewAdminTicketMessage será chamado via broadcast ou postgres_changes
-        } else {
-            alert('Erro ao enviar mensagem: ' + error.message);
+            const { error, data: newMsg } = await supabase
+                .from('ticket_messages')
+                .insert({
+                    ticket_id: currentTicketId,
+                    sender_id: user.id,
+                    message: message,
+                    attachment_url: attachmentUrl,
+                    is_support: true
+                })
+                .select()
+                .single();
+
+            if (!error && newMsg) {
+                input.value = '';
+                fileInput.value = '';
+                const icon = document.getElementById('adminAttachIcon');
+                const preview = document.getElementById('adminAttachPreview');
+                if (icon) icon.style.display = 'block';
+                if (preview) { preview.src = ''; preview.style.display = 'none'; }
+                
+                if (ticketMessagesSubscription) {
+                    ticketMessagesSubscription.send({
+                        type: 'broadcast',
+                        event: 'new_message',
+                        payload: newMsg
+                    });
+                }
+                // Update UI immediately for zero latency
+                handleNewAdminTicketMessage(newMsg);
+            }
+        } catch (err) {
+            console.error('Erro ao enviar msg admin:', err);
+        } finally {
+            if (btnSend) btnSend.disabled = false;
         }
     });
 
