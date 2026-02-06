@@ -515,23 +515,20 @@ function loadEmailJS() {
 
 // Função global para enviar e-mails
 window.sendEmailNotification = async function(params) {
-    console.log("Tentativa de envio de e-mail:", params.type || "GERAL");
+    console.log("Iniciando envio de e-mail:", params.type || "GERAL", params);
     try {
         await loadEmailJS();
         
-        // Garante que o init foi chamado (caso o script já existisse)
-        if (window.emailjs && window.emailjs.init) {
-            emailjs.init({
-                publicKey: EMAILJS_PUBLIC_KEY,
-                blockHeadless: true
-            });
+        // Inicialização dupla para garantir que o v4 do EmailJS pegou a chave
+        if (window.emailjs) {
+            emailjs.init(EMAILJS_PUBLIC_KEY);
         }
 
-        const recipientName = params.to_name || params.customer_name || params.name || "Cliente";
         const recipientEmail = params.to_email || params.email || params.user_email;
+        const recipientName = params.to_name || params.customer_name || params.name || recipientEmail?.split('@')[0] || "Cliente";
 
         if (!recipientEmail) {
-            console.warn("E-mail não enviado: destinatário não identificado.");
+            console.error("ERRO: E-mail não enviado: destinatário não identificado.");
             return false;
         }
 
@@ -547,16 +544,18 @@ window.sendEmailNotification = async function(params) {
             ...params
         };
 
+        console.log("Enviando parâmetros para EmailJS:", emailParams);
+
         const result = await emailjs.send(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
             emailParams
         );
 
-        console.log("Resultado EmailJS:", result.status === 200 ? "SUCESSO" : "FALHA", result.text);
+        console.log("✅ Resultado EmailJS:", result.status === 200 ? "SUCESSO" : "FALHA", result.text);
         return true;
     } catch (error) {
-        console.error("Erro no sistema de e-mail:", error);
+        console.error("❌ Erro crítico no sistema de e-mail:", error);
         return false;
     }
 };
