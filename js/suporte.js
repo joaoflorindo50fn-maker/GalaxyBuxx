@@ -26,6 +26,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     let currentTicket = null;
     let messageSubscription = null;
+    let currentUser = null;
+    const adminNamesCache = {};
 
     // Inicializar o Supabase
     const supabase = window.supabaseClient || (window.getSupabase ? window.getSupabase() : null);
@@ -39,16 +41,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Pre-preencher campos se logado
     async function prefillUserInfo() {
         const { data: { user } } = await supabase.auth.getUser();
-        if (user && supportForm) {
-            const nameInput = supportForm.querySelector('input[name="name"]');
-            const emailInput = supportForm.querySelector('input[name="email"]');
-            
-            if (nameInput) {
-                const metadata = user.user_metadata || {};
-                nameInput.value = metadata.full_name || metadata.username || metadata.name || user.email.split('@')[0];
-            }
-            if (emailInput) {
-                emailInput.value = user.email;
+        if (user) {
+            currentUser = user;
+            if (supportForm) {
+                const nameInput = supportForm.querySelector('input[name="name"]');
+                const emailInput = supportForm.querySelector('input[name="email"]');
+                
+                if (nameInput) {
+                    const metadata = user.user_metadata || {};
+                    nameInput.value = metadata.full_name || metadata.username || metadata.name || user.email.split('@')[0];
+                }
+                if (emailInput) {
+                    emailInput.value = user.email;
+                }
             }
         }
     }
@@ -121,6 +126,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Chat Logic
+    function closeChatUI() {
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        if (messageSubscription) {
+            supabase.removeChannel(messageSubscription);
+            messageSubscription = null;
+        }
+        if (window.ticketChatFallback) {
+            clearInterval(window.ticketChatFallback);
+            window.ticketChatFallback = null;
+        }
+        currentTicket = null;
+    }
+
     async function openChat(ticket) {
         currentTicket = ticket;
         
@@ -133,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Switch View
         views.forEach(v => v.classList.remove('active'));
         chatTicketView.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent background scroll
+        document.body.style.overflow = 'hidden'; 
         document.documentElement.style.overflow = 'hidden';
         
         // Load Messages
@@ -165,20 +184,50 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     function renderMessages(messages) {
         if (!chatMessages) return;
+        
+        const currentUserId = currentUser ? currentUser.id : null;
 
-        let html = messages.map(msg => `
-            <div class="message ${msg.is_support ? 'support' : 'user'}" data-msg-id="${msg.id}">
-                <div class="message-bubble">
-                    ${msg.message || ''}
-                    ${msg.attachment_url ? `
-                        <div class="message-attachment">
-                            <img src="${msg.attachment_url}" alt="Anexo" onclick="window.open('${msg.attachment_url}', '_blank')">
+        let html = messages.map(msg => {
+            const isMe = msg.sender_id === currentUserId;
+            const msgFromAdmin = msg.is_support;
+            
+            let senderName = "";
+            let avatarUrl = "";
+
+            if (msgFromAdmin) {
+                senderName = "Suporte GalaxyBuxx";
+                avatarUrl = `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`;
+            } else {
+                senderName = "Cliente";
+                if (isMe && currentUser && currentUser.user_metadata) {
+                    avatarUrl = currentUser.user_metadata.avatar_url || `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+                } else {
+                    avatarUrl = `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+                }
+            }
+
+            const time = new Date(msg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+            return `
+                <div class="message-wrapper ${isMe ? 'mine' : 'theirs'} ${msgFromAdmin ? 'admin-msg' : ''}" data-msg-id="${msg.id}">
+                    <div class="message-avatar">
+                        <img src="${avatarUrl}" alt="Avatar">
+                    </div>
+                    <div class="message-bundle">
+                        <span class="message-sender-name">${senderName}</span>
+                        <div class="message-bubble">
+                            ${msg.message ? `<p>${msg.message}</p>` : ''}
+                            ${msg.attachment_url ? `
+                                <div class="message-attachment">
+                                    <img src="${msg.attachment_url}" alt="Anexo" onclick="window.open('${msg.attachment_url}', '_blank')">
+                                </div>
+                            ` : ''}
                         </div>
-                    ` : ''}
+                        <span class="message-time-new">${time}</span>
+                    </div>
                 </div>
-                <span class="message-time">${new Date(msg.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         chatMessages.innerHTML = html;
         chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -218,20 +267,50 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (!newMessage || !newMessage.id) return;
             if (document.querySelector(`[data-msg-id="${newMessage.id}"]`)) return;
 
-            // Renderizar nova mensagem
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `message ${newMessage.is_support ? 'support' : 'user'}`;
-            msgDiv.setAttribute('data-msg-id', newMessage.id);
-            msgDiv.innerHTML = `
-                <div class="message-bubble">
-                    ${newMessage.message || ''}
-                    ${newMessage.attachment_url ? `<div class="message-attachment"><img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')"></div>` : ''}
+            const currentUserId = currentUser ? currentUser.id : null;
+            const isMe = newMessage.sender_id === currentUserId;
+            const msgFromAdmin = newMessage.is_support;
+            
+            let senderName = "";
+            let avatarUrl = "";
+
+            if (msgFromAdmin) {
+                senderName = "Suporte GalaxyBuxx";
+                avatarUrl = `https://ui-avatars.com/api/?name=S&background=00d2ff&color=fff`;
+            } else {
+                senderName = "Cliente";
+                if (isMe && currentUser && currentUser.user_metadata) {
+                    avatarUrl = currentUser.user_metadata.avatar_url || `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+                } else {
+                    avatarUrl = `https://ui-avatars.com/api/?name=C&background=111&color=fff`;
+                }
+            }
+
+            const time = new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'});
+
+            const msgWrapper = document.createElement('div');
+            msgWrapper.className = `message-wrapper ${isMe ? 'mine' : 'theirs'} ${msgFromAdmin ? 'admin-msg' : ''}`;
+            msgWrapper.setAttribute('data-msg-id', newMessage.id);
+            msgWrapper.innerHTML = `
+                <div class="message-avatar">
+                    <img src="${avatarUrl}" alt="Avatar">
                 </div>
-                <span class="message-time">${new Date(newMessage.created_at).toLocaleTimeString('pt-BR', {hour: '2-digit', minute:'2-digit'})}</span>
+                <div class="message-bundle">
+                    <span class="message-sender-name">${senderName}</span>
+                    <div class="message-bubble">
+                        ${newMessage.message ? `<p>${newMessage.message}</p>` : ''}
+                        ${newMessage.attachment_url ? `
+                            <div class="message-attachment">
+                                <img src="${newMessage.attachment_url}" alt="Anexo" onclick="window.open('${newMessage.attachment_url}', '_blank')">
+                            </div>
+                        ` : ''}
+                    </div>
+                    <span class="message-time-new">${time}</span>
+                </div>
             `;
             
             if (chatMessages) {
-                chatMessages.appendChild(msgDiv);
+                chatMessages.appendChild(msgWrapper);
                 chatMessages.scrollTop = chatMessages.scrollHeight;
                 
                 try {
@@ -241,27 +320,32 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        // Fallback redundante agressivo (500ms)
+        // Fallback redundante menos agressivo (3s)
         if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
         window.ticketChatFallback = setInterval(async () => {
             if (currentTicket && String(currentTicket.id) === String(ticketId)) {
-                const { data: lastMsgs } = await supabase
-                    .from('ticket_messages')
-                    .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
-                    .eq('ticket_id', ticketId)
-                    .order('created_at', { ascending: false })
-                    .limit(1);
-                
-                if (lastMsgs && lastMsgs.length > 0) {
-                    const lastMsg = lastMsgs[0];
-                    if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
-                        handleNewSupportMessage(lastMsg);
+                try {
+                    const { data: lastMsgs } = await supabase
+                        .from('ticket_messages')
+                        .select('id, ticket_id, sender_id, message, attachment_url, is_support, created_at')
+                        .eq('ticket_id', ticketId)
+                        .order('created_at', { ascending: false })
+                        .limit(1);
+                    
+                    if (lastMsgs && lastMsgs.length > 0) {
+                        const lastMsg = lastMsgs[0];
+                        if (!document.querySelector(`[data-msg-id="${lastMsg.id}"]`)) {
+                            handleNewSupportMessage(lastMsg);
+                        }
                     }
+                } catch (e) {
+                    console.warn('Polling error:', e);
                 }
             } else {
                 clearInterval(window.ticketChatFallback);
+                window.ticketChatFallback = null;
             }
-        }, 500);
+        }, 3000);
     }
 
     // Enviar Mensagem
@@ -395,13 +479,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (backToList) {
         backToList.onclick = () => {
-            if (messageSubscription) {
-                supabase.removeChannel(messageSubscription);
-                messageSubscription = null;
-            }
+            closeChatUI();
             views.forEach(v => v.classList.remove('active'));
             document.getElementById('listTicketView').classList.add('active');
-            currentTicket = null;
         };
     }
 
@@ -440,7 +520,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 showNotification('Ticket fechado e removido com sucesso!', 'success');
                 
                 // Limpar o estado do ticket atual
-                currentTicket = null;
+                closeChatUI();
 
                 // Voltar para a lista manualmente para garantir a ordem das operações
                 views.forEach(v => v.classList.remove('active'));
@@ -554,10 +634,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const viewType = item.getAttribute('data-view');
             const viewId = viewType + 'TicketView';
             
-            if (messageSubscription) {
-                supabase.removeChannel(messageSubscription);
-                messageSubscription = null;
-            }
+            closeChatUI();
 
             navItems.forEach(i => i.classList.remove('active'));
             views.forEach(v => v.classList.remove('active'));
