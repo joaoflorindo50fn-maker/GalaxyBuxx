@@ -503,20 +503,41 @@ async function initEmailJS() {
 // Função Global de Envio
 window.sendEmailNotification = async function(params) {
     try {
-        console.log("📤 Tentando enviar e-mail...", params.subject);
+        const type = params.type || "notification"; // 'order', 'ticket', 'status_update', 'chat_reply'
+        console.log(`📤 Enviando e-mail [${type}]...`, params.subject);
         await initEmailJS();
 
-        // Template Params - Use esses nomes no seu template do EmailJS:
-        // {{to_name}}, {{to_email}}, {{subject}}, {{message}}, {{order_id}}, {{product_name}}
+        // Template Params - Enriquecidos para layout profissional
         const templateParams = {
+            // Informações Básicas
             to_name: params.to_name || "Cliente",
             to_email: params.to_email || params.email,
             subject: params.subject || "Notificação GalaxyBuxx",
             message: params.message || "",
-            description: params.description || "",
-            order_id: params.order_id || "N/A",
+            
+            // Contexto e Tipo
+            email_type: type,
+            is_order: type.includes('order') || type.includes('status'),
+            is_ticket: type.includes('ticket'),
+            
+            // Detalhes do Pedido (se houver)
+            order_id: params.order_id ? params.order_id.substring(0, 8).toUpperCase() : "N/A",
             product_name: params.product_name || "N/A",
-            site_name: "GalaxyBuxx"
+            product_value: params.product_value || "0,00",
+            product_qty: params.product_qty || "1",
+            order_status: params.order_status || "Pendente",
+            payment_method: params.payment_method || "Pix",
+            
+            // Detalhes do Ticket (se houver)
+            ticket_id: params.ticket_id ? params.ticket_id.substring(0, 8).toUpperCase() : "N/A",
+            ticket_subject: params.ticket_subject || "Suporte",
+            ticket_status: params.ticket_status || "Aberto",
+            
+            // Rodapé e Branding
+            site_url: window.location.origin,
+            site_name: "GalaxyBuxx",
+            current_year: new Date().getFullYear(),
+            description: params.description || ""
         };
 
         const response = await emailjs.send(
@@ -529,11 +550,6 @@ window.sendEmailNotification = async function(params) {
         return true;
     } catch (error) {
         console.error("❌ Erro no EmailJS:", error);
-        
-        if (error.status === 404) {
-            console.error("ERRO 404: Conta, Serviço ou Template não encontrado!");
-            console.error("Verifique se o SERVICE_ID e TEMPLATE_ID estão corretos.");
-        }
         return false;
     }
 };

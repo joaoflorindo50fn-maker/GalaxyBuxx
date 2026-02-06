@@ -580,11 +580,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (error) throw error;
 
                 // Enviar e-mail de confirmação
-                const tid = data[0].id.substring(0, 8).toUpperCase();
+                const tid = data[0].id;
                 window.sendEmailNotification({
+                    type: 'ticket_created',
                     to_email: ticketData.email,
                     to_name: ticketData.name,
-                    subject: `Ticket de Suporte Aberto [#${tid}]`,
+                    ticket_id: tid,
+                    ticket_subject: ticketData.subject,
+                    subject: `Ticket de Suporte Aberto [#${tid.substring(0, 8).toUpperCase()}]`,
                     description: "Recebemos seu chamado! Nossa equipe analisará sua solicitação em breve.",
                     message: ticketData.message
                 });

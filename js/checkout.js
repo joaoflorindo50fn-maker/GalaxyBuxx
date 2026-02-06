@@ -98,12 +98,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Enviar e-mail de confirmação
             window.sendEmailNotification({
+                type: 'order_created',
                 to_email: user.email,
                 to_name: `${firstName} ${lastName}`,
-                order_id: order.id.substring(0, 8).toUpperCase(),
-                subject: `Pedido Recebido! #${order.id.substring(0, 8).toUpperCase()}`,
-                description: "Seu pedido foi criado e estamos aguardando o pagamento via Pix.",
-                product_name: order.product_name
+                order_id: order.id,
+                subject: `Pedido Confirmado! [#${order.id.substring(0, 8).toUpperCase()}]`,
+                product_name: order.product_name,
+                product_value: order.total_price.toFixed(2).replace('.', ','),
+                product_qty: order.quantity,
+                payment_method: "Pix",
+                description: "Seu pedido foi recebido e está aguardando o pagamento via Pix."
             });
 
             showPaymentOverlay(order);

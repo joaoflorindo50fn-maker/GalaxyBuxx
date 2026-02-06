@@ -846,6 +846,23 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (icon) icon.style.display = 'block';
                 if (preview) { preview.src = ''; preview.style.display = 'none'; }
                 
+                // Notificar usuário por e-mail
+                try {
+                    const { data: ticket } = await supabase.from('tickets').select('*').eq('id', currentTicketId).single();
+                    if (ticket && ticket.email) {
+                        window.sendEmailNotification({
+                            type: 'ticket_reply',
+                            to_email: ticket.email,
+                            to_name: ticket.name,
+                            ticket_id: currentTicketId,
+                            ticket_subject: ticket.subject,
+                            subject: `Resposta do Suporte [#${currentTicketId.substring(0, 8).toUpperCase()}]`,
+                            description: "Nossa equipe de suporte acabou de responder ao seu chamado.",
+                            message: message
+                        });
+                    }
+                } catch (e) { console.error("Erro ao notificar resposta de ticket:", e); }
+
                 if (ticketMessagesSubscription) {
                     ticketMessagesSubscription.send({
                         type: 'broadcast',
@@ -891,9 +908,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
                 
                 window.sendEmailNotification({
+                    type: 'order_status_update',
                     to_email: targetEmail,
                     to_name: orderData.customer_name,
-                    subject: `Status Atualizado: ${newStatus} [#${orderId.substring(0, 8).toUpperCase()}]`,
+                    order_id: orderId,
+                    order_status: newStatus,
+                    product_name: orderData.product_name,
+                    subject: `Status do Pedido: ${newStatus} [#${orderId.substring(0, 8).toUpperCase()}]`,
                     description: `O status do seu pedido foi atualizado para: **${newStatus}**.`
                 });
             }
@@ -1062,7 +1083,42 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     window.cancelOrder = async (orderId) => {
-        if (!confirm('Tem certeza que deseja cancelar este pedido?')) return;
+        const modal = document.getElementById('cancelOrderModal');
+        const confirmBtn = document.getElementById('confirmCancelOrder');
+        const closeBtn = document.getElementById('closeCancelModal');
+
+        if (!modal || !confirmBtn || !closeBtn) {
+            if (!confirm('Tem certeza que deseja cancelar este pedido?')) return;
+        } else {
+            // Show custom modal
+            modal.style.display = 'flex';
+
+            const result = await new Promise((resolve) => {
+                const onConfirm = () => {
+                    cleanup();
+                    resolve(true);
+                };
+                const onCancel = () => {
+                    cleanup();
+                    resolve(false);
+                };
+                const cleanup = () => {
+                    confirmBtn.removeEventListener('click', onConfirm);
+                    closeBtn.removeEventListener('click', onCancel);
+                    modal.style.display = 'none';
+                };
+
+                confirmBtn.addEventListener('click', onConfirm);
+                closeBtn.addEventListener('click', onCancel);
+                
+                // Also close on click outside
+                modal.onclick = (e) => {
+                    if (e.target === modal) onCancel();
+                };
+            });
+
+            if (!result) return;
+        }
 
         try {
             const { error } = await supabase
@@ -1382,6 +1438,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .single();
 
             if (error) throw error;
+
+            // Notificar usuário se for resposta do suporte
+            if (currentUserIsAdmin) {
+                try {
+                    const { data: order } = await supabase.from('orders').select('*').eq('id', currentOrderId).single();
+                    if (order) {
+                        let targetEmail = order.customer_contact;
+                        if (order.user_id) {
+                            const { data: ud } = await supabase.from('users').select('email').eq('id', order.user_id).single();
+                            if (ud?.email) targetEmail = ud.email;
+                        }
+
+                        window.sendEmailNotification({
+                            type: 'order_chat_reply',
+                            to_email: targetEmail,
+                            to_name: order.customer_name,
+                            order_id: currentOrderId,
+                            product_name: order.product_name,
+                            subject: `Nova mensagem no Pedido [#${currentOrderId.substring(0, 8).toUpperCase()}]`,
+                            description: "O suporte enviou uma nova mensagem no chat do seu pedido.",
+                            message: message
+                        });
+                    }
+                } catch (e) { console.error("Erro ao notificar resposta de chat de pedido:", e); }
+            }
 
             // Enviar via Broadcast para latência 0 (0.1ms)
             if (orderMessagesSubscription) {
