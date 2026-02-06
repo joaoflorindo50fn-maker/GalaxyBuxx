@@ -1084,13 +1084,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (isMe) {
                 senderName = "Você";
                 const meta = user.user_metadata || {};
-                avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=222&color=fff`;
+                avatarUrl = meta.avatar_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=111&color=fff`;
             } else if (msgFromAdmin) {
                 senderName = "Admin";
-                avatarUrl = `https://ui-avatars.com/api/?name=Admin&background=007bff&color=fff`;
+                avatarUrl = `https://ui-avatars.com/api/?name=Admin&background=fff&color=000`;
             } else {
-                senderName = "Cliente";
-                avatarUrl = `https://ui-avatars.com/api/?name=C&background=222&color=fff`;
+                senderName = "Vendedor"; // Or Cliente depending on who is viewing
+                avatarUrl = `https://ui-avatars.com/api/?name=V&background=222&color=fff`;
             }
 
             const time = new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

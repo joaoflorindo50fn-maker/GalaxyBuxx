@@ -1434,7 +1434,7 @@ input:checked + .slider:before {
 
 .order-card-admin-new:hover {
     background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(50, 188, 173, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
@@ -1455,7 +1455,7 @@ input:checked + .slider:before {
 
 .admin-customer-info i {
     font-size: 1.2rem;
-    color: #32bcad;
+    color: #fff;
     opacity: 0.8;
 }
 
@@ -1491,8 +1491,8 @@ input:checked + .slider:before {
 }
 
 .admin-order-id {
-    background: rgba(50, 188, 173, 0.1);
-    color: #32bcad;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
     padding: 6px 12px;
     border-radius: 8px;
     font-weight: 800;
@@ -1511,7 +1511,8 @@ input:checked + .slider:before {
 }
 
 .admin-product-name-new:hover {
-    color: #32bcad;
+    color: #fff;
+    text-decoration: underline;
 }
 
 .admin-product-qty {
@@ -1579,12 +1580,12 @@ input:checked + .slider:before {
 }
 
 .status-select-admin-new:hover {
-    border-color: rgba(50, 188, 173, 0.5);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .btn-admin-chat-new {
-    background: #32bcad;
-    color: #fff;
+    background: #fff;
+    color: #000;
     padding: 10px 20px;
     border-radius: 12px;
     font-weight: 700;
@@ -1599,7 +1600,7 @@ input:checked + .slider:before {
 
 .btn-admin-chat-new:hover {
     transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(50, 188, 173, 0.3);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -1782,9 +1783,9 @@ input:checked + .slider:before {
 
 /* Beautified Table Action Button */
 .btn-action-table {
-    background: rgba(50, 188, 173, 0.05);
-    border: 1px solid rgba(50, 188, 173, 0.2);
-    color: #32bcad;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
     padding: 10px 20px;
     border-radius: 14px;
     font-size: 0.85rem;
@@ -1807,11 +1808,11 @@ input:checked + .slider:before {
 }
 
 .btn-action-table:hover:not(.disabled) {
-    background: #32bcad;
+    background: #fff;
     color: #000;
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(50, 188, 173, 0.4);
-    border-color: #32bcad;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    border-color: #fff;
 }
 
 .btn-action-table:hover i {
@@ -1871,18 +1872,25 @@ input:checked + .slider:before {
 }
 
 .close-modal {
-    background: transparent;
+    background: rgba(255, 255, 255, 0.05);
     border: none;
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1.4rem;
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
-    z-index: 20;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .close-modal:hover {
     color: #fff;
+    background: rgba(255, 255, 255, 0.1);
     transform: rotate(90deg);
 }
 
@@ -1894,7 +1902,7 @@ input:checked + .slider:before {
 
 .order-chat-header i {
     font-size: 1.5rem;
-    color: #32bcad;
+    color: #fff;
 }
 
 .order-chat-header h3 {
@@ -1953,8 +1961,8 @@ input:checked + .slider:before {
 .order-payment-card i {
     width: 45px;
     height: 45px;
-    background: rgba(50, 188, 173, 0.1);
-    color: #32bcad;
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -1967,8 +1975,8 @@ input:checked + .slider:before {
     border-radius: 8px;
     font-size: 0.75rem;
     font-weight: 700;
-    background: rgba(50, 188, 173, 0.2);
-    color: #32bcad;
+    background: rgba(255, 255, 255, 0.05);
+    color: #888;
     margin-left: auto;
 }
 
@@ -2062,10 +2070,15 @@ input:checked + .slider:before {
 }
 
 .message-sender-name {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #444;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.2);
     margin-bottom: 2px;
+    letter-spacing: 0.3px;
+}
+
+.message-wrapper.theirs .message-sender-name {
+    margin-left: 4px;
 }
 
 .message-wrapper.mine .message-sender-name {
@@ -2090,14 +2103,14 @@ input:checked + .slider:before {
 .message-wrapper.mine .message-bubble {
     background: #1a1a1a;
     color: #fff;
-    border: 1px solid #222;
+    border: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom-right-radius: 4px;
 }
 
 .message-time-new {
-    font-size: 0.7rem;
-    color: #333;
-    margin-top: 2px;
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.15);
+    margin-top: 4px;
 }
 
 .message-wrapper.theirs .message-time-new {
@@ -2195,7 +2208,7 @@ input:checked + .slider:before {
 
 #btnSendOrderMessage {
     background: transparent;
-    color: #32bcad;
+    color: #ffffff;
     border: none;
     font-size: 1.4rem;
     cursor: pointer;
@@ -2204,11 +2217,38 @@ input:checked + .slider:before {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.7;
 }
 
 #btnSendOrderMessage:hover {
     transform: scale(1.1);
     color: #fff;
+    opacity: 1;
+}
+
+/* Status Badges - Monochromatic */
+.order-status-badge {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #888;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.order-status-badge.concluído, .order-status-badge.entregue {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.order-status-badge.aguardando-pagamento {
+    background: rgba(255, 255, 255, 0.02);
+    color: #555;
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
 /* Lightbox Styles */
@@ -2264,52 +2304,71 @@ input:checked + .slider:before {
     
     .order-chat-top-cards {
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
-        padding: 8px 12px;
+        gap: 6px;
+        padding: 6px 10px;
         background: #050505;
+        border-bottom: 1px solid #111;
     }
 
     .order-product-card, .order-payment-card {
-        padding: 8px;
+        padding: 6px;
         gap: 8px;
-        background: #0a0a0a;
-        border: 1px solid #1a1a1a;
+        background: transparent !important;
+        border: none !important;
+        align-items: center;
     }
 
     .order-product-card img {
-        width: 35px;
-        height: 35px;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
     }
 
     .order-payment-card i {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
+        display: none; /* Hide icon to save space */
     }
 
     .order-product-card h4, .order-payment-card h4 {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80px;
     }
 
-    .label {
-        font-size: 0.5rem;
+    .order-product-card .label, .order-payment-card .label {
+        display: none; /* Hide labels on mobile chat top */
     }
 
-    .header-center {
-        display: none;
+    .order-status-badge {
+        padding: 3px 8px !important;
+        font-size: 0.55rem !important;
+        border-radius: 4px !important;
     }
 
-    .order-chat-header {
-        grid-template-columns: 1fr 1fr;
+    .order-chat-messages {
+        height: calc(100vh - 180px) !important; /* Increase space for messages */
+        padding: 15px 10px !important;
+        gap: 15px !important;
     }
 
     .message-wrapper {
-        max-width: 90%;
+        max-width: 95% !important;
     }
 
     .message-avatar img {
-        width: 32px;
-        height: 32px;
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .message-bubble {
+        padding: 8px 12px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .message-sender-name {
+        font-size: 0.65rem !important;
     }
 
     /* User Orders Mobile */
@@ -2590,103 +2649,106 @@ input:checked + .slider:before {
     }
 
     .order-chat-header {
-        padding: 15px 20px !important;
+        padding: 12px 15px !important;
+    }
+
+    .order-chat-header .header-center h3 {
+        font-size: 0.9rem !important;
+    }
+
+    .order-chat-header .header-left i, 
+    .order-chat-header .header-left h3,
+    .order-chat-header .header-left p {
+        display: none; /* Hide order ID/icon on mobile header to save space */
+    }
+
+    .order-chat-header .problem-report {
+        font-size: 0.7rem !important;
+        padding: 6px 10px !important;
     }
 
     .order-chat-top-cards {
-        padding: 10px !important;
+        padding: 8px 12px !important;
         gap: 8px !important;
-        grid-template-columns: 1fr 1fr !important;
+        grid-template-columns: 1.2fr 1fr !important; /* Product gets more space */
+        background: rgba(255, 255, 255, 0.02) !important;
     }
 
     .order-product-card, .order-payment-card {
         padding: 8px !important;
-        flex-direction: column;
-        text-align: center;
-        gap: 5px !important;
+        flex-direction: row !important; /* Force horizontal */
+        text-align: left !important;
+        gap: 8px !important;
+        background: rgba(255, 255, 255, 0.03) !important;
+        border-radius: 12px !important;
+        align-items: center !important;
     }
 
     .order-product-card img {
-        width: 40px !important;
-        height: 40px !important;
+        width: 32px !important;
+        height: 32px !important;
     }
 
     .order-payment-card i {
-        width: 35px !important;
-        height: 35px !important;
-        font-size: 1rem !important;
-    }
-
-    .order-status-badge {
-        margin: 5px auto 0 !important;
-        font-size: 0.65rem !important;
-        padding: 4px 8px !important;
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.8rem !important;
     }
 
     .order-product-card h4, .order-payment-card h4 {
-        font-size: 0.75rem !important;
+        font-size: 0.7rem !important;
+        margin: 0 !important;
+        line-height: 1.2 !important;
     }
 
     .order-product-card .label, .order-payment-card .label {
+        display: none; /* Hide labels on mobile to save space */
+    }
+
+    .order-status-badge {
         font-size: 0.6rem !important;
+        padding: 3px 6px !important;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        margin: 0 !important;
     }
 
     .order-chat-messages {
         padding: 15px !important;
-        background: #0a0a0a !important;
-        overscroll-behavior: contain !important;
+        background: #080808 !important;
+        height: calc(100vh - 200px) !important;
+    }
+
+    .message-wrapper {
+        max-width: 92% !important;
+    }
+
+    .message-bubble {
+        padding: 10px 14px !important;
+        font-size: 0.85rem !important;
     }
 
     .order-chat-input-area {
-        padding: 12px 15px !important;
-        background: #0d0d0d !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        padding: 10px 12px !important;
+        background: #0a0a0a !important;
+        gap: 8px !important;
     }
 
-    .message {
-        max-width: 88% !important;
-        margin-bottom: 12px !important;
-        padding: 10px 14px !important;
-        border-radius: 16px !important;
+    .btn-attach {
+        width: 40px !important;
+        height: 40px !important;
     }
 
-    .message.sent {
-        border-bottom-right-radius: 4px !important;
-    }
-
-    .message.received {
-        border-bottom-left-radius: 4px !important;
-    }
-
-    .message p {
-        font-size: 13.5px !important;
-        line-height: 1.5 !important;
-    }
-
-    .message-sender {
-        font-size: 11px !important;
-        margin-bottom: 4px !important;
-        opacity: 0.7;
-    }
-
-    .message-meta {
-        font-size: 10px !important;
-        margin-top: 4px !important;
-    }
-
-    .order-chat-input-wrapper {
-        background: rgba(255, 255, 255, 0.04) !important;
-        border-radius: 24px !important;
-        padding: 5px 5px 5px 15px !important;
+    .input-wrapper {
+        padding: 5px 12px !important;
     }
 
     #orderChatMessageInput {
-        font-size: 14px !important;
+        font-size: 0.9rem !important;
     }
 
-    .btn-send-chat {
-        width: 38px !important;
-        height: 38px !important;
-        border-radius: 50% !important;
+    #btnSendOrderMessage {
+        font-size: 1.2rem !important;
     }
 }
