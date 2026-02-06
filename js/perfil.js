@@ -911,7 +911,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 window.sendEmailNotification({
                     to_email: targetEmail,
+                    customer_email: targetEmail,
                     to_name: orderData.customer_name,
+                    customer_name: orderData.customer_name,
                     order_id: orderId.substring(0, 8).toUpperCase(),
                     product_name: orderData.product_name,
                     order_status: newStatus,

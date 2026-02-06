@@ -479,18 +479,28 @@ const EMAILJS_TEMPLATE_ID = "template_f7jzzfa";
 
 // Carregar SDK do EmailJS dinamicamente
 function loadEmailJS() {
-    if (window.emailjs && window.emailjs.send) return Promise.resolve();
-    
     return new Promise((resolve, reject) => {
+        // Se já carregou e inicializou, resolve na hora
+        if (window.emailjs && typeof window.emailjs.send === 'function') {
+            resolve();
+            return;
+        }
+        
+        // Se o script já está no DOM mas ainda não inicializou o objeto
         if (document.querySelector('script[src*="emailjs"]')) {
-            // Script already exists but maybe not loaded
             const checkInterval = setInterval(() => {
-                if (window.emailjs && window.emailjs.send) {
+                if (window.emailjs && typeof window.emailjs.send === 'function') {
                     clearInterval(checkInterval);
                     resolve();
                 }
             }, 100);
-            setTimeout(() => { clearInterval(checkInterval); resolve(); }, 3000); // Fallback
+            
+            // Timeout de 5s para o intervalo
+            setTimeout(() => { 
+                clearInterval(checkInterval); 
+                if (window.emailjs && typeof window.emailjs.send === 'function') resolve();
+                else reject(new Error("EmailJS script exists but object not found after timeout")); 
+            }, 5000);
             return;
         }
 
@@ -498,12 +508,16 @@ function loadEmailJS() {
         script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
         script.async = true;
         script.onload = () => {
-            emailjs.init({
-                publicKey: EMAILJS_PUBLIC_KEY,
-                blockHeadless: true
-            });
-            console.log("EmailJS v4 inicializado com sucesso.");
-            resolve();
+            if (window.emailjs) {
+                emailjs.init({
+                    publicKey: EMAILJS_PUBLIC_KEY,
+                    blockHeadless: true
+                });
+                console.log("EmailJS v4 inicializado com sucesso via onload.");
+                resolve();
+            } else {
+                reject(new Error("EmailJS script loaded but window.emailjs not found"));
+            }
         };
         script.onerror = (err) => {
             console.error("Falha ao carregar o script do EmailJS:", err);
@@ -519,13 +533,16 @@ window.sendEmailNotification = async function(params) {
     try {
         await loadEmailJS();
         
-        // Inicialização dupla para garantir que o v4 do EmailJS pegou a chave
+        // Garantir inicialização do EmailJS antes de cada envio
         if (window.emailjs) {
-            emailjs.init(EMAILJS_PUBLIC_KEY);
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY,
+                blockHeadless: true
+            });
         }
 
         const recipientEmail = params.to_email || params.email || params.user_email;
-        const recipientName = params.to_name || params.customer_name || params.name || recipientEmail?.split('@')[0] || "Cliente";
+        const recipientName = params.to_name || params.customer_name || params.name || (recipientEmail ? recipientEmail.split('@')[0] : "Cliente");
 
         if (!recipientEmail) {
             console.error("ERRO: E-mail não enviado: destinatário não identificado.");

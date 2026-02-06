@@ -100,7 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (window.sendEmailNotification) {
                 window.sendEmailNotification({
                     to_email: user.email,
+                    customer_email: user.email,
                     to_name: `${firstName} ${lastName}`,
+                    customer_name: `${firstName} ${lastName}`,
                     order_id: order.id.substring(0, 8).toUpperCase(),
                     product_name: order.product_name,
                     product_game: order.product_game,

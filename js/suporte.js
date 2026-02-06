@@ -584,7 +584,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                     const tid = data[0].id.substring(0, 8).toUpperCase();
                     window.sendEmailNotification({
                         to_email: ticketData.email,
+                        customer_email: ticketData.email,
                         to_name: ticketData.name,
+                        customer_name: ticketData.name,
                         ticket_id: tid,
                         subject: `Ticket Aberto: ${ticketData.subject} [#${tid}]`,
                         message: ticketData.message,
