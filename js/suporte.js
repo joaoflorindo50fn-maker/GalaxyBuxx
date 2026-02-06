@@ -184,19 +184,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    if (btnBackChat) {
-        btnBackChat.onclick = () => {
-            chatTicketView.classList.remove('active');
-            ticketsListView.classList.add('active');
-            document.body.style.overflow = ''; // Restore scroll
-            document.documentElement.style.overflow = '';
-            currentTicket = null;
-            if (messageSubscription) {
-                supabase.removeChannel(messageSubscription);
-                messageSubscription = null;
-            }
-            if (window.ticketChatFallback) clearInterval(window.ticketChatFallback);
-        };
+    // Link back button if it exists (using the correct variable backToList)
+    if (backToList) {
+        // already handled below, removing redundant block to avoid errors
     }
 
     function subscribeToMessages(ticketId) {
@@ -509,12 +499,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (error) throw error;
 
                 // Enviar e-mail de confirmação do ticket
-                if (window.sendEmailNotification) {
+                if (window.sendEmailNotification && data && data[0]) {
+                    const tid = data[0].id.substring(0, 8).toUpperCase();
                     window.sendEmailNotification({
                         to_email: ticketData.email,
                         to_name: ticketData.name,
-                        ticket_id: data[0].id.substring(0, 8).toUpperCase(),
-                        subject: `Ticket Aberto: ${ticketData.subject} [#${data[0].id.substring(0, 8).toUpperCase()}]`,
+                        ticket_id: tid,
+                        subject: `Ticket Aberto: ${ticketData.subject} [#${tid}]`,
                         message: ticketData.message,
                         type: "SUPORTE",
                         description: "Recebemos sua solicitação de suporte! Nossa equipe entrará em contato em breve através deste ticket ou e-mail."

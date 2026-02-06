@@ -479,43 +479,84 @@ const EMAILJS_TEMPLATE_ID = "template_f7jzzfa";
 
 // Carregar SDK do EmailJS dinamicamente
 function loadEmailJS() {
-    if (window.emailjs) return Promise.resolve();
+    if (window.emailjs && window.emailjs.send) return Promise.resolve();
     
     return new Promise((resolve, reject) => {
+        if (document.querySelector('script[src*="emailjs"]')) {
+            // Script already exists but maybe not loaded
+            const checkInterval = setInterval(() => {
+                if (window.emailjs && window.emailjs.send) {
+                    clearInterval(checkInterval);
+                    resolve();
+                }
+            }, 100);
+            setTimeout(() => { clearInterval(checkInterval); resolve(); }, 3000); // Fallback
+            return;
+        }
+
         const script = document.createElement('script');
-        script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js";
+        script.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+        script.async = true;
         script.onload = () => {
-            window.emailjs.init(EMAILJS_PUBLIC_KEY);
-            console.log("EmailJS inicializado com sucesso.");
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY,
+                blockHeadless: true
+            });
+            console.log("EmailJS v4 inicializado com sucesso.");
             resolve();
         };
-        script.onerror = reject;
+        script.onerror = (err) => {
+            console.error("Falha ao carregar o script do EmailJS:", err);
+            reject(err);
+        };
         document.head.appendChild(script);
     });
 }
 
 // Função global para enviar e-mails
 window.sendEmailNotification = async function(params) {
+    console.log("Tentativa de envio de e-mail:", params.type || "GERAL");
     try {
         await loadEmailJS();
         
-        // Adiciona informações básicas comuns
+        // Garante que o init foi chamado (caso o script já existisse)
+        if (window.emailjs && window.emailjs.init) {
+            emailjs.init({
+                publicKey: EMAILJS_PUBLIC_KEY,
+                blockHeadless: true
+            });
+        }
+
+        const recipientName = params.to_name || params.customer_name || params.name || "Cliente";
+        const recipientEmail = params.to_email || params.email || params.user_email;
+
+        if (!recipientEmail) {
+            console.warn("E-mail não enviado: destinatário não identificado.");
+            return false;
+        }
+
         const emailParams = {
+            to_name: recipientName,
+            to_email: recipientEmail,
+            user_name: recipientName,
+            user_email: recipientEmail,
+            customer_name: recipientName,
+            customer_email: recipientEmail,
             site_name: "GalaxyBuxx",
             year: new Date().getFullYear(),
             ...params
         };
 
-        const response = await window.emailjs.send(
+        const result = await emailjs.send(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
             emailParams
         );
 
-        console.log("E-mail enviado com sucesso!", response.status, response.text);
+        console.log("Resultado EmailJS:", result.status === 200 ? "SUCESSO" : "FALHA", result.text);
         return true;
     } catch (error) {
-        console.error("Erro ao enviar e-mail via EmailJS:", error);
+        console.error("Erro no sistema de e-mail:", error);
         return false;
     }
 };
