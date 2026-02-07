@@ -822,3 +822,70 @@ footer ul li a:hover {
     width: 100%;
   }
 }
+
+/* Opening Hours Card */
+.opening-hours-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.opening-hours-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.opening-hours-card .hours-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.opening-hours-card .hours-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.opening-hours-card .hours-title {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.opening-hours-card .hours-text {
+  font-size: 0.95rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .opening-hours-card {
+    padding: 12px 15px;
+    gap: 12px;
+  }
+  
+  .opening-hours-card .hours-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 1rem;
+  }
+  
+  .opening-hours-card .hours-text {
+    font-size: 0.85rem;
+  }
+}
