@@ -564,10 +564,12 @@ async function updateGlobalOpeningHours() {
   const cards = document.querySelectorAll('.opening-hours-card');
   if (cards.length === 0) return;
   
-  // Lógica baseada puramente no horário (12:00 às 00:00)
-  // Ignora o botão de emergência do banco de dados para os cards
+  // Lógica combinada: Horário (12:00 às 00:00) E Status Manual do Banco
   const hour = new Date().getHours();
-  const isOpen = hour >= 12 && hour < 24;
+  const timeOpen = hour >= 12 && hour < 24;
+  const manualOpen = await isStoreOpen(); // Verifica o botão no banco de dados
+  
+  const isOpen = timeOpen && manualOpen;
   
   cards.forEach(card => {
     const notice = card.querySelector('.hours-notice');
@@ -586,7 +588,12 @@ async function updateGlobalOpeningHours() {
       card.classList.add('closed');
       if (badge) badge.textContent = 'OFFLINE';
       if (notice) {
-        notice.textContent = '⚠ Atendimento em pausa. Você pode comprar, mas entregaremos após às 12:00.';
+        // Se estiver fechado manualmente, mostra aviso de pausa, se for horário, mostra aviso de horário
+        if (!manualOpen) {
+          notice.textContent = '⚠ Atendimento em pausa. Você pode comprar, mas entregaremos em breve.';
+        } else {
+          notice.textContent = '⚠ Atendimento em pausa. Você pode comprar, mas entregaremos após às 12:00.';
+        }
         notice.style.display = 'block';
       }
     }

@@ -52,13 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Lógica do botão Finalizar
     finalPayBtn?.addEventListener('click', async () => {
-        // Verificar se a loja está aberta
-        const open = await isStoreOpen();
-        if (!open) {
-            window.showNotification('A loja está fechada no momento. Os pagamentos estão desabilitados.', 'error');
-            return;
-        }
-
         const client = getSupabase();
         if (!client) return;
 
@@ -195,17 +188,5 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => window.location.reload(), 2000);
     }
 
-    async function checkStoreOnLoad() {
-        const open = await isStoreOpen();
-        if (!open) {
-            window.showNotification('Atenção: A loja está fechada. Você não poderá finalizar o pagamento.', 'error');
-            if (finalPayBtn) {
-                finalPayBtn.style.opacity = '0.5';
-                finalPayBtn.style.cursor = 'not-allowed';
-            }
-        }
-    }
-
     updateDisplay();
-    checkStoreOnLoad();
 });
