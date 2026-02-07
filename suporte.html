@@ -169,14 +169,16 @@
               </button>
             </div>
             
-            <div class="opening-hours-card" style="margin: 10px 15px 5px; border-radius: 12px; padding: 10px 15px;">
-              <div class="hours-icon" style="width: 30px; height: 30px; font-size: 0.9rem;">
+            <div class="opening-hours-card" id="openingHoursCard" style="margin: 10px 15px 15px; border-radius: 12px; padding: 12px 15px;">
+              <div class="hours-icon" style="width: 32px; height: 32px; font-size: 0.9rem;">
                 <i class="fa-solid fa-clock"></i>
               </div>
               <div class="hours-content">
                 <span class="hours-title" style="font-size: 0.65rem;">Horário de Atendimento</span>
                 <span class="hours-text" style="font-size: 0.8rem;">Todos os dias: 12:00 às 00:00</span>
+                <span class="hours-notice" id="hoursNotice" style="font-size: 0.7rem; margin-top: 2px;">Fora do horário, a entrega pode demorar.</span>
               </div>
+              <div class="hours-status-badge" id="hoursStatusBadge" style="top: 8px; right: 12px; font-size: 0.55rem;">OFFLINE</div>
             </div>
             
             <div class="chat-messages" id="chatMessages">

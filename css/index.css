@@ -834,11 +834,21 @@ footer ul li a:hover {
   gap: 15px;
   margin-bottom: 20px;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.opening-hours-card.closed {
+  border-color: rgba(255, 75, 75, 0.3);
+  background: rgba(255, 75, 75, 0.05);
+}
+
+.opening-hours-card.open {
+  border-color: rgba(75, 255, 75, 0.3);
+  background: rgba(75, 255, 75, 0.05);
 }
 
 .opening-hours-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
 }
 
@@ -852,11 +862,23 @@ footer ul li a:hover {
   justify-content: center;
   color: #fff;
   font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.opening-hours-card.closed .hours-icon {
+  background: rgba(255, 75, 75, 0.2);
+  color: #ff4b4b;
+}
+
+.opening-hours-card.open .hours-icon {
+  background: rgba(75, 255, 75, 0.2);
+  color: #4bff4b;
 }
 
 .opening-hours-card .hours-content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .opening-hours-card .hours-title {
@@ -873,19 +895,47 @@ footer ul li a:hover {
   font-weight: 700;
 }
 
+.opening-hours-card .hours-notice {
+  font-size: 0.8rem;
+  margin-top: 4px;
+  font-weight: 500;
+  display: none;
+}
+
+.opening-hours-card.closed .hours-notice {
+  display: block;
+  color: #ffbaba;
+}
+
+.opening-hours-card.open .hours-notice {
+  display: block;
+  color: #baffba;
+}
+
+.hours-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 0.6rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.closed .hours-status-badge {
+  background: #ff4b4b;
+  color: #fff;
+}
+
+.open .hours-status-badge {
+  background: #4bff4b;
+  color: #000;
+}
+
 @media (max-width: 768px) {
-  .opening-hours-card {
-    padding: 12px 15px;
-    gap: 12px;
-  }
-  
-  .opening-hours-card .hours-icon {
-    width: 35px;
-    height: 35px;
-    font-size: 1rem;
-  }
-  
-  .opening-hours-card .hours-text {
-    font-size: 0.85rem;
-  }
+  .opening-hours-card { padding: 12px 15px; gap: 12px; }
+  .opening-hours-card .hours-icon { width: 35px; height: 35px; font-size: 1rem; }
+  .opening-hours-card .hours-text { font-size: 0.85rem; }
+  .opening-hours-card .hours-notice { font-size: 0.75rem; }
 }

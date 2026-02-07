@@ -560,11 +560,42 @@ window.testEmail = async function(email) {
 };
 
 
+async function updateGlobalOpeningHours() {
+  const card = document.getElementById('openingHoursCard');
+  const notice = document.getElementById('hoursNotice');
+  const badge = document.getElementById('hoursStatusBadge');
+  
+  if (!card) return;
+  
+  const isOpen = await isStoreOpen();
+  
+  if (isOpen) {
+    card.classList.remove('closed');
+    card.classList.add('open');
+    if (badge) {
+      badge.textContent = 'ONLINE';
+    }
+    if (notice) {
+      notice.textContent = '✓ Estamos online! Seu pedido será processado rapidamente.';
+    }
+  } else {
+    card.classList.remove('open');
+    card.classList.add('closed');
+    if (badge) {
+      badge.textContent = 'OFFLINE';
+    }
+    if (notice) {
+      notice.textContent = '⚠ Atenção: Fora do horário, a entrega será feita após às 12:00.';
+    }
+  }
+}
+
 function initUI() {
   loadHeader();
   loadFooter();
   initReveal();
   initProductCards();
+  updateGlobalOpeningHours();
 }
 
 document.addEventListener('DOMContentLoaded', initUI);

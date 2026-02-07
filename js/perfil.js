@@ -1373,6 +1373,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.documentElement.style.overflow = 'hidden'; 
         loadOrderMessages(orderId);
         setupOrderMessagesRealtime(orderId);
+        if (window.updateGlobalOpeningHours) window.updateGlobalOpeningHours();
     };
 
     // Close modal logic

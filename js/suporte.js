@@ -152,6 +152,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         views.forEach(v => v.classList.remove('active'));
         chatTicketView.classList.add('active');
         
+        // Update Opening Hours Card status
+        if (window.updateGlobalOpeningHours) window.updateGlobalOpeningHours();
+
         // Load Messages
         await loadMessages(ticket.id);
         
