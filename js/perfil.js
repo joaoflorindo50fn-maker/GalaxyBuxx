@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let adminRealtimeSub = null;
     let pendingOrdersCount = 0;
     let pendingTicketsCount = 0;
+    let adminTeamChatSub = null;
 
     // Check if user is logged in
     const { data: { user }, error: authError } = await supabase.auth.getUser();
@@ -211,6 +212,121 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 
+    async function loadAdminTeamChat() {
+        const container = document.getElementById('adminTeamChatMessages');
+        if (!container) return;
+
+        // Limpar mensagens e mostrar carregando
+        container.innerHTML = '<div class="empty-table">Carregando mensagens da equipe...</div>';
+
+        try {
+            // Buscar últimas 50 mensagens
+            const { data: messages, error } = await supabase
+                .from('admin_team_messages')
+                .select('*, sender:users(username, email)')
+                .order('created_at', { ascending: true })
+                .limit(50);
+
+            if (error) throw error;
+
+            if (!messages || messages.length === 0) {
+                container.innerHTML = '<div class="empty-table">Nenhuma mensagem ainda. Comece a conversa!</div>';
+            } else {
+                container.innerHTML = '';
+                messages.forEach(msg => appendAdminTeamMessage(msg));
+                container.scrollTop = container.scrollHeight;
+            }
+
+            setupAdminTeamChatRealtime();
+        } catch (err) {
+            console.error("Erro ao carregar chat da equipe:", err);
+            container.innerHTML = '<div class="empty-table">Erro ao carregar chat.</div>';
+        }
+    }
+
+    function appendAdminTeamMessage(msg) {
+        const container = document.getElementById('adminTeamChatMessages');
+        if (!container) return;
+
+        // Remover mensagem de "vazio" se existir
+        const empty = container.querySelector('.empty-table');
+        if (empty) empty.remove();
+
+        const isOwn = msg.sender_id === user.id;
+        const date = new Date(msg.created_at);
+        const timeStr = date.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        const senderName = msg.sender?.username || msg.sender?.email?.split('@')[0] || 'Admin';
+
+        const msgHtml = `
+            <div class="admin-msg-wrapper ${isOwn ? 'own' : ''}">
+                <div class="admin-msg-header">
+                    <span class="name">${senderName}</span>
+                    <span class="time">${timeStr}</span>
+                </div>
+                <div class="admin-msg-bubble">
+                    ${msg.message}
+                </div>
+            </div>
+        `;
+        
+        container.insertAdjacentHTML('beforeend', msgHtml);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function setupAdminTeamChatRealtime() {
+        if (adminTeamChatSub) return;
+
+        adminTeamChatSub = supabase.channel('admin-team-chat')
+            .on('postgres_changes', { 
+                event: 'INSERT', 
+                schema: 'public', 
+                table: 'admin_team_messages' 
+            }, async (payload) => {
+                // Buscar dados do remetente para mostrar o nome
+                const { data: sender } = await supabase
+                    .from('users')
+                    .select('username, email')
+                    .eq('id', payload.new.sender_id)
+                    .single();
+                
+                const fullMsg = { ...payload.new, sender };
+                appendAdminTeamMessage(fullMsg);
+            })
+            .subscribe();
+    }
+
+    // Event Delegation for Admin Chat
+    document.addEventListener('click', async (e) => {
+        const btn = e.target.closest('#btnSendAdminTeamChatMessage');
+        if (btn) {
+            const input = document.getElementById('adminTeamChatMessageInput');
+            const message = input?.value.trim();
+            if (!message) return;
+
+            input.value = '';
+            
+            try {
+                const { error } = await supabase
+                    .from('admin_team_messages')
+                    .insert([{
+                        sender_id: user.id,
+                        message: message
+                    }]);
+
+                if (error) throw error;
+            } catch (err) {
+                console.error("Erro ao enviar mensagem:", err);
+                showNotification("Erro ao enviar mensagem", "error");
+            }
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && e.target.id === 'adminTeamChatMessageInput') {
+            document.getElementById('btnSendAdminTeamChatMessage')?.click();
+        }
+    });
+
     // Admin Panel Logic
     function initAdminPanel() {
         const adminTabBtns = document.querySelectorAll('.admin-tab-btn');
@@ -255,6 +371,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (tabId === 'admin-stats') {
             loadAdminStats();
+        } else if (tabId === 'admin-chat') {
+            loadAdminTeamChat();
         } else if (tabId === 'admin-pedidos' || tabId === 'admin-entregas' || tabId === 'admin-comprovantes' || tabId === 'admin-cancelados') {
             let statusFilter = '';
             let tableId = '';
@@ -282,6 +400,28 @@ document.addEventListener('DOMContentLoaded', async () => {
                 .select('*')
                 .eq('status', statusFilter)
                 .order('created_at', { ascending: false });
+
+            // Verificar expiração de PIX (15 minutos)
+            if (statusFilter === 'Aguardando Pagamento' && orders && orders.length > 0) {
+                const now = new Date();
+                const expiredIds = [];
+                const validOrders = orders.filter(o => {
+                    const createdAt = new Date(o.created_at);
+                    const diffMs = now - createdAt;
+                    const diffMin = diffMs / (1000 * 60);
+                    if (diffMin > 15) {
+                        expiredIds.push(o.id);
+                        return false;
+                    }
+                    return true;
+                });
+
+                if (expiredIds.length > 0) {
+                    await supabase.from('orders').update({ status: 'Cancelado' }).in('id', expiredIds);
+                    orders.length = 0;
+                    orders.push(...validOrders);
+                }
+            }
 
             if (ordersError) {
                 console.error("Erro ao carregar pedidos:", ordersError);
@@ -907,6 +1047,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (ud?.email) targetEmail = ud.email;
                 }
                 
+                let description = `O status do seu pedido foi atualizado para: **${newStatus}**.`;
+                let subject = `Status do Pedido: ${newStatus} [#${orderId.substring(0, 8).toUpperCase()}]`;
+
+                if (newStatus === 'Em Andamento') {
+                    subject = `Pagamento Confirmado! [#${orderId.substring(0, 8).toUpperCase()}]`;
+                    description = `Seu pagamento foi confirmado! O seu pedido já está **Em Andamento**. Por favor, acesse o chat do pedido em nosso site para receber seu produto.`;
+                }
+
                 window.sendEmailNotification({
                     type: 'order_status_update',
                     to_email: targetEmail,
@@ -914,8 +1062,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     order_id: orderId,
                     order_status: newStatus,
                     product_name: orderData.product_name,
-                    subject: `Status do Pedido: ${newStatus} [#${orderId.substring(0, 8).toUpperCase()}]`,
-                    description: `O status do seu pedido foi atualizado para: **${newStatus}**.`
+                    subject: subject,
+                    description: description
                 });
             }
 
@@ -972,6 +1120,38 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const { data: orders, error } = await query.order('created_at', { ascending: false });
+
+        // Verificar expiração de PIX (15 minutos)
+        if (orders && orders.length > 0) {
+            const now = new Date();
+            const expiredIds = [];
+            const processedOrders = orders.map(o => {
+                if (o.status === 'Aguardando Pagamento') {
+                    const createdAt = new Date(o.created_at);
+                    const diffMs = now - createdAt;
+                    const diffMin = diffMs / (1000 * 60);
+                    if (diffMin > 15) {
+                        expiredIds.push(o.id);
+                        return { ...o, status: 'Cancelado' };
+                    }
+                }
+                return o;
+            });
+
+            if (expiredIds.length > 0) {
+                await supabase.from('orders').update({ status: 'Cancelado' }).in('id', expiredIds);
+                // Update the local array to show the new status immediately
+                orders.length = 0;
+                orders.push(...processedOrders);
+                
+                // If the filter is 'ativos', we should remove the now-cancelled ones
+                if (currentOrderFilter === 'ativos') {
+                    const filtered = orders.filter(o => o.status !== 'Cancelado');
+                    orders.length = 0;
+                    orders.push(...filtered);
+                }
+            }
+        }
 
         const container = document.getElementById('ordersListContainer');
         if (!container) return;

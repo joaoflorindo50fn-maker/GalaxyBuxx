@@ -3000,3 +3000,161 @@ input:checked + .slider:before {
         font-size: 1.2rem !important;
     }
 }
+
+/* ADMIN TEAM CHAT */
+.admin-chat-card-full {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.admin-chat-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+}
+
+.admin-team-chat-layout {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.admin-team-chat-messages {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: rgba(0,0,0,0.2);
+}
+
+.admin-team-chat-input-area {
+    padding: 20px 30px;
+    border-top: 1px solid var(--card-border);
+    background: var(--card-bg);
+}
+
+.chat-input-wrapper-new {
+    display: flex;
+    gap: 15px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--card-border);
+    border-radius: 15px;
+    padding: 8px 15px;
+    transition: all 0.3s ease;
+}
+
+.chat-input-wrapper-new:focus-within {
+    border-color: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+}
+
+.chat-input-wrapper-new input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: white !important;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    padding: 10px 0;
+}
+
+.chat-input-wrapper-new input:focus {
+    outline: none;
+}
+
+#btnSendAdminTeamChatMessage {
+    background: white;
+    color: black;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding: 0;
+}
+
+#btnSendAdminTeamChatMessage:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.1);
+}
+
+/* ADMIN MESSAGES BUBBLES */
+.admin-msg-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    align-self: flex-start;
+}
+
+.admin-msg-wrapper.own {
+    align-self: flex-end;
+}
+
+.admin-msg-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 5px;
+    padding: 0 5px;
+}
+
+.admin-msg-header .name {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+}
+
+.admin-msg-header .time {
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.3);
+}
+
+.admin-msg-bubble {
+    padding: 12px 18px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    position: relative;
+    background: var(--card-border);
+    color: var(--text-main);
+    border-bottom-left-radius: 4px;
+}
+
+.own .admin-msg-bubble {
+    background: white;
+    color: black;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 4px;
+}
+
+.own .admin-msg-header {
+    flex-direction: row-reverse;
+}
+
+@media (max-width: 768px) {
+    .admin-chat-card-full {
+        height: 500px;
+    }
+    .admin-team-chat-messages {
+        padding: 15px;
+    }
+    .admin-team-chat-input-area {
+        padding: 15px;
+    }
+}

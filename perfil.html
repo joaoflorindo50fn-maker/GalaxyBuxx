@@ -203,6 +203,7 @@
                         <div class="admin-tab-btn" data-admin-tab="admin-cancelados">Cancelados</div>
                         <div class="admin-tab-btn" data-admin-tab="admin-tickets">Tickets <span class="nav-badge hidden" id="badge-tickets">0</span></div>
                         <div class="admin-tab-btn" data-admin-tab="admin-usuarios">Usuários</div>
+                        <div class="admin-tab-btn" data-admin-tab="admin-chat">Chat Equipe</div>
                         <div class="admin-tab-btn" data-admin-tab="admin-config">Configurações</div>
                     </div>
 
@@ -369,6 +370,31 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="admin-tab-content" id="admin-chat">
+                        <div class="admin-card admin-chat-card-full">
+                            <div class="card-header-admin">
+                                <h4>Chat da Equipe Admin</h4>
+                                <div class="admin-chat-status">
+                                    <i class="fa-solid fa-circle" style="color: #22c55e;"></i>
+                                    <span>Realtime Ativo</span>
+                                </div>
+                            </div>
+                            <div class="admin-team-chat-layout">
+                                <div class="admin-team-chat-messages" id="adminTeamChatMessages">
+                                    <div class="empty-table">Carregando mensagens da equipe...</div>
+                                </div>
+                                <div class="admin-team-chat-input-area">
+                                    <div class="chat-input-wrapper-new">
+                                        <input type="text" id="adminTeamChatMessageInput" placeholder="Mensagem para a equipe...">
+                                        <button id="btnSendAdminTeamChatMessage">
+                                            <i class="fa-solid fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
