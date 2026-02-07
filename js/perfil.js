@@ -223,17 +223,30 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Buscar últimas 50 mensagens
             const { data: messages, error } = await supabase
                 .from('admin_team_messages')
-                .select('*, sender:users(username, email)')
+                .select('*')
                 .order('created_at', { ascending: true })
                 .limit(50);
 
-            if (error) throw error;
+            if (error) {
+                console.error("Erro detalhado do Supabase:", error);
+                throw error;
+            }
 
             if (!messages || messages.length === 0) {
                 container.innerHTML = '<div class="empty-table">Nenhuma mensagem ainda. Comece a conversa!</div>';
             } else {
                 container.innerHTML = '';
-                messages.forEach(msg => appendAdminTeamMessage(msg));
+                // Buscar nomes dos usuários para as mensagens carregadas
+                for (const msg of messages) {
+                    if (!adminNamesCache[msg.sender_id]) {
+                        const { data: u } = await supabase.from('users').select('username').eq('id', msg.sender_id).single();
+                        adminNamesCache[msg.sender_id] = u?.username || 'Admin';
+                    }
+                    appendAdminTeamMessage({
+                        ...msg,
+                        sender: { username: adminNamesCache[msg.sender_id] }
+                    });
+                }
                 container.scrollTop = container.scrollHeight;
             }
 
@@ -326,6 +339,20 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('btnSendAdminTeamChatMessage')?.click();
         }
     });
+
+    // Inicia verificador de expiração em segundo plano (roda a cada 30 segundos)
+    setInterval(() => {
+        const activeTab = document.querySelector('.profile-nav-item.active')?.getAttribute('data-tab');
+        const activeAdminTab = document.querySelector('.admin-tab-btn.active')?.getAttribute('data-admin-tab');
+
+        if (activeTab === 'historico') {
+            loadUserOrders();
+        }
+
+        if (activeTab === 'admin' && activeAdminTab === 'admin-pedidos') {
+            loadAdminTabData('admin-pedidos');
+        }
+    }, 30000);
 
     // Admin Panel Logic
     function initAdminPanel() {
