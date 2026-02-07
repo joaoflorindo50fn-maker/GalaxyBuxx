@@ -561,33 +561,33 @@ window.testEmail = async function(email) {
 
 
 async function updateGlobalOpeningHours() {
-  const card = document.getElementById('openingHoursCard');
-  const notice = document.getElementById('hoursNotice');
-  const badge = document.getElementById('hoursStatusBadge');
-  
-  if (!card) return;
+  const cards = document.querySelectorAll('.opening-hours-card');
+  if (cards.length === 0) return;
   
   const isOpen = await isStoreOpen();
   
-  if (isOpen) {
-    card.classList.remove('closed');
-    card.classList.add('open');
-    if (badge) {
-      badge.textContent = 'ONLINE';
+  cards.forEach(card => {
+    const notice = card.querySelector('.hours-notice');
+    const badge = card.querySelector('.hours-status-badge');
+    
+    if (isOpen) {
+      card.classList.remove('closed');
+      card.classList.add('open');
+      if (badge) badge.textContent = 'ONLINE';
+      if (notice) {
+        notice.textContent = '✓ Estamos online! Seu pedido será entregue agora.';
+        notice.style.display = 'block';
+      }
+    } else {
+      card.classList.remove('open');
+      card.classList.add('closed');
+      if (badge) badge.textContent = 'OFFLINE';
+      if (notice) {
+        notice.textContent = '⚠ Atendimento em pausa. Você pode comprar, mas entregaremos após às 12:00.';
+        notice.style.display = 'block';
+      }
     }
-    if (notice) {
-      notice.textContent = '✓ Estamos online! Seu pedido será processado rapidamente.';
-    }
-  } else {
-    card.classList.remove('open');
-    card.classList.add('closed');
-    if (badge) {
-      badge.textContent = 'OFFLINE';
-    }
-    if (notice) {
-      notice.textContent = '⚠ Atenção: Fora do horário, a entrega será feita após às 12:00.';
-    }
-  }
+  });
 }
 
 function initUI() {
@@ -596,6 +596,8 @@ function initUI() {
   initReveal();
   initProductCards();
   updateGlobalOpeningHours();
+  // Atualiza a cada 1 minuto para virar o horário automaticamente
+  setInterval(updateGlobalOpeningHours, 60000);
 }
 
 document.addEventListener('DOMContentLoaded', initUI);
