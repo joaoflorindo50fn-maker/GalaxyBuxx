@@ -564,7 +564,10 @@ async function updateGlobalOpeningHours() {
   const cards = document.querySelectorAll('.opening-hours-card');
   if (cards.length === 0) return;
   
-  const isOpen = await isStoreOpen();
+  // Lógica baseada puramente no horário (12:00 às 00:00)
+  // Ignora o botão de emergência do banco de dados para os cards
+  const hour = new Date().getHours();
+  const isOpen = hour >= 12 && hour < 24;
   
   cards.forEach(card => {
     const notice = card.querySelector('.hours-notice');

@@ -1,9 +1,13 @@
 // Index Specific Logic
 function initIndex() {
   // Status badge - verifica horário de funcionamento
-  async function updateStatus() {
+  function updateStatus() {
     const badge = document.getElementById("statusBadge");
-    const isOpen = await isStoreOpen();
+    
+    // Lógica baseada puramente no horário (12:00 às 00:00)
+    // Ignora o botão de emergência do banco de dados para os cards
+    const hour = new Date().getHours();
+    const isOpen = hour >= 12 && hour < 24;
     
     if (badge) {
       if (isOpen) {
